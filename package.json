@@ -1,0 +1,12 @@
+{
+  "name": "zipzi-2d-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node --check src/assets/site.js && node --check scripts/build.mjs && node scripts/check.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/site.test.mjs",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist"
+  }
+}

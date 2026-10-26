@@ -1,0 +1,18 @@
+# Publish only reviewed website sources. Local deployment evidence stays local.
+/*
+!/.gitignore
+!/README.md
+!/package.json
+!/src/
+!/scripts/
+/scripts/*
+!/scripts/build.mjs
+!/scripts/check.mjs
+!/scripts/site.test.mjs
+**/.DS_Store
+**/._*
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/node_modules/

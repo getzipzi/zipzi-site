@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a12">
+  <meta name="description" content="Zipzi 2D，面向创作者与开发者的二维建模与动画工具。原生 macOS 编辑器、Rust 核心与 Python SDK，正在开发中。">
+  <title>Zipzi 2D — 塑造二维，驱动想象</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="module" src="/assets/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+  <header class="header">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Zipzi 2D 首页"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 5h24v6L13 21h16v6H3v-6l15-10H3z" fill="currentColor"/></svg><span>zipzi<span class="brand-2d">2D</span></span></a>
+      <nav class="navigation" id="navigation" aria-label="主导航"><a href="#editor">编辑器</a><a href="#workflow">创作工作流</a><a href="#developers">开发者</a></nav>
+      <a class="nav-cta" href="#status">开发进展 <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero-intro">
+        <div><p class="eyebrow">2D MODELING &amp; ANIMATION</p><h1 id="hero-title">塑造二维，<br><span>驱动想象。</span></h1></div>
+        <div class="hero-copy"><p>从形态到动态，<br>让创作拥有更多可能。</p><p class="hero-description">Zipzi 2D 将二维建模与动画带入同一工作空间，以原生编辑器和可编程 SDK，连接创意与实现。</p><div class="hero-actions"><a class="button primary" href="#editor">探索编辑器 <span aria-hidden="true">↓</span></a><a class="text-link" href="#developers">了解 SDK <span aria-hidden="true">↗</span></a></div></div>
+      </div>
+      <div class="product-showcase" id="editor">
+        <div class="showcase-topline"><span>ZIPZI EDITOR</span><span>macOS · Metal</span></div>
+        <figure><a class="screenshot-link" href="/assets/editor-modeling.png" target="_blank" rel="noopener" aria-label="在新标签页查看完整编辑器截图"><img src="/assets/editor-modeling.png" width="2200" height="1480" fetchpriority="high" alt="Zipzi 2D 开发版本的真实编辑器：左侧模型层级、中央双菱形网格测试场景、右侧 ArtMesh 属性面板。"><span class="image-open" aria-hidden="true">查看原图 ↗</span></a><figcaption><span>真实编辑器 · 网格编辑视图</span><span>开发版本 / 内置测试场景</span></figcaption></figure>
+      </div>
+      <div class="platform-line"><p>为创作者提供直接的控制。<br class="mobile-break">为开发者留下编程的空间。</p><span>Native editor <b>·</b> Rust core <b>·</b> Python SDK</span></div>
+    </section>
+    <section class="workflow section wrap" id="workflow" aria-labelledby="workflow-title">
+      <div class="section-intro"><p class="eyebrow">SHAPE. DEFORM. ANIMATE.</p><h2 id="workflow-title">从一个形状，<br>到一段表达。</h2><p class="section-lead">建模、变形与动画，是同一创作过程的不同视角。<br class="desktop-break">为角色、图形与更广泛的二维内容而构建。</p></div>
+      <div class="workflow-columns">
+        <article><div class="chapter"><span>01 / MODEL</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 13 13-13 13L3 16zM3 16h26M16 3v26"/></svg></div><h3>建立形态</h3><p>组织模型与图层，编辑网格和纹理，让二维素材成为可以继续塑造的结构。</p><span class="detail-line">模型文档 / 网格 / 纹理</span></article>
+        <article><div class="chapter"><span>02 / DEFORM</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 5c9 4 13-4 22 0v22c-9-4-13 4-22 0zM5 16c9 4 13-4 22 0M16 5v22"/></svg></div><h3>控制变化</h3><p>通过参数与变形组织模型的变化，在基础形态之上，细化每一次调整。</p><span class="detail-line">参数 / 变形 / 形态调整</span></article>
+        <article><div class="chapter"><span>03 / ANIMATE</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 8h26M3 24h26M10 3v26m9-16 5 5-5 5-5-5z"/></svg></div><h3>赋予动态</h3><p>在动画工作空间中安排时间与关键帧，让静态模型拥有节奏、运动与表现力。</p><span class="detail-line">时间轴 / 关键帧 / 动画</span></article>
+      </div>
+    </section>
+    <section class="developer-band" id="developers" aria-labelledby="developer-title">
+      <div class="developer-grid wrap section">
+        <div class="developer-copy"><p class="eyebrow">BUILT TO BE PROGRAMMABLE</p><h2 id="developer-title">用界面雕琢。<br>用代码延展。</h2><p>Rust 核心承载模型与编辑能力，Python SDK 提供可编程入口。把重复操作写成代码，为自己的创作流程建立工具。</p><p class="developer-note">原生编辑器与 SDK 围绕共享 Runtime 构建。Python 接口仍在完善，具体能力随开发版本演进。</p><a class="text-link" href="#status">查看当前状态 <span aria-hidden="true">↗</span></a></div>
+        <div class="code-example"><div class="code-heading"><span>Python SDK</span><span>网格创建 · 示例节选</span></div><pre aria-label="Python 网格创建代码节选"><code><span class="code-purple">from</span> zipzi <span class="code-purple">import</span> meshes
+
+geometry = meshes.<span class="code-blue">Geometry</span>(
+    (<span class="code-number">42</span>, <span class="code-number">7</span>, <span class="code-number">99</span>),
+    ((<span class="code-number">0.</span>, <span class="code-number">0.</span>), (<span class="code-number">1.</span>, <span class="code-number">0.</span>), (<span class="code-number">0.</span>, <span class="code-number">1.</span>)),
+    ((<span class="code-number">0.</span>, <span class="code-number">0.</span>), (<span class="code-number">1.</span>, <span class="code-number">0.</span>), (<span class="code-number">0.</span>, <span class="code-number">1.</span>)),
+    ((<span class="code-number">42</span>, <span class="code-number">7</span>, <span class="code-number">99</span>),),
+)
+
+<span class="code-purple">with</span> session.<span class="code-blue">edit</span>(<span class="code-string">"Shape"</span>) <span class="code-purple">as</span> edit:
+    shape = edit.meshes.<span class="code-blue">create</span>(
+        meshes.<span class="code-blue">MeshSpec</span>(<span class="code-string">"Shape"</span>, geometry)
+    )</code></pre><p class="code-caption">基于项目 SDK 文档，省略 Runtime 与 Session 初始化。</p></div>
+      </div>
+    </section>
+    <section class="status section wrap" id="status" aria-labelledby="status-title">
+      <div class="status-heading"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>IN DEVELOPMENT</p><h2 id="status-title">正在构建。<br><span class="muted">持续打磨。</span></h2><p>Zipzi 2D 尚未正式发布。<br>我们正在完善编辑器、SDK 与创作工作流。</p></div>
+      <div class="status-details">
+        <div class="status-row"><h3>当前平台</h3><p>原生编辑器面向 macOS，使用 Metal 渲染。<br>其他平台支持尚未在此公布。</p></div>
+        <div class="status-row"><h3>开发阶段</h3><p>功能、API 与文件格式仍可能变化。<br>本页展示开发版本，暂不提供正式下载。</p></div>
+        <details><summary>Zipzi 2D 与 Kasane 2D 是什么关系？<span aria-hidden="true">+</span></summary><p>Zipzi 2D 是原 Kasane 2D 项目的新名称，延续二维建模、动画与可编程工具的开发方向。开发截图中仍可能出现旧格式名称。</p></details>
+        <details><summary>它只用于角色动画吗？<span aria-hidden="true">+</span></summary><p>不局限于角色或特定画风。项目面向更广泛的二维建模与动画工作流，既关注创作者的编辑体验，也为开发者提供 SDK。</p></details>
+      </div>
+    </section>
+  </main>
+  <footer class="footer wrap"><div class="footer-top"><a class="footer-wordmark" href="#top" aria-label="回到顶部">zipzi<span>2D</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 24 24 8M8 8h16v16"/></svg></a><p>二维建模与动画。<br>为创作，也为创造工具的人。</p></div><div class="footer-bottom"><span>© 2026 Zipzi 2D</span><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">浙ICP备2026015551号-1</a><a href="#top">回到顶部 ↑</a></div></footer>
+</body>
+</html>
