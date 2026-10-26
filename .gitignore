@@ -9,6 +9,14 @@
 !/scripts/build.mjs
 !/scripts/check.mjs
 !/scripts/site.test.mjs
+!/scripts/release.mjs
+!/scripts/release.test.mjs
+!/scripts/sync-release.mjs
+!/scripts/lint.mjs
+!/scripts/package.mjs
+!/.github/
+!/.github/workflows/
+!/docs/
 **/.DS_Store
 **/._*
 **/.env

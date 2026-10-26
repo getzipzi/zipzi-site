@@ -2,11 +2,13 @@ import {mkdir,readFile,writeFile,rm} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {readRelease,renderRelease} from './release.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 await rm(path.join(root,'dist'),{recursive:true,force:true});
 await mkdir(path.join(root,'dist/assets'),{recursive:true});
 await mkdir(path.join(root,'qa'),{recursive:true});
 let html=await readFile(path.join(root,'src/index.html'),'utf8');
+html=html.replace('{{RELEASE_LINKS}}',renderRelease(await readRelease()));
 const files=[];
 for(const name of ['site.css','site.js','favicon.svg','editor-modeling.png']){
   const data=await readFile(path.join(root,'src/assets',name));

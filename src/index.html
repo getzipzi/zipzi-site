@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0a12">
-  <meta name="description" content="Zipzi 2D，面向创作者与开发者的二维建模与动画工具。原生 macOS 编辑器、Rust 核心与 Python SDK，正在开发中。">
+  <meta name="description" content="Zipzi 2D，面向创作者与开发者的二维建模与动画工具。原生 macOS 编辑器、Rust 核心与 Python SDK。macOS Apple Silicon Alpha 现已发布，发布资源需要 GitHub 仓库权限。">
   <title>Zipzi 2D — 塑造二维，驱动想象</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/site.css">
@@ -16,7 +16,7 @@
     <div class="nav-shell">
       <a class="brand" href="#top" aria-label="Zipzi 2D 首页"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 5h24v6L13 21h16v6H3v-6l15-10H3z" fill="currentColor"/></svg><span>zipzi<span class="brand-2d">2D</span></span></a>
       <nav class="navigation" id="navigation" aria-label="主导航"><a href="#editor">编辑器</a><a href="#workflow">创作工作流</a><a href="#developers">开发者</a></nav>
-      <a class="nav-cta" href="#status">开发进展 <span aria-hidden="true">↗</span></a>
+      <a class="nav-cta" href="#status">Alpha 版本 <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="打开导航"><span></span><span></span></button>
     </div>
   </header>
@@ -24,7 +24,7 @@
     <section class="hero wrap" id="top" aria-labelledby="hero-title">
       <div class="hero-intro">
         <div><p class="eyebrow">2D MODELING &amp; ANIMATION</p><h1 id="hero-title">塑造二维，<br><span>驱动想象。</span></h1></div>
-        <div class="hero-copy"><p>从形态到动态，<br>让创作拥有更多可能。</p><p class="hero-description">Zipzi 2D 将二维建模与动画带入同一工作空间，以原生编辑器和可编程 SDK，连接创意与实现。</p><div class="hero-actions"><a class="button primary" href="#editor">探索编辑器 <span aria-hidden="true">↓</span></a><a class="text-link" href="#developers">了解 SDK <span aria-hidden="true">↗</span></a></div></div>
+        <div class="hero-copy"><p>从形态到动态，<br>让创作拥有更多可能。</p><p class="hero-description">Zipzi 2D 将二维建模与动画带入同一工作空间，以原生编辑器和可编程 SDK，连接创意与实现。</p><div class="hero-actions"><a class="button primary" href="#status">查看 Alpha 版本 <span aria-hidden="true">↓</span></a><a class="text-link" href="#developers">了解 SDK <span aria-hidden="true">↗</span></a></div></div>
       </div>
       <div class="product-showcase" id="editor">
         <div class="showcase-topline"><span>ZIPZI EDITOR</span><span>macOS · Metal</span></div>
@@ -59,10 +59,11 @@ geometry = meshes.<span class="code-blue">Geometry</span>(
       </div>
     </section>
     <section class="status section wrap" id="status" aria-labelledby="status-title">
-      <div class="status-heading"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>IN DEVELOPMENT</p><h2 id="status-title">正在构建。<br><span class="muted">持续打磨。</span></h2><p>Zipzi 2D 尚未正式发布。<br>我们正在完善编辑器、SDK 与创作工作流。</p></div>
+      <div class="status-heading"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>ALPHA RELEASE</p><h2 id="status-title">首个 Alpha。<br><span class="muted">开始探索。</span></h2><p>Zipzi Editor 已发布首个 Alpha 版本。<br>面向早期测试，编辑器与 SDK 仍在持续完善。</p></div>
       <div class="status-details">
-        <div class="status-row"><h3>当前平台</h3><p>原生编辑器面向 macOS，使用 Metal 渲染。<br>其他平台支持尚未在此公布。</p></div>
-        <div class="status-row"><h3>开发阶段</h3><p>功能、API 与文件格式仍可能变化。<br>本页展示开发版本，暂不提供正式下载。</p></div>
+        <div class="status-row"><h3>当前平台</h3><p>当前发行包仅支持 macOS Apple Silicon，使用 Metal 渲染。尚无 Intel Mac 或 Windows 发行包。</p></div>
+        <div class="status-row"><h3>开发阶段</h3><p>Alpha 适合早期测试，功能、API 与文件格式仍可能变化。当前应用使用 ad hoc 签名，尚未通过 Apple 公证。</p></div>
+        {{RELEASE_LINKS}}
         <details><summary>Zipzi 2D 与 Kasane 2D 是什么关系？<span aria-hidden="true">+</span></summary><p>Zipzi 2D 是原 Kasane 2D 项目的新名称，延续二维建模、动画与可编程工具的开发方向。开发截图中仍可能出现旧格式名称。</p></details>
         <details><summary>它只用于角色动画吗？<span aria-hidden="true">+</span></summary><p>不局限于角色或特定画风。项目面向更广泛的二维建模与动画工作流，既关注创作者的编辑体验，也为开发者提供 SDK。</p></details>
       </div>

@@ -1,0 +1,39 @@
+{
+  "repository": "getzipzi/zipzi-2d",
+  "private": true,
+  "tag": "v0.1.0-alpha.1",
+  "url": "https://github.com/getzipzi/zipzi-2d/releases/tag/v0.1.0-alpha.1",
+  "prerelease": true,
+  "publishedAt": "2026-10-26T04:27:47Z",
+  "assets": [
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/SHA256SUMS",
+      "bytes": 330,
+      "digest": "sha256:ccd6b90bca53d8deed07bdd8f914d84459b603812c51956887514fa07555d867"
+    },
+    {
+      "name": "Zipzi-2D-v0.1.0-alpha.1-source.tar.gz",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-2D-v0.1.0-alpha.1-source.tar.gz",
+      "bytes": 16826237,
+      "digest": "sha256:3c536d9cf358424c3f6e2a9c46227958a1d9935ba020047743297ca78482d8ae"
+    },
+    {
+      "name": "Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.dmg",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.dmg",
+      "bytes": 25714599,
+      "digest": "sha256:b62caabdc6c1e58641ec87203a55fec47b9a9fb9142113db2f1f44db0b168e79"
+    },
+    {
+      "name": "Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.zip",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.zip",
+      "bytes": 22331961,
+      "digest": "sha256:cfbd1952c29947016874fa8aeeea8b4813d6e6621e55518ec41c8d9002b755c7"
+    }
+  ],
+  "review": {
+    "platform": "macos-arm64",
+    "signing": "ad-hoc",
+    "notarized": false
+  }
+}
