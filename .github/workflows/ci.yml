@@ -1,50 +1,71 @@
 name: Website CI
-
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: website-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   verify:
-    name: Lint, test and build
+    name: Static site, accessibility and browser regression
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '24.12.0'
-      - name: Lint source and release disclosures
-        run: npm run lint
-      - name: Build static site
-        run: npm run build
-      - name: Verify build and release metadata
-        run: npm test
-      - name: Verify reproducible build
+          node-version: '24.16.0'
+          cache: npm
+      - name: Install exactly the reviewed lockfile
+        run: npm ci --ignore-scripts --registry=https://registry.npmjs.org
+      - name: Audit locked dependencies
+        run: npm audit --audit-level=moderate --registry=https://registry.npmjs.org
+      - name: Type and source checks
+        run: |
+          npm run check
+          npm run lint
+      - name: Build and test generated artifacts
+        run: |
+          npm run build
+          npm test
+      - name: Verify reproducibility
         run: |
           cp qa/build-manifest.json /tmp/first-build.json
           npm run build
           cmp /tmp/first-build.json qa/build-manifest.json
-      - name: Package verified build
+      - name: Install isolated test browser
+        run: npx playwright install --with-deps chromium --only-shell
+      - name: Browser, keyboard, responsive and WCAG regression
+        run: npm run test:browser
+      - name: Package and audit publication
         run: |
           npm run package
+          npm run audit:publication
           cd artifact
           sha256sum --check SHA256SUMS
-      - name: Save build for deployment review
+      - name: Save verified website artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: zipzi-site-${{ github.sha }}
           path: artifact/
           if-no-files-found: error
           retention-days: 14
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: website-browser-evidence-${{ github.sha }}
+          path: |
+            qa/browser-report/
+            qa/browser-results/
+            qa/screenshots/
+          if-no-files-found: ignore
+          retention-days: 7

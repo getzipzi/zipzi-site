@@ -1,0 +1,34 @@
+---
+// Adapted from AstroWind Metadata: explicit crawl settings and local images only.
+import { SEO } from 'astro-seo';
+import { SITE, METADATA, I18N } from 'astrowind:config';
+import type { MetaData } from '~/types';
+export type Props = MetaData;
+const {
+  title = METADATA.title?.default,
+  description = METADATA.description,
+  robots = {},
+  canonical = new URL(Astro.url.pathname, SITE.site).href,
+} = Astro.props;
+const ogImage = METADATA.openGraph?.images?.[0];
+if (!ogImage || !SITE.site) throw new Error('Missing site origin or Open Graph image');
+const image = new URL(ogImage.url, SITE.site).href;
+---
+
+<SEO
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={robots.index === undefined ? METADATA.robots?.index !== true : !robots.index}
+  nofollow={robots.follow === undefined ? METADATA.robots?.follow !== true : !robots.follow}
+  openGraph={{
+    basic: { title: title ?? SITE.name, type: 'website', image, url: canonical },
+    optional: { description, locale: I18N.language.replace('-', '_'), siteName: SITE.name },
+    image: { url: image, width: ogImage.width, height: ogImage.height, alt: 'Zipzi 2D 开发版本的真实网格编辑器界面' },
+  }}
+  twitter={{ card: 'summary_large_image' }}
+/>
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content="Zipzi 2D 开发版本的真实编辑器界面" />

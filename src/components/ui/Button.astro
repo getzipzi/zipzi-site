@@ -1,0 +1,18 @@
+---
+// AstroWind button primitive, narrowed to accessible navigation links.
+import { twMerge } from 'tailwind-merge';
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+  class?: string;
+  target?: '_blank';
+}
+const { href, variant = 'primary', class: className, target } = Astro.props;
+---
+
+<a
+  href={href}
+  class={twMerge('button', variant === 'primary' ? 'button-primary' : 'button-secondary', className)}
+  target={target}
+  rel={target ? 'noopener noreferrer' : undefined}><slot /><span aria-hidden="true">↗</span></a
+>

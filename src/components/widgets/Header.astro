@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import icon from '~/assets/images/app-icon.png';
+const links = [
+  { href: '/#editor', text: '编辑器' },
+  { href: '/#workflow', text: '工作流' },
+  { href: '/#developers', text: '开发者' },
+];
+---
+
+<header class="site-header" id="header">
+  <div class="nav-shell">
+    <a class="brand" href="/" aria-label="Zipzi 2D 首页"
+      ><Image src={icon} alt="" width={40} height={40} format="webp" /><span
+        >Zipzi<span class="brand-suffix">2D</span></span
+      ></a
+    >
+    <nav id="primary-navigation" aria-label="主导航">{links.map((link) => <a href={link.href}>{link.text}</a>)}</nav>
+    <a class="nav-release" href="/#release">查看 Alpha <span aria-hidden="true">↗</span></a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="primary-navigation"
+      aria-expanded="false"
+      aria-label="打开导航"
+      hidden
+      ><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"
+        ><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg
+      ></button
+    >
+  </div>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('#header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = header?.querySelector<HTMLElement>('nav');
+  if (header && toggle && nav) {
+    const mobile = window.matchMedia('(max-width: 767px)');
+    const close = (focus = false) => {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', '打开导航');
+      nav.hidden = mobile.matches;
+      if (focus) toggle.focus();
+    };
+    const sync = () => {
+      toggle.hidden = !mobile.matches;
+      close();
+    };
+    header.dataset.enhanced = 'true';
+    sync();
+    mobile.addEventListener('change', sync);
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+      nav.hidden = !open;
+      if (open) nav.querySelector('a')?.focus();
+    });
+    header.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobile.matches && toggle.getAttribute('aria-expanded') === 'true') {
+        event.preventDefault();
+        close(true);
+      }
+    });
+    nav.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest('a');
+      if (!link) return;
+      close();
+      const url = new URL(link.href);
+      if (url.pathname === window.location.pathname && url.hash) {
+        const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) close();
+    });
+  }
+</script>

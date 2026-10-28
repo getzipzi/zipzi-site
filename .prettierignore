@@ -1,0 +1,14 @@
+node_modules
+.astro
+dist
+artifact
+qa
+release
+scripts
+playwright-report
+test-results
+package-lock.json
+LICENSE.md
+*.zip
+DEPLOYMENT.md
+.github

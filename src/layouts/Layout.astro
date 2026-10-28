@@ -1,0 +1,27 @@
+---
+// Adapted from AstroWind Layout: no analytics, remote fonts, or client router.
+import '~/assets/styles/tailwind.css';
+import { I18N } from 'astrowind:config';
+import Metadata from '~/components/common/Metadata.astro';
+import type { MetaData } from '~/types';
+interface Props {
+  metadata?: MetaData;
+}
+const { metadata = {} } = Astro.props;
+---
+
+<!doctype html>
+<html lang={I18N.language} dir={I18N.textDirection as 'ltr' | 'rtl'} class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0d16" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <Metadata {...metadata} />
+    <slot name="head" />
+  </head>
+  <body class="bg-page text-default antialiased">
+    <a class="skip-link" href="#main">跳转到主要内容</a>
+    <slot />
+  </body>
+</html>
