@@ -5,11 +5,14 @@ import { SITE, METADATA, I18N } from 'astrowind:config';
 import type { MetaData } from '~/types';
 export type Props = MetaData;
 const {
-  title = METADATA.title?.default,
+  title: pageTitle,
   description = METADATA.description,
   robots = {},
   canonical = new URL(Astro.url.pathname, SITE.site).href,
 } = Astro.props;
+// Apply the shared template only to an explicit page title. The homepage uses
+// the complete default verbatim so the site name is never appended twice.
+const title = pageTitle ? (METADATA.title?.template ?? '%s').replace('%s', pageTitle) : METADATA.title?.default;
 const ogImage = METADATA.openGraph?.images?.[0];
 if (!ogImage || !SITE.site) throw new Error('Missing site origin or Open Graph image');
 const image = new URL(ogImage.url, SITE.site).href;

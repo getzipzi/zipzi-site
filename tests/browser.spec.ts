@@ -2,6 +2,18 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { mkdir } from 'node:fs/promises';
 
+test('browser tab and social titles preserve the filed website name without duplicate suffixes', async ({ page }) => {
+  for (const [route, title] of [
+    ['/', 'Clwai | Zipzi'],
+    ['/missing-title-check', '页面未找到 | Clwai | Zipzi'],
+  ]) {
+    await page.goto(route);
+    await expect(page).toHaveTitle(title);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', title);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', title);
+  }
+});
+
 test('static HTTP responses and missing routes have correct status and MIME', async ({ request }) => {
   for (const [route, status, mime] of [
     ['/', 200, 'text/html'],

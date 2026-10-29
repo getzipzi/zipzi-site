@@ -35,6 +35,8 @@ On a Linux CI runner, `npx playwright install --with-deps chromium` installs the
 
 `src/config.yaml` owns the production origin, site metadata, language, and crawl policy. The current canonical origin is **https://clwai.cn**. The metadata component derives canonical, Open Graph, and Twitter URLs from that configuration. The sitemap integration writes canonical public URLs; the adapted build hook requires a valid sitemap and emits `sitemap.xml` and `robots.txt`. A missing sitemap fails the build. The 404 page has explicit `noindex`.
 
+The homepage browser title is exactly **Clwai | Zipzi**. Custom public page titles include Clwai through the shared title template, and Open Graph/Twitter titles match the browser title. The product brand and `site.name` remain Zipzi 2D.
+
 The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
 
 The homepage uses the real Cat-model editor screenshot linked by the product README. Its full 2204 × 1486 frame is preserved, with responsive WebP images and a high-quality JPEG for the full-size link and social previews. Navigation and footer use the reviewed `zipzi-editor-icon.svg` artwork from the editor assets as a shared inline SVG; favicon and Apple touch icon are rendered from that same source. See [asset provenance](docs/assets.md) for exact source paths, hashes, selection notes and optimization details. No stock photography, remote fonts, analytics, external scripts or runtime API calls are shipped. System fonts are used.

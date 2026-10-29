@@ -39,6 +39,32 @@ test('Generated homepage has complete, consistent, indexable metadata', () => {
   assert.equal(nodes.filter((n) => n.tagName === 'h1').length, 1);
 });
 
+test('Public page titles retain Clwai exactly once and social titles match the browser title', async () => {
+  for (const [path, expected] of [
+    ['dist/index.html', 'Clwai | Zipzi'],
+    ['dist/404.html', '页面未找到 | Clwai | Zipzi'],
+  ]) {
+    const elements = [];
+    const collect = (node) => {
+      if (node.tagName) elements.push(node);
+      for (const child of node.childNodes ?? []) collect(child);
+    };
+    collect(parse(await readFile(path, 'utf8')));
+    const titles = elements.filter((node) => node.tagName === 'title');
+    assert.equal(titles.length, 1);
+    assert.equal(text(titles[0]), expected);
+    assert.equal(text(titles[0]).match(/Clwai/g)?.length, 1);
+    for (const [attribute, value] of [
+      ['property', 'og:title'],
+      ['name', 'twitter:title'],
+    ]) {
+      const social = elements.filter((node) => node.tagName === 'meta' && attrs(node)[attribute] === value);
+      assert.equal(social.length, 1);
+      assert.equal(attrs(social[0]).content, expected);
+    }
+  }
+});
+
 test('Real robots and well-formed sitemap files contain only canonical public pages', async () => {
   const robots = await readFile('dist/robots.txt', 'utf8');
   assert.match(robots, /^User-agent: \*/m);
