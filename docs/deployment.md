@@ -4,7 +4,7 @@
 
 The canonical website is `https://clwai.cn`. Its server also serves an independently authenticated jobs application and API. Website deployment must preserve jobs, API, SSH, TLS and legacy assets.
 
-The owner requested deployment from website CI. The workflow and transaction engine are implemented, but **production deployment is disabled**. No deployment credential, environment, account, permission or server helper has been provisioned by this change. Credential access and the separate Nginx migration still require approval. A green verification job or saved artifact does not mean the website was deployed.
+**Production deployment is enabled for verified main pushes.** The owner approved using the existing root SSH identity in this repository's production environment and the reviewed Nginx migration. The root-owned receiver and protected routing are installed; no additional SSH key or account was created. A green verification job or saved artifact alone does not mean the website was deployed: check the deployment job's matching revision and verified receipt.
 
 Do not change DNS, certificates, firewall rules, the new domain's filing, services or credentials during a static release. Never upload an existing private key without explicit approval for that destination and persistent access.
 
@@ -25,16 +25,16 @@ Deployment downloads `zipzi-site-$GITHUB_SHA` from **the same `GITHUB_RUN_ID`**,
 
 Main runs are not canceled mid-deployment. Deployment has a shared concurrency group with cancellation disabled; the receiver also holds a filesystem lock. GitHub may replace queued runs and does not guarantee their order, hence the additional revision check. See GitHub's [concurrency rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency) and [artifact download documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/download-workflow-artifacts).
 
-## One-time setup: not performed
+## Production setup and maintenance
 
-Authentication is separate from the installer. The client accepts an explicitly approved root identity or a separately approved restricted identity. **An unrestricted root SSH key gives the workflow root access; this application's fixed command does not restrict that key.** A restricted identity would require a forced command, disabled forwarding and permission to invoke only the root-owned receiver. Neither option is automatically provisioned.
+Authentication is separate from the installer. This installation uses the owner's explicitly approved existing root identity. **An unrestricted root SSH key gives the workflow root access; this application's fixed command does not restrict that key.** The client also supports a separately approved restricted identity, which would require a forced command, disabled forwarding and permission to invoke only the root-owned receiver. Changing identities is not part of routine website deployment.
 
-After explicit approval, an operator would need to:
+The installed configuration follows these steps. Repeating or changing credentials, permissions or routing requires authorization for that change:
 
 1. Complete the independently reviewed routing migration below, back it up, run `nginx -t`, gracefully reload and verify actual HTTP behavior. This is outside the CI deployer.
 2. Install reviewed `protocol.py`, `receiver.py` and `ssh_gate.py` in `/usr/local/libexec/zipzi-site-deploy/`, root-owned and not group/world-writable. The gate must be executable. CI cannot replace these files.
 3. Create private root-owned state and backup directories outside every public root. Copy `policy.example.json` to `/etc/zipzi-site-deploy/policy.json`, mode `600`, replacing placeholders with reviewed paths and SHA256 baselines. Keep `routing_approved: false` until the migration is approved and verified. Resolve configuration symlinks to their actual root-owned files for protected-file guards.
-4. Configure an approved `production` environment restricted to main, preferably with a required reviewer. Store the specifically approved identity only as environment secret `ZIPZI_DEPLOY_SSH_KEY`. Configure environment variables `ZIPZI_DEPLOY_HOST=clwai.cn`, `ZIPZI_DEPLOY_USER`, and `ZIPZI_DEPLOY_KNOWN_HOSTS`. The last value is public host-key material verified through an existing trusted connection or console, never blind `ssh-keyscan` output. Private credentials must not be variables.
+4. Configure an approved `production` environment restricted to the main branch. Store the specifically approved identity only as environment secret `ZIPZI_DEPLOY_SSH_KEY`. Configure environment variables `ZIPZI_DEPLOY_HOST=clwai.cn`, `ZIPZI_DEPLOY_USER`, and `ZIPZI_DEPLOY_KNOWN_HOSTS`. The last value is public host-key material verified through an existing trusted connection or console, never blind `ssh-keyscan` output. Private credentials must not be variables.
 5. Only after validating every prerequisite, set repository variable `ZIPZI_DEPLOY_ENABLED=true`. Do not create an environment merely to make a skipped job green.
 
 The client requires strict host verification, no agent forwarding, password fallback or interactive shell, no user's SSH config and one fixed remote command. Approved key material goes only into mode-600 temporary runner files removed when the client exits, never artifacts. Logs contain result categories and revisions, not keys or remote output.
@@ -43,7 +43,7 @@ To disable future deployment, remove or set `ZIPZI_DEPLOY_ENABLED` to `false`. R
 
 ## Independent routing prerequisite
 
-The existing SPA fallback returns the homepage for robots, sitemap and unknown paths. Copying static files alone cannot fix this. The pending environment-specific Nginx review covers:
+The previous SPA fallback returned the homepage for robots, sitemap and unknown paths. Copying static files alone could not fix this. The separately approved Nginx migration provides:
 
 - Plain-text robots, XML sitemaps and real 404s with the generated error page.
 - Public HTTPS `www` redirects to the apex, preserving path/query and jobs/API host behavior.
@@ -67,4 +67,4 @@ An interruption leaves `pending.json`; status reports `recovery_required`. The n
 
 Manual rollback uses the fixed gate with a bounded request containing `protocol: 1`, `action: rollback`, the recorded transaction ID and `expected_commit`. It rejects a different revision, changed managed files or corrupt backups. Use the reviewed transport and recorded receipt. Keep private backups and old hashed assets; never run `rsync --delete` on the shared root.
 
-Automated 401 checks verify access control, not the authenticated jobs UI. Exercise that UI separately when suitable credentials are authorized. Local tests also do not establish production readiness: the first deployment remains blocked until its independent approvals and prerequisites are satisfied.
+Automated 401 checks verify access control, not the authenticated jobs UI. Exercise that UI separately when suitable credentials are authorized. Local tests do not establish production readiness: each deployment must pass the server guards and strict public HTTPS checks before it can report success.

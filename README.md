@@ -47,7 +47,7 @@ Every download call to action goes directly to **https://github.com/getzipzi/zip
 
 The website intentionally contains no release snapshot, fixed release version, publication date, package inventory or `softwareVersion` structured-data field. Alpha maturity and the Windows development-prototype caveat remain useful product context. Release selection, downloads, exact platform requirements and release notes belong on GitHub, so publishing a new build does not require a website edit.
 
-There is no release API fetch, synchronization command, cross-repository trigger or GitHub App. Update the website only when its product information, branding or design changes. The website's own main-branch CI includes a deployment job, currently disabled pending separately approved authentication and production routing. Product releases do not trigger it. See [release maintenance](docs/release-maintenance.md).
+There is no release API fetch, synchronization command, cross-repository trigger or GitHub App. Update the website only when its product information, branding or design changes. Successful pushes to this website's main branch deploy the verified static artifact through the approved production environment. Product releases do not trigger website deployment. See [release maintenance](docs/release-maintenance.md).
 
 ## What the checks cover
 
@@ -65,7 +65,7 @@ CI executes these checks against the generated site and verifies repeatable buil
 
 `dist/` contains only public static files. `qa/build-manifest.json` records every output file's size and SHA256. `artifact/` contains the site, manifest, checksums, and source revision metadata. A dirty local build is identified as such.
 
-Production shares a server with an authenticated jobs application and an API. The static website must not replace the whole document root. Routing changes and isolation of the legacy jobs entry require separate approval before any static deployment. The CI receiver refuses an unprepared server and never changes Nginx, services or credentials. See [deployment and rollback](docs/deployment.md).
+Production shares a server with an authenticated jobs application and an API. The static website must not replace the whole document root. The approved routing isolates the legacy jobs entry outside the public root while preserving authentication. The CI receiver verifies this configuration and never changes Nginx, services or credentials. Further routing or access changes are separate operator work. See [deployment and rollback](docs/deployment.md).
 
 The existing ICP footer applies to `clwai.cn`, not `zipzi2d.com`. A future domain switch requires the new domain's filing, DNS, and valid HTTPS to be ready. Search Console access and search-engine indexing are separate from this website build.
 
