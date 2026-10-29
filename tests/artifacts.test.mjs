@@ -86,7 +86,7 @@ test('Only verified software facts are in structured data; no inherited template
   assert.equal(schema['@context'], 'https://schema.org');
   const app = schema['@graph'].find((item) => item['@type'] === 'SoftwareApplication');
   assert.equal(app.name, 'Zipzi 2D');
-  assert.equal(app.operatingSystem, 'macOS (Apple Silicon)');
+  assert.deepEqual(app.operatingSystem, ['macOS (Apple Silicon)', 'Windows x86_64 (development prototype)']);
   assert.equal(app.url, origin + '/');
   for (const key of ['offers', 'aggregateRating', 'review', 'downloadUrl']) assert.equal(app[key], undefined);
   for (const marker of [

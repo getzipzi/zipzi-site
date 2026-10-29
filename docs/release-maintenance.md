@@ -1,11 +1,13 @@
 # Release maintenance
 
-The product and website are separate repositories. The verified release source is the private `getzipzi/zipzi-2d` repository. Website builds read a reviewed metadata snapshot and require no cross-repository credentials.
+The product and website are separate repositories. The product source is **public** `getzipzi/zipzi-2d`; this website repository remains private. Builds read a reviewed metadata snapshot and require no cross-repository credentials.
 
 The user explicitly chose **manual website deployment**. Do not provision a deployment account, SSH key, GitHub secret, GitHub App, or cross-repository trigger as part of routine website work.
 
-The “all releases” link automatically shows the repository's release list to authorized visitors, but the website's version and asset links remain a reviewed snapshot. This is not automatic release synchronization. Use `npm run release:check` with the maintainer's existing `gh` session to prepare metadata for review, then commit approved changes to this repository.
+All download buttons link to `https://github.com/getzipzi/zipzi-2d/releases`, as requested. This stable page lets visitors choose the current release and platform without a website deployment each time a product release is published. Do not replace it with versioned binaries or inferred `latest/download` addresses.
 
-A fixed `latest` URL has not been supplied. Do not derive one from versioned filenames or assume a private prerelease is a public download. Once the owner provides the exact address, verify anonymous access, the actual platform/package, redirects, and content type before updating the site. Stable links can avoid redeployment for future package updates if the website itself is unchanged.
+The website's displayed version, capabilities and platform limitations remain a manually reviewed snapshot. Use `npm run release:check` with the maintainer's existing `gh` session to prepare metadata for review, then inspect the default-branch README and linked editor/SDK guides at a recorded commit. Verify public access without credentials, release assets, development status and platform caveats before updating the snapshot and copy. This is not automatic release synchronization.
 
-See GitHub's official [release-link documentation](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases). Changing a website link does not change repository visibility or distribution rights.
+The October 29, 2026 review used product README commit `1b4e9f66903c9d83b82f51838408146fad06c643` and release `v0.1.0-alpha.2`. macOS Apple Silicon and Windows x86_64 artifacts exist; Windows is a development prototype and no stable release is available. Do not carry older signing, notarization or distribution claims forward without new evidence.
+
+See GitHub's official [release-link documentation](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases). Updating a website link does not change repository visibility or distribution rights.

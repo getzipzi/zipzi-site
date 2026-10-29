@@ -8,7 +8,7 @@ metadata:
   title:
     default: 'Zipzi 2D — 二维建模与动画工具'
     template: '%s — Zipzi 2D'
-  description: '面向创作者与开发者的二维建模与动画工具。原生 macOS 编辑器、参数变形与 Python SDK，让模型、动画和代码连接在同一工作流中。'
+  description: 'Zipzi 2D 是面向创作者与开发者的二维建模与动画工具。通过桌面编辑器、Rust 与 Python SDK 创作，并与 AI Agent 协作。支持 macOS 与 Windows 开发原型，当前为 Alpha。'
   robots:
     index: true
     follow: true

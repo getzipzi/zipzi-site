@@ -1,6 +1,7 @@
 ---
 // Adapted from AstroWind Hero's content/action/image slots and static image loading.
 import Button from '~/components/ui/Button.astro';
+import { releasesUrl } from '~/utils/release';
 ---
 
 <section class="hero container" aria-labelledby="hero-title">
@@ -12,10 +13,11 @@ import Button from '~/components/ui/Button.astro';
     </div>
     <div class="hero-description">
       <p class="hero-lead">从形态到动态，<br />把想法变成可控的表达。</p><p>
-        Zipzi 2D 将建模、变形与动画带入同一工作空间。用原生编辑器细化创作，用可编程 SDK 延展工作流。
+        Zipzi 2D 是二维建模与动画工具，探索 Live2D Cubism Editor 的替代工作流。用桌面编辑器创作，通过 Python 编程，与 AI
+        Agent 协作。
       </p><div class="hero-actions">
-        <Button href="#editor">探索编辑器</Button><a class="text-link" href="#release"
-          >了解 Alpha 版本 <span aria-hidden="true">↓</span></a
+        <Button href={releasesUrl}>下载 Alpha</Button><a class="text-link" href="#editor"
+          >探索编辑器 <span aria-hidden="true">↓</span></a
         >
       </div>
     </div>

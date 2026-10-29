@@ -1,39 +1,77 @@
 {
   "repository": "getzipzi/zipzi-2d",
-  "private": true,
-  "tag": "v0.1.0-alpha.1",
-  "url": "https://github.com/getzipzi/zipzi-2d/releases/tag/v0.1.0-alpha.1",
+  "private": false,
+  "tag": "v0.1.0-alpha.2",
+  "url": "https://github.com/getzipzi/zipzi-2d/releases/tag/v0.1.0-alpha.2",
   "prerelease": true,
-  "publishedAt": "2026-10-26T04:27:47Z",
+  "publishedAt": "2026-10-28T17:39:15Z",
   "assets": [
     {
       "name": "SHA256SUMS",
-      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/SHA256SUMS",
-      "bytes": 330,
-      "digest": "sha256:ccd6b90bca53d8deed07bdd8f914d84459b603812c51956887514fa07555d867"
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/SHA256SUMS",
+      "bytes": 967,
+      "digest": "sha256:dff83521c1dff2db277ccafb68a788f30f0ad1d9131c14c89ab9b783a271bc18"
     },
     {
-      "name": "Zipzi-2D-v0.1.0-alpha.1-source.tar.gz",
-      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-2D-v0.1.0-alpha.1-source.tar.gz",
-      "bytes": 16826237,
-      "digest": "sha256:3c536d9cf358424c3f6e2a9c46227958a1d9935ba020047743297ca78482d8ae"
+      "name": "zipzi-0.1.0a2-py3-none-any.whl",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/zipzi-0.1.0a2-py3-none-any.whl",
+      "bytes": 600452,
+      "digest": "sha256:c828b0f9bd37b4e648a35fc8a34500a5212aba702e9996336a4878d5321b414e"
     },
     {
-      "name": "Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.dmg",
-      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.dmg",
-      "bytes": 25714599,
-      "digest": "sha256:b62caabdc6c1e58641ec87203a55fec47b9a9fb9142113db2f1f44db0b168e79"
+      "name": "zipzi-0.1.0a2.tar.gz",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/zipzi-0.1.0a2.tar.gz",
+      "bytes": 567580,
+      "digest": "sha256:2d650fa71bb9cb7f8d5e13033836ddb6ed62e17a55dd0939d365978e47b0455d"
     },
     {
-      "name": "Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.zip",
-      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.1/Zipzi-Editor-v0.1.0-alpha.1-macos-arm64.zip",
-      "bytes": 22331961,
-      "digest": "sha256:cfbd1952c29947016874fa8aeeea8b4813d6e6621e55518ec41c8d9002b755c7"
+      "name": "Zipzi-2D-v0.1.0-alpha.2-source.tar.gz",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/Zipzi-2D-v0.1.0-alpha.2-source.tar.gz",
+      "bytes": 18044931,
+      "digest": "sha256:f8b5bb52663be6470f5fa61ceebac52d19d31c9bfd10b7faba9af46080c875c6"
+    },
+    {
+      "name": "Zipzi-Editor-v0.1.0-alpha.2-macos-arm64.dmg",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/Zipzi-Editor-v0.1.0-alpha.2-macos-arm64.dmg",
+      "bytes": 26917800,
+      "digest": "sha256:a769043341a7d72ed52cc18484e92da045bb16f7e4cfcdcb2bf7d98cbc85c284"
+    },
+    {
+      "name": "Zipzi-Editor-v0.1.0-alpha.2-macos-arm64.zip",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/Zipzi-Editor-v0.1.0-alpha.2-macos-arm64.zip",
+      "bytes": 23963605,
+      "digest": "sha256:b0ceaedc5bf16292c077a0a1c7da9d9e333a7244ecb3896d5137b0bb1ef447fd"
+    },
+    {
+      "name": "Zipzi-Editor-v0.1.0-alpha.2-windows-x86_64.zip",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/Zipzi-Editor-v0.1.0-alpha.2-windows-x86_64.zip",
+      "bytes": 27578619,
+      "digest": "sha256:a2a4c7b1a6d915c5585988469e85711fa0d3e9913ba5769f1efd99ad41dcd40a"
+    },
+    {
+      "name": "zipzi_native-0.1.0a2-cp314-cp314-macosx_11_0_arm64.whl",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/zipzi_native-0.1.0a2-cp314-cp314-macosx_11_0_arm64.whl",
+      "bytes": 7435041,
+      "digest": "sha256:856b901223a3e07931947cc8f314bad3153765054f00048dae8f08e262a16227"
+    },
+    {
+      "name": "zipzi_native-0.1.0a2-cp314-cp314-win_amd64.whl",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/zipzi_native-0.1.0a2-cp314-cp314-win_amd64.whl",
+      "bytes": 10059503,
+      "digest": "sha256:cabeecd2f4d06e1721185f384dba15f0756ba6e219e5898e82958fb84c9d5873"
+    },
+    {
+      "name": "zipzi_native-0.1.0a2.tar.gz",
+      "url": "https://github.com/getzipzi/zipzi-2d/releases/download/v0.1.0-alpha.2/zipzi_native-0.1.0a2.tar.gz",
+      "bytes": 2375508,
+      "digest": "sha256:dcd84169719701f6b598fd91d8ef07a26e34a2e76c8c5d16e4dbbba86d6fa2bf"
     }
   ],
   "review": {
-    "platform": "macos-arm64",
-    "signing": "ad-hoc",
-    "notarized": false
+    "readmeCommit": "1b4e9f66903c9d83b82f51838408146fad06c643",
+    "verifiedAt": "2026-10-29",
+    "platforms": ["macos-arm64", "windows-x86_64"],
+    "windowsStatus": "development-prototype",
+    "anonymousAccess": true
   }
 }

@@ -1,6 +1,6 @@
 # Zipzi 2D website
 
-A Simplified Chinese product website for Zipzi 2D, a 2D modeling and animation tool with a native macOS editor, a Rust core, and a Python SDK. This is the website repository, separate from the product implementation.
+A Simplified Chinese product website for Zipzi 2D, a 2D modeling and animation tool with a desktop editor, a Rust SDK, and a Python SDK. macOS and a Windows development prototype are available; the Python client supports programmatic work and collaboration with AI agents. This is the website repository, separate from the product implementation.
 
 The site is a static Astro project adapted from [AstroWind](https://github.com/arthelokyo/astrowind) **v1.0.0-beta.65**, pinned to `8d0090f933b71439c02956f7e8d30d41de804832`. See [NOTICE.md](NOTICE.md) for provenance and modifications, and [LICENSE.md](LICENSE.md) for the original MIT license.
 
@@ -34,29 +34,31 @@ On a Linux CI runner, `npx playwright install --with-deps chromium` installs the
 
 `src/config.yaml` owns the production origin, site metadata, language, and crawl policy. The current canonical origin is **https://clwai.cn**. The metadata component derives canonical, Open Graph, and Twitter URLs from that configuration. The sitemap integration writes canonical public URLs; the adapted build hook requires a valid sitemap and emits `sitemap.xml` and `robots.txt`. A missing sitemap fails the build. The 404 page has explicit `noindex`.
 
-The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, fabricated metrics, or a public download claim.
+The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
 
 The screenshot is a real development editor showing a built-in geometric test scene. It is clearly labeled and retains historical `.kasane` naming where visible. The app icon is the original asset supplied from the Zipzi project. No upstream stock photography, remote fonts, analytics, external scripts, or runtime API calls are shipped. System fonts are used.
 
 ## Release links
 
-The reviewed release snapshot is `src/data/release.json`: **v0.1.0-alpha.1**, published October 26, 2026 in the **private** `getzipzi/zipzi-2d` repository. Its assets are macOS Apple Silicon DMG and ZIP packages, a source archive, and SHA256 checksums. The app is ad hoc signed and not Apple-notarized. APIs and file formats may change.
+Product copy was reviewed against the default-branch [README at commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/blob/1b4e9f66903c9d83b82f51838408146fad06c643/README.md), plus its editor and Python SDK guides. The reviewed release snapshot in `src/data/release.json` is **v0.1.0-alpha.2**, published October 28, 2026. The product repository is now public; anonymous requests to its project, Releases, and release-tag pages returned HTTP 200 on October 29, 2026. This website repository remains private.
 
-The links require product repository access and return 404 for ordinary visitors. The page states this before showing the links. Binaries are not copied or rehosted. No Intel Mac, Windows package, or unverified `latest` address is advertised.
+The release provides macOS Apple Silicon and Windows x86_64 editor packages, Python packages, source archives, and checksums. Windows remains a development prototype with desktop validation in progress. There is no stable release, and APIs and file formats may change. The website does not promise Intel Mac builds, platform parity, signing/notarization, or PyPI availability that has not been independently verified.
+
+Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. No button links to a version-specific binary or guessed `latest` asset. The accessible GitHub icon next to the upper-left brand links to the product repository. Product binaries are neither copied nor rehosted.
 
 A maintainer can inspect newer metadata through an existing GitHub CLI session:
 
 ```sh
 npm run release:check
-npm run release:check -- v0.1.0-alpha.1
+npm run release:check -- v0.1.0-alpha.2
 ```
 
-This only writes `qa/release-candidate.json`. Review the actual release notes, assets, platform, signing, and access before updating the committed snapshot and copy. The user chose manual maintenance and will provide a stable `latest` address separately. There is no cross-repository trigger, GitHub App, new deployment key, or automatic production deployment. See [release maintenance](docs/release-maintenance.md).
+This only writes `qa/release-candidate.json`. Review README provenance, release notes, assets, platform limitations, and anonymous access before updating the committed snapshot and copy. The stable Releases URL exposes new releases without a website redeployment; version-specific website copy remains a manually reviewed snapshot. There is no cross-repository trigger, GitHub App, new deployment key, or automatic production deployment. See [release maintenance](docs/release-maintenance.md).
 
 ## What the checks cover
 
 - Astro/TypeScript diagnostics, ESLint, and Prettier.
-- Parsed generated HTML metadata, canonical URLs, unique IDs, every local link and responsive image, release access disclosure, and structured data.
+- Parsed generated HTML metadata, canonical URLs, unique IDs, every local link and responsive image, release/platform disclosures, download destinations, and structured data.
 - XML-parsed sitemaps, actual robots content, error-page output, integrity manifests, and resource budgets.
 - Headless Chromium at 1440, 390, and 320 pixels: real HTTP statuses and MIME types, runtime errors, missing images, horizontal overflow, keyboard navigation, Escape, mobile menu, native FAQ, reduced motion, and no-JavaScript fallback.
 - Axe WCAG A/AA checks on the homepage, expanded mobile navigation, and 404. Automated accessibility checks complement manual review; they do not prove complete accessibility compliance.

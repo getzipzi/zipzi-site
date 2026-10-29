@@ -110,3 +110,33 @@ test('primary content and navigation remain usable without JavaScript', async ({
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await context.close();
 });
+
+test('upper-left GitHub icon and all download actions navigate to the requested public pages', async ({ page }) => {
+  const repository = 'https://github.com/getzipzi/zipzi-2d';
+  const releases = `${repository}/releases`;
+  await page.route(`${repository}**`, (route) =>
+    route.fulfill({ contentType: 'text/html', body: '<h1>Navigation target</h1>' })
+  );
+  await page.goto('/');
+  const github = page.getByRole('link', { name: 'Zipzi 2D GitHub 项目', exact: true });
+  await expect(github).toBeVisible();
+  const box = await github.boundingBox();
+  expect(box).not.toBeNull();
+  expect(box!.x).toBeLessThan((page.viewportSize()?.width ?? 0) / 2);
+  expect(box!.y).toBeLessThan(80);
+  expect((await page.locator('.site-header').boundingBox())!.height).toBeLessThanOrEqual(81);
+  await github.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(repository);
+  await page.goto('/');
+  const downloads = page.getByRole('link', { name: /下载/ });
+  await expect(downloads).toHaveCount(3);
+  for (const download of await downloads.all()) {
+    await expect(download).toHaveAttribute('href', releases);
+    await expect(download).toBeVisible();
+    await download.focus();
+    await expect(download).toBeFocused();
+  }
+  await downloads.first().click();
+  await expect(page).toHaveURL(releases);
+});
