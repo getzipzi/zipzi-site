@@ -13,7 +13,8 @@
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "build": "astro build && node tooling/manifest.mjs",
-    "test": "node --test tests/artifacts.test.mjs tests/release.test.mjs",
+    "test": "node --test tests/artifacts.test.mjs tests/release.test.mjs tests/deployment-workflow.test.mjs",
+    "test:deploy": "python3 -B -m unittest discover -s tests/deploy -v",
     "test:browser": "playwright test",
     "package": "node tooling/package.mjs",
     "audit:publication": "node tooling/audit-publication.mjs"

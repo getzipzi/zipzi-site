@@ -1,0 +1,23 @@
+{
+  "routing_approved": false,
+  "site_root": "/APPROVED/public-site-root",
+  "state_root": "/APPROVED/private-state",
+  "backup_root": "/APPROVED/private-backups",
+  "api_health_sha256": "REPLACE_WITH_APPROVED_API_BODY_SHA256",
+  "initial_files": {
+    "index.html": "REPLACE_WITH_EXISTING_HOMEPAGE_SHA256"
+  },
+  "protected_files": [
+    { "role": "nginx", "path": "/APPROVED/nginx-site.conf", "sha256": "REPLACE_AFTER_SEPARATE_ROUTING_APPROVAL" },
+    {
+      "role": "legacy-jobs",
+      "path": "/APPROVED/private-legacy/jobs.html",
+      "sha256": "REPLACE_WITH_ORIGINAL_ENTRY_SHA256"
+    },
+    {
+      "role": "legacy-asset",
+      "path": "/APPROVED/public-site-root/assets/legacy.js",
+      "sha256": "REPLACE_WITH_ORIGINAL_ASSET_SHA256"
+    }
+  ]
+}

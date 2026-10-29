@@ -20,6 +20,7 @@ npm run check
 npm run lint
 npm run build
 npm test
+npm run test:deploy
 npx playwright install chromium
 npm run test:browser
 npm run package
@@ -40,13 +41,13 @@ The homepage uses the real Cat-model editor screenshot linked by the product REA
 
 ## Product and release maintenance
 
-Product copy and assets were reviewed at default-branch [commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/tree/1b4e9f66903c9d83b82f51838408146fad06c643), including the root README and editor/Python SDK guides. The product repository is public; this website repository remains private.
+Product copy and assets were reviewed at default-branch [commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/tree/1b4e9f66903c9d83b82f51838408146fad06c643), including the root README and editor/Python SDK guides. Both the product and website repositories are public by the owner's choice.
 
 Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. The accessible GitHub icon next to the upper-left brand links to the product repository. Product binaries are neither copied nor rehosted.
 
 The website intentionally contains no release snapshot, fixed release version, publication date, package inventory or `softwareVersion` structured-data field. Alpha maturity and the Windows development-prototype caveat remain useful product context. Release selection, downloads, exact platform requirements and release notes belong on GitHub, so publishing a new build does not require a website edit.
 
-There is no release API fetch, synchronization command, cross-repository trigger, GitHub App, new deployment key or automatic production deployment. Update the website only when its product information, branding or design changes. See [release maintenance](docs/release-maintenance.md).
+There is no release API fetch, synchronization command, cross-repository trigger or GitHub App. Update the website only when its product information, branding or design changes. The website's own main-branch CI includes a deployment job, currently disabled pending separately approved authentication and production routing. Product releases do not trigger it. See [release maintenance](docs/release-maintenance.md).
 
 ## What the checks cover
 
@@ -56,15 +57,16 @@ There is no release API fetch, synchronization command, cross-repository trigger
 - Headless Chromium at 1440, 390, and 320 pixels: real HTTP statuses and MIME types, runtime errors, missing images, horizontal overflow, keyboard navigation, Escape, mobile menu, native FAQ, reduced motion, and no-JavaScript fallback.
 - Axe WCAG A/AA checks on the homepage, expanded mobile navigation, and 404. Automated accessibility checks complement manual review; they do not prove complete accessibility compliance.
 - Publication scanning of source and output for credential signatures, symlinks, and private operational paths. Matches report filenames and categories, never secret values.
+- Offline deployment tests with real temporary files: archive validation, path and symlink rejection, protected legacy files, permission checks, concurrent transactions, interrupted writes and health-failure rollback. CI repeats these tests as root inside its disposable runner; no production connection is involved.
 
-CI executes these checks against the generated site and verifies repeatable builds. Only a successful run publishes the checksum-verified site artifact. Browser evidence is a separate short-lived CI artifact.
+CI executes these checks against the generated site and verifies repeatable builds. Only a successful run publishes the checksum-verified site artifact. Browser evidence is a separate short-lived CI artifact. Production deployment requires a successful verification job, a push to this repository's `main` branch and explicit enablement. PRs, forks, manual CI runs and product releases cannot use the deployment job. A skipped job means nothing was deployed.
 
 ## Output and deployment
 
 `dist/` contains only public static files. `qa/build-manifest.json` records every output file's size and SHA256. `artifact/` contains the site, manifest, checksums, and source revision metadata. A dirty local build is identified as such.
 
-Production shares a server with an authenticated jobs application, an API, and OpenClaw. The static website must not replace the whole document root. The reviewed deployment must preserve those applications and install precise Nginx routing for public files, canonical redirects, and real 404s. See [deployment and rollback](docs/deployment.md).
+Production shares a server with an authenticated jobs application and an API. The static website must not replace the whole document root. Routing changes and isolation of the legacy jobs entry require separate approval before any static deployment. The CI receiver refuses an unprepared server and never changes Nginx, services or credentials. See [deployment and rollback](docs/deployment.md).
 
 The existing ICP footer applies to `clwai.cn`, not `zipzi2d.com`. A future domain switch requires the new domain's filing, DNS, and valid HTTPS to be ready. Search Console access and search-engine indexing are separate from this website build.
 
-Credentials, environment-specific configuration, deployment scripts, logs, backups, screenshots, browser profiles, and generated archives stay outside Git and the public build. The repository uses an allowlist `.gitignore`; publish source archives from an audited Git revision rather than zipping the working directory.
+Generic deployment source and offline tests are reviewed in Git. Credentials, environment-specific configuration, operator scripts, logs, backups, screenshots, browser profiles and generated archives stay outside Git and the public build. The repository uses an allowlist `.gitignore`; publish source archives from an audited Git revision rather than zipping the working directory.

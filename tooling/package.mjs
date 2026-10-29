@@ -29,7 +29,7 @@ await writeFile(
 );
 await writeFile(
   new URL('artifact/DEPLOYMENT.txt', root),
-  'Static website files only. Preserve existing jobs/API routes and legacy assets. Install the reviewed Nginx routing change and a protected legacy jobs entry before replacing the homepage. Never delete the shared document root. See docs/deployment.md.\n'
+  'Static website files only. Preserve existing jobs/API routes and legacy assets. Requires separately approved and verified production routing; this artifact cannot modify Nginx or isolate the legacy jobs entry. Never delete the shared document root. See docs/deployment.md.\n'
 );
 console.log(
   `Packaged ${manifest.files.length} checksum-verified site files; no credentials or deployment configuration.`
