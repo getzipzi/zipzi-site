@@ -5,8 +5,8 @@ import PageLayout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import editor from '~/assets/images/editor-modeling.png';
-import { release, releasesUrl } from '~/utils/release';
+import editor from '~/assets/images/editor-screenshot.png';
+import { releasesUrl } from '~/utils/product';
 import Button from '~/components/ui/Button.astro';
 const workflow = [
   {
@@ -42,9 +42,8 @@ const schema = {
       url: `${SITE.site}/`,
       description: METADATA.description,
       applicationCategory: 'MultimediaApplication',
-      operatingSystem: ['macOS (Apple Silicon)', 'Windows x86_64 (development prototype)'],
-      softwareVersion: release.tag,
-      screenshot: `${SITE.site}/media/editor-modeling.png`,
+      operatingSystem: ['macOS', 'Windows (development prototype)'],
+      screenshot: `${SITE.site}/media/editor-screenshot.jpg`,
     },
   ],
 };
@@ -57,23 +56,24 @@ const schema = {
       <div class="showcase-topline"><span>ZIPZI EDITOR</span><span>macOS · Metal</span></div>
       <a
         class="screenshot-link"
-        href="/media/editor-modeling.png"
+        href="/media/editor-screenshot.jpg"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="查看完整的 Zipzi 编辑器截图（新标签页）"
       >
         <Image
           src={editor}
-          alt="Zipzi 2D 开发版本的真实界面：左侧模型层级、中央双菱形测试网格、右侧属性面板与底部时间轴。"
-          widths={[640, 960, 1440, 2200]}
+          alt="Zipzi 2D README 中的真实编辑器界面：左侧为猫模型图层，中央显示耳部网格，右侧为属性与参数面板。"
+          widths={[640, 960, 1440, 2204]}
           sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 64px), 1216px"
           format="webp"
+          quality={90}
           loading="eager"
           fetchpriority="high"
         />
-        <span class="image-open" aria-hidden="true">查看原图 ↗</span>
+        <span class="image-open" aria-hidden="true">查看大图 ↗</span>
       </a>
-      <figcaption><span>真实编辑器 · 网格编辑视图</span><span>开发版本 / 内置测试场景</span></figcaption>
+      <figcaption><span>真实编辑器 · 网格编辑视图</span><span>项目 README / Cat 模型</span></figcaption>
     </figure>
   </Hero>
   <WidgetWrapper id="workflow" containerClass="workflow-section">
@@ -147,12 +147,12 @@ geometry = meshes.Geometry(
         class="section-description"
       >
         Alpha 构建现已公开。<br />项目仍在开发，尚无稳定版。
-      </p><p class="release-version">{release.tag}<span>发布于 {release.publishedAt.slice(0, 10)}</span></p>
+      </p>
     </div>
     <div class="release-details">
       <dl class="release-facts">
         <div>
-          <dt>当前平台</dt><dd>macOS Apple Silicon 与 Windows x86_64。Windows 为开发原型，桌面验证仍在进行。</dd>
+          <dt>当前平台</dt><dd>支持 macOS 与 Windows。Windows 为开发原型，桌面验证仍在进行。</dd>
         </div><div>
           <dt>开发阶段</dt><dd>
             尚无稳定版，API 与文件格式可能变化。请按平台选择 Alpha 包，并阅读版本说明与运行要求。
@@ -161,7 +161,7 @@ geometry = meshes.Geometry(
       </dl>
       <div class="release-access" role="note">
         <h3>从 GitHub 获取 Alpha</h3><p>
-          Releases 页提供桌面编辑器、Python 包、源码归档与校验文件。所有下载入口均指向该页面，可在那里选择版本与平台。
+          下载、版本说明与平台要求统一在 GitHub Releases 查看。请选择适合自己的版本，并阅读对应说明。
         </p>
       </div>
       <div class="release-links">
@@ -183,8 +183,7 @@ geometry = meshes.Geometry(
         </p>
       </details><details>
         <summary>Zipzi 2D 与 Kasane 2D 是什么关系？<span aria-hidden="true">+</span></summary><p>
-          Zipzi 2D 是原 Kasane 2D
-          项目的新名称，延续二维建模、动画与可编程工具的开发方向。开发截图中仍可能出现旧格式名称。
+          Zipzi 2D 是原 Kasane 2D 项目的新名称，延续二维建模、动画与可编程工具的开发方向。
         </p>
       </details><details>
         <summary>现在适合用于正式项目吗？<span aria-hidden="true">+</span></summary><p>

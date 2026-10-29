@@ -140,3 +140,23 @@ test('upper-left GitHub icon and all download actions navigate to the requested 
   await downloads.first().click();
   await expect(page).toHaveURL(releases);
 });
+
+test('new editor screenshot keeps its full frame and a readable full-size destination', async ({ page, request }) => {
+  await page.goto('/');
+  const screenshot = page.getByRole('img', { name: /猫模型图层/ });
+  await expect(screenshot).toBeVisible();
+  expect(
+    await screenshot.evaluate((image) => {
+      const rect = image.getBoundingClientRect();
+      return Math.abs(rect.width / rect.height - 2204 / 1486) < 0.01;
+    })
+  ).toBe(true);
+  const original = page.getByRole('link', { name: '查看完整的 Zipzi 编辑器截图（新标签页）' });
+  await expect(original).toHaveAttribute('href', '/media/editor-screenshot.jpg');
+  const response = await request.get('/media/editor-screenshot.jpg');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('image/jpeg');
+  const release = page.locator('#release');
+  await expect(release).toContainText('GitHub Releases');
+  await expect(release).not.toContainText(/v?\d+\.\d+\.\d+|\d{4}-\d{2}-\d{2}|发布于/);
+});

@@ -11,7 +11,7 @@ The upstream Astro layouts, Hero, WidgetWrapper, Headline, configuration integra
 
 The original MIT copyright notice retains the historical onWidget name as required. No scripts or resources are loaded from the old repository namespace.
 
-The editor screenshot and app icon are supplied from the user's Zipzi project with authorization for this website. The screenshot shows a built-in geometric test scene; it is not a third-party character asset. No upstream example photographs or illustrations are included. System fonts are used; no third-party font files are distributed. Package licenses remain governed by their respective authors and are recorded in the npm lockfile.
+The editor screenshot and app icon are reused from the user's Zipzi project at the owner's request. The screenshot shows the Cat model from the product README; it is not the earlier geometric test scene. The website uses the editor asset directory's v3 PNG consistently for navigation and browser icons. Exact source commits, paths, hashes and derivations are recorded in `docs/assets.md`; product artwork and trademarks retain their respective rights. No upstream example photographs or illustrations are included. System fonts are used; no third-party font files are distributed. Package licenses remain governed by their respective authors and are recorded in the npm lockfile.
 
 ## Dependency security updates
 

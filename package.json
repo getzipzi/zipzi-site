@@ -16,8 +16,7 @@
     "test": "node --test tests/artifacts.test.mjs tests/release.test.mjs",
     "test:browser": "playwright test",
     "package": "node tooling/package.mjs",
-    "audit:publication": "node tooling/audit-publication.mjs",
-    "release:check": "node tooling/sync-release.mjs"
+    "audit:publication": "node tooling/audit-publication.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",

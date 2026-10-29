@@ -24,11 +24,16 @@ const image = new URL(ogImage.url, SITE.site).href;
   openGraph={{
     basic: { title: title ?? SITE.name, type: 'website', image, url: canonical },
     optional: { description, locale: I18N.language.replace('-', '_'), siteName: SITE.name },
-    image: { url: image, width: ogImage.width, height: ogImage.height, alt: 'Zipzi 2D 开发版本的真实网格编辑器界面' },
+    image: {
+      url: image,
+      width: ogImage.width,
+      height: ogImage.height,
+      alt: 'Zipzi 2D README 中的猫模型与网格编辑界面',
+    },
   }}
   twitter={{ card: 'summary_large_image' }}
 />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={image} />
-<meta name="twitter:image:alt" content="Zipzi 2D 开发版本的真实编辑器界面" />
+<meta name="twitter:image:alt" content="Zipzi 2D README 中的猫模型与网格编辑界面" />

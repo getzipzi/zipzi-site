@@ -36,29 +36,22 @@ On a Linux CI runner, `npx playwright install --with-deps chromium` installs the
 
 The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
 
-The screenshot is a real development editor showing a built-in geometric test scene. It is clearly labeled and retains historical `.kasane` naming where visible. The app icon is the original asset supplied from the Zipzi project. No upstream stock photography, remote fonts, analytics, external scripts, or runtime API calls are shipped. System fonts are used.
+The homepage uses the real Cat-model editor screenshot linked by the product README. Its full 2204 × 1486 frame is preserved, with responsive WebP images and a high-quality JPEG for the full-size link and social previews. The header icon, favicon and Apple touch icon use the original `zipzi-editor-icon-v3.png` from the editor asset directory. See [asset provenance](docs/assets.md) for exact source paths, hashes, selection notes and optimization details. No stock photography, remote fonts, analytics, external scripts or runtime API calls are shipped. System fonts are used.
 
-## Release links
+## Product and release maintenance
 
-Product copy was reviewed against the default-branch [README at commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/blob/1b4e9f66903c9d83b82f51838408146fad06c643/README.md), plus its editor and Python SDK guides. The reviewed release snapshot in `src/data/release.json` is **v0.1.0-alpha.2**, published October 28, 2026. The product repository is now public; anonymous requests to its project, Releases, and release-tag pages returned HTTP 200 on October 29, 2026. This website repository remains private.
+Product copy and assets were reviewed at default-branch [commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/tree/1b4e9f66903c9d83b82f51838408146fad06c643), including the root README and editor/Python SDK guides. The product repository is public; this website repository remains private.
 
-The release provides macOS Apple Silicon and Windows x86_64 editor packages, Python packages, source archives, and checksums. Windows remains a development prototype with desktop validation in progress. There is no stable release, and APIs and file formats may change. The website does not promise Intel Mac builds, platform parity, signing/notarization, or PyPI availability that has not been independently verified.
+Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. The accessible GitHub icon next to the upper-left brand links to the product repository. Product binaries are neither copied nor rehosted.
 
-Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. No button links to a version-specific binary or guessed `latest` asset. The accessible GitHub icon next to the upper-left brand links to the product repository. Product binaries are neither copied nor rehosted.
+The website intentionally contains no release snapshot, fixed release version, publication date, package inventory or `softwareVersion` structured-data field. Alpha maturity and the Windows development-prototype caveat remain useful product context. Release selection, downloads, exact platform requirements and release notes belong on GitHub, so publishing a new build does not require a website edit.
 
-A maintainer can inspect newer metadata through an existing GitHub CLI session:
-
-```sh
-npm run release:check
-npm run release:check -- v0.1.0-alpha.2
-```
-
-This only writes `qa/release-candidate.json`. Review README provenance, release notes, assets, platform limitations, and anonymous access before updating the committed snapshot and copy. The stable Releases URL exposes new releases without a website redeployment; version-specific website copy remains a manually reviewed snapshot. There is no cross-repository trigger, GitHub App, new deployment key, or automatic production deployment. See [release maintenance](docs/release-maintenance.md).
+There is no release API fetch, synchronization command, cross-repository trigger, GitHub App, new deployment key or automatic production deployment. Update the website only when its product information, branding or design changes. See [release maintenance](docs/release-maintenance.md).
 
 ## What the checks cover
 
 - Astro/TypeScript diagnostics, ESLint, and Prettier.
-- Parsed generated HTML metadata, canonical URLs, unique IDs, every local link and responsive image, release/platform disclosures, download destinations, and structured data.
+- Parsed generated HTML metadata, canonical URLs, unique IDs, every local link and responsive image, product maturity, stable download destinations, absence of pinned release metadata, and structured data.
 - XML-parsed sitemaps, actual robots content, error-page output, integrity manifests, and resource budgets.
 - Headless Chromium at 1440, 390, and 320 pixels: real HTTP statuses and MIME types, runtime errors, missing images, horizontal overflow, keyboard navigation, Escape, mobile menu, native FAQ, reduced motion, and no-JavaScript fallback.
 - Axe WCAG A/AA checks on the homepage, expanded mobile navigation, and 404. Automated accessibility checks complement manual review; they do not prove complete accessibility compliance.

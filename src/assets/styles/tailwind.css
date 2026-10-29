@@ -515,21 +515,6 @@ figcaption {
   gap: 100px;
   padding-block: 116px;
 }
-.release-version {
-  display: inline-block;
-  color: #c4c4ff;
-  font-size: 15px;
-  font-family: 'SFMono-Regular', Consolas, monospace;
-  margin: 32px 0 0;
-  overflow-wrap: anywhere;
-}
-.release-version span {
-  display: block;
-  color: #a4adc7;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  margin-top: 7px;
-}
 .release-details {
   min-width: 0;
 }
@@ -570,27 +555,6 @@ figcaption {
   color: #b6bed7;
   font-size: 12px;
   line-height: 1.9;
-}
-.release-assets {
-  list-style: none;
-  margin: 19px 0 0;
-  padding: 0;
-}
-.release-assets li {
-  border-bottom: 1px solid var(--line);
-}
-.release-assets a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 0;
-  min-height: 48px;
-  font-size: 13px;
-  color: #c7c8ff;
-}
-.release-assets a:hover {
-  color: #fff;
 }
 .release-links {
   display: flex;
@@ -925,10 +889,6 @@ figcaption {
     gap: 32px;
     padding-block: 75px;
   }
-  .release-version {
-    margin-top: 23px;
-    font-size: 14px;
-  }
   .release-facts > div {
     grid-template-columns: 64px 1fr;
     gap: 18px;
@@ -940,9 +900,6 @@ figcaption {
   }
   .release-access {
     padding: 17px;
-  }
-  .release-assets a {
-    font-size: 12px;
   }
   .faq-section {
     grid-template-columns: 1fr;

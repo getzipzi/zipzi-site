@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { parse } from 'parse5';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import yaml from 'js-yaml';
+import sharp from 'sharp';
 const config = yaml.load(await readFile('src/config.yaml', 'utf8'));
 const origin = config.site.site;
 const html = await readFile('dist/index.html', 'utf8');
@@ -31,7 +32,7 @@ test('Generated homepage has complete, consistent, indexable metadata', () => {
   assert.equal(meta('og:url'), origin + '/');
   assert.equal(meta('og:title'), config.metadata.title.default);
   assert.equal(meta('og:description'), config.metadata.description);
-  assert.equal(meta('og:image'), origin + '/media/editor-modeling.png');
+  assert.equal(meta('og:image'), origin + '/media/editor-screenshot.jpg');
   assert.equal(meta('twitter:image'), meta('og:image'));
   assert.equal(meta('twitter:card'), 'summary_large_image');
   assert.ok(meta('twitter:image:alt'));
@@ -86,9 +87,18 @@ test('Only verified software facts are in structured data; no inherited template
   assert.equal(schema['@context'], 'https://schema.org');
   const app = schema['@graph'].find((item) => item['@type'] === 'SoftwareApplication');
   assert.equal(app.name, 'Zipzi 2D');
-  assert.deepEqual(app.operatingSystem, ['macOS (Apple Silicon)', 'Windows x86_64 (development prototype)']);
+  assert.deepEqual(app.operatingSystem, ['macOS', 'Windows (development prototype)']);
   assert.equal(app.url, origin + '/');
-  for (const key of ['offers', 'aggregateRating', 'review', 'downloadUrl']) assert.equal(app[key], undefined);
+  for (const key of [
+    'offers',
+    'aggregateRating',
+    'review',
+    'downloadUrl',
+    'softwareVersion',
+    'datePublished',
+    'dateModified',
+  ])
+    assert.equal(app[key], undefined);
   for (const marker of [
     'AstroWind',
     'Unsplash',
@@ -131,4 +141,42 @@ test('All manifest bytes match, source files stay private, and output meets size
     manifest.files.filter((f) => f.path.endsWith('.css')).reduce((n, f) => n + f.bytes, 0) < 50_000,
     'CSS under 50 KB'
   );
+});
+
+test('Current product artwork is traceable and all browser/share images use the refreshed assets', async () => {
+  for (const [path, hash, width, height] of [
+    [
+      'src/assets/images/editor-screenshot.png',
+      'c053ba12bbb4af898836a318d3f8fddd85d07862637289ccb6b470db677cbee8',
+      2204,
+      1486,
+    ],
+    ['src/assets/images/app-icon.png', '2e9cc75c2fd938755f056e69d0d05621126fd1dbe2736d422aabcc5315f3add9', 1024, 1024],
+  ]) {
+    const bytes = await readFile(path);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), hash, 'Preserve the reviewed product original');
+    const image = await sharp(bytes).metadata();
+    assert.equal(image.width, width);
+    assert.equal(image.height, height);
+  }
+  assert.equal(attrs(find('link', 'rel', 'icon')).href, '/favicon.png');
+  assert.equal(attrs(find('link', 'rel', 'apple-touch-icon')).href, '/apple-touch-icon.png');
+  for (const [path, width, height] of [
+    ['dist/favicon.png', 96, 96],
+    ['dist/apple-touch-icon.png', 180, 180],
+    ['dist/media/editor-screenshot.jpg', 2204, 1486],
+  ]) {
+    const image = await sharp(path).metadata();
+    assert.equal(image.width, width);
+    assert.equal(image.height, height);
+  }
+  assert.equal(meta('og:image:width'), '2204');
+  assert.equal(meta('og:image:height'), '1486');
+  const screenshot = nodes.find((node) => node.tagName === 'img' && attrs(node).alt?.includes('猫模型'));
+  assert.ok(screenshot);
+  assert.equal(attrs(screenshot).width, '2204');
+  assert.equal(attrs(screenshot).height, '1486');
+  assert.equal(attrs(screenshot).srcset.split(',').length, 4);
+  for (const obsolete of ['editor-modeling', 'favicon.svg', '内置测试场景', '双菱形', '.kasane'])
+    assert.ok(!html.includes(obsolete), `Old artwork metadata: ${obsolete}`);
 });

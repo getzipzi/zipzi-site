@@ -14,9 +14,9 @@ metadata:
     follow: true
   openGraph:
     images:
-      - url: '/media/editor-modeling.png'
-        width: 2200
-        height: 1480
+      - url: '/media/editor-screenshot.jpg'
+        width: 2204
+        height: 1486
     type: website
   twitter:
     cardType: summary_large_image
