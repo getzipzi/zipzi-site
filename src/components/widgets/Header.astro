@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import icon from '~/assets/images/app-icon.png';
+import BrandIcon from '~/components/common/BrandIcon.astro';
 import { repositoryUrl, releasesUrl } from '~/utils/product';
 const links = [
   { href: '/#editor', text: '编辑器' },
@@ -13,9 +12,7 @@ const links = [
   <div class="nav-shell">
     <div class="brand-group">
       <a class="brand" href="/" aria-label="Zipzi 2D 首页"
-        ><Image src={icon} alt="" width={40} height={40} format="webp" /><span
-          >Zipzi<span class="brand-suffix">2D</span></span
-        ></a
+        ><BrandIcon /><span>Zipzi<span class="brand-suffix">2D</span></span></a
       >
       <a class="github-link" href={repositoryUrl} aria-label="Zipzi 2D GitHub 项目">
         <svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true" focusable="false" fill="currentColor">

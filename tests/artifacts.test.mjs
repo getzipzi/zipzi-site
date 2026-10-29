@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, stat, access } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { parse } from 'parse5';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
@@ -59,12 +59,21 @@ test('Real robots and well-formed sitemap files contain only canonical public pa
 });
 
 test('Every generated local link, fragment, script, stylesheet, and responsive image resolves', async () => {
+  const brandSource = await readFile('src/assets/images/app-icon.svg', 'utf8');
   const ids = nodes.map((n) => attrs(n).id).filter(Boolean);
   assert.equal(new Set(ids).size, ids.length);
   for (const node of nodes) {
     const a = attrs(node);
     const refs = [a.href, a.src, ...(a.srcset?.split(',').map((v) => v.trim().split(/\s+/)[0]) ?? [])].filter(Boolean);
     for (const ref of refs) {
+      if (ref.startsWith('data:image/png;base64,')) {
+        assert.equal(node.tagName, 'image', 'Only the reviewed SVG may embed its PNG');
+        let ancestor = node.parentNode;
+        while (ancestor && attrs(ancestor).id !== 'zipzi-brand-artwork') ancestor = ancestor.parentNode;
+        assert.ok(ancestor, 'Embedded image belongs to the brand symbol');
+        assert.ok(brandSource.includes(`xlink:href="${ref}"`), 'Embedded bytes match the reviewed SVG');
+        continue;
+      }
       const url = new URL(ref, origin + '/');
       if (url.origin !== origin) {
         assert.equal(node.tagName, 'a', 'No external runtime resources');
@@ -151,7 +160,6 @@ test('Current product artwork is traceable and all browser/share images use the 
       2204,
       1486,
     ],
-    ['src/assets/images/app-icon.png', '2e9cc75c2fd938755f056e69d0d05621126fd1dbe2736d422aabcc5315f3add9', 1024, 1024],
   ]) {
     const bytes = await readFile(path);
     assert.equal(createHash('sha256').update(bytes).digest('hex'), hash, 'Preserve the reviewed product original');
@@ -159,6 +167,55 @@ test('Current product artwork is traceable and all browser/share images use the 
     assert.equal(image.width, width);
     assert.equal(image.height, height);
   }
+  const svg = await readFile('src/assets/images/app-icon.svg', 'utf8');
+  assert.equal(
+    createHash('sha256').update(svg).digest('hex'),
+    '2079d9e1927ea63d6d5a026e6bb6a264b4252cd24b7ec4b09e78be0603fa02dd'
+  );
+  assert.doesNotMatch(svg, /<\?(?:xml)|<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\son[a-z]+\s*=/i);
+  const svgNodes = [];
+  function visitSvg(node) {
+    if (node.tagName) svgNodes.push(node);
+    for (const child of node.childNodes ?? []) visitSvg(child);
+  }
+  visitSvg(parse(svg));
+  const svgIds = new Set(svgNodes.map((node) => attrs(node).id).filter(Boolean));
+  for (const node of svgNodes) {
+    assert.ok(!['script', 'foreignObject', 'style', 'animate', 'set'].includes(node.tagName));
+    for (const attribute of node.attrs ?? []) {
+      assert.ok(!/^on/i.test(attribute.name));
+      if (attribute.name === 'href' || attribute.name === 'src') {
+        const value = attribute.value;
+        if (value.startsWith('#')) assert.ok(svgIds.has(value.slice(1)));
+        else {
+          assert.equal(node.tagName, 'image');
+          assert.match(value, /^data:image\/png;base64,[A-Za-z0-9+/=]+$/);
+          assert.equal(Buffer.from(value.split(',')[1], 'base64').subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+        }
+      }
+      for (const match of attribute.value.matchAll(/url\(([^)]+)\)/g)) {
+        assert.ok(match[1].startsWith('#') && svgIds.has(match[1].slice(1)), 'SVG paint references are local');
+      }
+    }
+  }
+  const symbol = find('symbol', 'id', 'zipzi-brand-artwork');
+  assert.equal(attrs(symbol).viewBox, '0 0 1024 1024');
+  // Compare parsed drawing nodes, including the exact embedded PNG, to the
+  // reviewed source. Attribute order and irrelevant formatting may differ.
+  const drawing = (list) =>
+    list.filter((n) => ['path', 'image', 'stop'].includes(n.tagName)).map((n) => ({ tag: n.tagName, attrs: attrs(n) }));
+  const symbolNodes = [];
+  const collect = (node) => {
+    symbolNodes.push(node);
+    for (const child of node.childNodes ?? []) collect(child);
+  };
+  collect(symbol);
+  assert.deepEqual(drawing(symbolNodes), drawing(svgNodes));
+  assert.equal(nodes.filter((n) => n.tagName === 'use' && attrs(n).href === '#zipzi-brand-artwork').length, 2);
+  assert.ok(nodes.some((n) => n.tagName === 'svg' && attrs(n).class === 'brand-icon'));
+  await assert.rejects(access('src/assets/images/app-icon.png'), { code: 'ENOENT' });
+  assert.ok(manifest.files.every((file) => !file.path.includes('app-icon')));
+  assert.doesNotMatch(html, /app-icon\.png|app-icon\.[\w-]+\.webp|zipzi-editor-icon-v3/);
   assert.equal(attrs(find('link', 'rel', 'icon')).href, '/favicon.png');
   assert.equal(attrs(find('link', 'rel', 'apple-touch-icon')).href, '/apple-touch-icon.png');
   for (const [path, width, height] of [
@@ -169,6 +226,13 @@ test('Current product artwork is traceable and all browser/share images use the 
     const image = await sharp(path).metadata();
     assert.equal(image.width, width);
     assert.equal(image.height, height);
+  }
+  for (const [size, path] of [
+    [96, 'dist/favicon.png'],
+    [180, 'dist/apple-touch-icon.png'],
+  ]) {
+    const expected = await sharp(Buffer.from(svg)).resize(size, size).png().toBuffer();
+    assert.deepEqual(await readFile(path), expected, 'Raster browser icons derive from the correct SVG');
   }
   assert.equal(meta('og:image:width'), '2204');
   assert.equal(meta('og:image:height'), '1486');

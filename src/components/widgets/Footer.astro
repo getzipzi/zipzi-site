@@ -1,10 +1,14 @@
 ---
 import { SITE } from 'astrowind:config';
+import BrandIcon from '~/components/common/BrandIcon.astro';
 ---
 
 <footer class="site-footer">
   <div class="container footer-main">
-    <a href="/" class="footer-brand" aria-label="Zipzi 2D 首页">Zipzi<span>2D</span><span aria-hidden="true">↗</span></a
+    <a href="/" class="footer-brand" aria-label="Zipzi 2D 首页"
+      ><BrandIcon size={64} />Zipzi<span class="footer-suffix">2D</span><span class="footer-arrow" aria-hidden="true"
+        >↗</span
+      ></a
     ><p>二维建模与动画。<br />为创作，也为创造工具的人。</p>
   </div>
   <div class="container footer-bottom">

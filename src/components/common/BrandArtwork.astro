@@ -1,0 +1,17 @@
+---
+// Reviewed local artwork only: one shared SVG definition per document.
+import artwork from '~/assets/images/app-icon.svg?raw';
+const source = artwork.match(/^<svg\b([^>]*)>([\s\S]*)<\/svg>\s*$/);
+if (!source) throw new Error('Expected the reviewed SVG brand source');
+const viewBox = source[1].match(/\bviewBox="([^"]+)"/)?.[1];
+const style = source[1].match(/\bstyle="([^"]+)"/)?.[1];
+if (viewBox !== '0 0 1024 1024') throw new Error('Unexpected brand artwork dimensions');
+---
+
+<svg class="brand-definitions" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="zipzi-brand-artwork" viewBox={viewBox} style={style}>
+      <Fragment set:html={source[2]} />
+    </symbol>
+  </defs>
+</svg>

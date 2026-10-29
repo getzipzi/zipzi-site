@@ -160,3 +160,26 @@ test('new editor screenshot keeps its full frame and a readable full-size destin
   await expect(release).toContainText('GitHub Releases');
   await expect(release).not.toContainText(/v?\d+\.\d+\.\d+|\d{4}-\d{2}-\d{2}|发布于/);
 });
+
+test('navigation and footer render the same reviewed SVG logo without the old raster source', async ({
+  page,
+}, testInfo) => {
+  await page.goto('/');
+  await expect(page.locator('#zipzi-brand-artwork')).toHaveCount(1);
+  const marks = page.locator('.brand-icon');
+  await expect(marks).toHaveCount(2);
+  for (const mark of await marks.all()) {
+    await expect(mark).toBeVisible();
+    await expect(mark.locator('use')).toHaveAttribute('href', '#zipzi-brand-artwork');
+    await expect(mark).toHaveAttribute('aria-hidden', 'true');
+    expect(
+      await mark.evaluate((svg) => {
+        const drawing = (svg as SVGSVGElement).getBBox();
+        return drawing.width > 800 && drawing.height > 800;
+      })
+    ).toBe(true);
+  }
+  await expect(page.locator('.brand img, .footer-brand img')).toHaveCount(0);
+  await page.locator('.brand .brand-icon').screenshot({ path: `qa/screenshots/${testInfo.project.name}-logo.png` });
+  await page.locator('.site-footer').screenshot({ path: `qa/screenshots/${testInfo.project.name}-footer.png` });
+});
