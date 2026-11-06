@@ -279,15 +279,37 @@ class TransportTests(unittest.TestCase):
     def test_auth_and_routing_regressions_fail_health(self):
         health = r.Health('a' * 64)
         def okay(host, route):
-            if route in ('/jobs', '/api/admin/jobs'): return 401, {'WWW-Authenticate': 'Basic realm="FA Stock Research Admin"'}, ''
-            if route == '/api/health': return 200, {'Content-Type': 'application/json'}, 'a' * 64
-            if host == 'www.clwai.cn' and route == '/': return 301, {'Location': 'https://clwai.cn/'}, ''
+            if host in ('clwai.cn', 'www.clwai.cn') and route in ('/jobs', '/api/admin/jobs'): return 401, {'WWW-Authenticate': 'Basic realm="FA Stock Research Admin"'}, ''
+            if host in ('clwai.cn', 'www.clwai.cn') and route == '/api/health': return 200, {'Content-Type': 'application/json'}, 'a' * 64
+            if host in ('clwai.cn', 'www.clwai.cn', 'www.zipzi2d.com') and route != '/__zipzi_internal_jobs':
+                return 301, {'Location': 'https://zipzi2d.com' + route}, ''
             return 404, {}, ''
         health.get = okay
         health.protected()
         for path, reply in [('/jobs', (200, {}, '')), ('/__zipzi_internal_jobs', (200, {}, '')), ('/__zipzi_ci_missing_probe', (200, {}, ''))]:
             health.get = lambda host, route, path=path, reply=reply: reply if route == path else okay(host, route)
             with self.assertRaises(p.Rejected): health.protected()
+
+    def test_redirects_preserve_path_query_and_do_not_expose_services(self):
+        health = r.Health('a' * 64)
+        def okay(host, route):
+            if host in ('clwai.cn', 'www.clwai.cn'):
+                if route in ('/jobs', '/api/admin/jobs'):
+                    return 401, {'WWW-Authenticate': 'Basic realm="FA Stock Research Admin"'}, ''
+                if route == '/api/health':
+                    return 200, {'Content-Type': 'application/json'}, 'a' * 64
+            if host != 'zipzi2d.com' and route != '/__zipzi_internal_jobs':
+                return 301, {'Location': 'https://zipzi2d.com' + route}, ''
+            return 404, {}, ''
+        for host, route, reply in [
+            ('clwai.cn', '/migration-probe?source=legacy&test=1', (301, {'Location': 'https://zipzi2d.com/'}, '')),
+            ('www.zipzi2d.com', '/', (200, {}, '')),
+            ('zipzi2d.com', '/jobs', (200, {}, '')),
+            ('zipzi2d.com', '/api/health', (200, {'Content-Type': 'application/json'}, 'a' * 64)),
+        ]:
+            health.get = lambda h, r, host=host, route=route, reply=reply: reply if (h, r) == (host, route) else okay(h, r)
+            with self.assertRaises(p.Rejected): health.protected()
+        with self.assertRaises(p.Rejected): r.Health('a' * 64).get('unapproved.example', '/')
 
 
 if __name__ == '__main__': unittest.main()

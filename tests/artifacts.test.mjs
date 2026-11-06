@@ -39,10 +39,10 @@ test('Generated homepage has complete, consistent, indexable metadata', () => {
   assert.equal(nodes.filter((n) => n.tagName === 'h1').length, 1);
 });
 
-test('Public page titles retain Clwai exactly once and social titles match the browser title', async () => {
+test('Public page titles retain Zipzi 2D exactly once and social titles match the browser title', async () => {
   for (const [path, expected] of [
-    ['dist/index.html', 'Clwai | Zipzi'],
-    ['dist/404.html', '页面未找到 | Clwai | Zipzi'],
+    ['dist/index.html', 'Zipzi 2D'],
+    ['dist/404.html', '页面未找到 | Zipzi 2D'],
   ]) {
     const elements = [];
     const collect = (node) => {
@@ -53,7 +53,7 @@ test('Public page titles retain Clwai exactly once and social titles match the b
     const titles = elements.filter((node) => node.tagName === 'title');
     assert.equal(titles.length, 1);
     assert.equal(text(titles[0]), expected);
-    assert.equal(text(titles[0]).match(/Clwai/g)?.length, 1);
+    assert.equal(text(titles[0]).match(/Zipzi 2D/g)?.length, 1);
     for (const [attribute, value] of [
       ['property', 'og:title'],
       ['name', 'twitter:title'],
@@ -142,9 +142,9 @@ test('Only verified software facts are in structured data; no inherited template
     'G-XXXXXXXXXX',
     '@arthelokyo',
     'localhost',
-    'zipzi2d.com',
+    'https://clwai.cn',
   ])
-    assert.ok(!html.includes(marker), `Template/unready-domain marker ${marker}`);
+    assert.ok(!html.includes(marker), `Template/retired-domain marker ${marker}`);
 });
 
 test('Custom 404 is a separate noindex artifact with a working home link', async () => {
@@ -269,4 +269,10 @@ test('Current product artwork is traceable and all browser/share images use the 
   assert.equal(attrs(screenshot).srcset.split(',').length, 4);
   for (const obsolete of ['editor-modeling', 'favicon.svg', '内置测试场景', '双菱形', '.kasane'])
     assert.ok(!html.includes(obsolete), `Old artwork metadata: ${obsolete}`);
+});
+
+test('Approved production domain and ICP filing are published together', () => {
+  assert.equal(origin, 'https://zipzi2d.com');
+  assert.ok(html.includes('浙ICP备2026015551号-2'));
+  assert.ok(!html.includes('浙ICP备2026015551号-1'));
 });

@@ -2,7 +2,7 @@
 
 ## Current status
 
-The canonical website is `https://clwai.cn`. Its server also serves an independently authenticated jobs application and API. Website deployment must preserve jobs, API, SSH, TLS and legacy assets.
+The canonical website is `https://zipzi2d.com`. The legacy `clwai.cn` host on the same server also serves an independently authenticated jobs application and API. Website deployment must preserve jobs, API, SSH, TLS and legacy assets.
 
 **Production deployment is enabled for verified main pushes.** The owner approved using the existing root SSH identity in this repository's production environment and the reviewed Nginx migration. The root-owned receiver and protected routing are installed; no additional SSH key or account was created. A green verification job or saved artifact alone does not mean the website was deployed: check the deployment job's matching revision and verified receipt.
 
@@ -68,3 +68,13 @@ An interruption leaves `pending.json`; status reports `recovery_required`. The n
 Manual rollback uses the fixed gate with a bounded request containing `protocol: 1`, `action: rollback`, the recorded transaction ID and `expected_commit`. It rejects a different revision, changed managed files or corrupt backups. Use the reviewed transport and recorded receipt. Keep private backups and old hashed assets; never run `rsync --delete` on the shared root.
 
 Automated 401 checks verify access control, not the authenticated jobs UI. Exercise that UI separately when suitable credentials are authorized. Local tests do not establish production readiness: each deployment must pass the server guards and strict public HTTPS checks before it can report success.
+
+## Domain migration (2026-11-06)
+
+`zipzi2d.com` and `www.zipzi2d.com` use a separate certificate. The apex serves the website and www redirects to the apex. Legacy website requests redirect with their original path and query; jobs, API, legacy assets and the private jobs entry retain their existing routing and authentication. The new apex does not expose those backend services. The old certificate remains installed. HTTP ACME challenge paths remain available for renewal.
+
+SSH deployment intentionally continues to use the existing pinned `clwai.cn` identity. Website health checks use the new apex; protected-service checks still use both old hosts. Canonical redirect checks cover all three alias hosts, SEO paths and query preservation. The reviewed Nginx checksum in the root-owned policy must be updated together with a routing change under the deployment lock. No credentials are moved or regenerated.
+
+The server-side migration backup is `/var/backups/zipzi-site/domain-20261106T101500Z`; it includes the original Nginx configuration, receiver, policy, renewal configuration, deployment state and public files. Static release rollback uses the normal deployment transaction before restoring the old routing/receiver/policy together under the lock and validating Nginx. Do not overwrite a newer deployment with the migration snapshot.
+
+The completion snapshot is `/var/backups/zipzi-site/domain-complete-20261106T111328Z` and contains the immediately preceding public files, routing, receiver, policy, deployment state and renewal configuration with a SHA256 inventory. The reviewed routing source is `tooling/deploy/nginx-domain-migration.conf`. The Nginx policy baseline after migration is `065046938a3e2a5ab8c9d3652bfc17fc68481e79fdc83847e71c46e96f69b476`. Public browser and social titles now use `Zipzi 2D`; the filing is `浙ICP备2026015551号-2`.

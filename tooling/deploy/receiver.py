@@ -75,7 +75,7 @@ class Health:
         self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
 
     def get(self, host, route):
-        if host not in ('clwai.cn', 'www.clwai.cn') or not route.startswith('/'):
+        if host not in ('clwai.cn', 'www.clwai.cn', 'zipzi2d.com', 'www.zipzi2d.com') or not route.startswith('/'):
             raise Rejected('unapproved-health-destination')
         try:
             response = self.opener.open('https://' + host + route, timeout=15)
@@ -100,11 +100,16 @@ class Health:
                 raise Rejected('api-health-changed')
             if self.get(host, '/__zipzi_internal_jobs')[0] != 404:
                 raise Rejected('legacy-entry-is-not-private')
-        if self.get('clwai.cn', '/__zipzi_ci_missing_probe')[0] != 404:
+        if self.get('zipzi2d.com', '/__zipzi_ci_missing_probe')[0] != 404:
             raise Rejected('public-404-routing-not-ready')
-        status, headers, _ = self.get('www.clwai.cn', '/')
-        if status != 301 or headers.get('Location') != 'https://clwai.cn/':
-            raise Rejected('canonical-routing-not-ready')
+        for route in ('/jobs', '/api/health', '/api/admin/jobs', '/__zipzi_internal_jobs'):
+            if self.get('zipzi2d.com', route)[0] != 404:
+                raise Rejected('legacy-service-exposed-on-new-domain')
+        for host in ('clwai.cn', 'www.clwai.cn', 'www.zipzi2d.com'):
+            for route in ('/', '/robots.txt', '/sitemap.xml', '/migration-probe?source=legacy&test=1'):
+                status, headers, _ = self.get(host, route)
+                if status != 301 or headers.get('Location') != 'https://zipzi2d.com' + route:
+                    raise Rejected('canonical-routing-not-ready')
 
     def check(self, hashes):
         self.protected()
@@ -113,7 +118,7 @@ class Health:
             expected_status = 200
             if path == '404.html':
                 route, expected_status = '/__zipzi_ci_missing_probe', 404
-            status, headers, sha = self.get('clwai.cn', route)
+            status, headers, sha = self.get('zipzi2d.com', route)
             if status != expected_status or sha != expected:
                 raise Rejected('public-file-health-mismatch')
             mime = {'index.html': 'text/html', '404.html': 'text/html',

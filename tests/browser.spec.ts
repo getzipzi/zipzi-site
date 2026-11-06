@@ -4,8 +4,8 @@ import { mkdir } from 'node:fs/promises';
 
 test('browser tab and social titles preserve the filed website name without duplicate suffixes', async ({ page }) => {
   for (const [route, title] of [
-    ['/', 'Clwai | Zipzi'],
-    ['/missing-title-check', '页面未找到 | Clwai | Zipzi'],
+    ['/', 'Zipzi 2D'],
+    ['/missing-title-check', '页面未找到 | Zipzi 2D'],
   ]) {
     await page.goto(route);
     await expect(page).toHaveTitle(title);

@@ -33,9 +33,9 @@ On a Linux CI runner, `npx playwright install --with-deps chromium` installs the
 
 ## Configuration and product information
 
-`src/config.yaml` owns the production origin, site metadata, language, and crawl policy. The current canonical origin is **https://clwai.cn**. The metadata component derives canonical, Open Graph, and Twitter URLs from that configuration. The sitemap integration writes canonical public URLs; the adapted build hook requires a valid sitemap and emits `sitemap.xml` and `robots.txt`. A missing sitemap fails the build. The 404 page has explicit `noindex`.
+`src/config.yaml` owns the production origin, site metadata, language, and crawl policy. The current canonical origin is **https://zipzi2d.com**. The metadata component derives canonical, Open Graph, and Twitter URLs from that configuration. The sitemap integration writes canonical public URLs; the adapted build hook requires a valid sitemap and emits `sitemap.xml` and `robots.txt`. A missing sitemap fails the build. The 404 page has explicit `noindex`.
 
-The homepage browser title is exactly **Clwai | Zipzi**. Custom public page titles include Clwai through the shared title template, and Open Graph/Twitter titles match the browser title. The product brand and `site.name` remain Zipzi 2D.
+The homepage browser title is exactly **Zipzi 2D**. Custom public page titles include Zipzi 2D through the shared title template, and Open Graph/Twitter titles match the browser title. The product brand and `site.name` remain Zipzi 2D.
 
 The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
 
@@ -69,6 +69,6 @@ CI executes these checks against the generated site and verifies repeatable buil
 
 Production shares a server with an authenticated jobs application and an API. The static website must not replace the whole document root. The approved routing isolates the legacy jobs entry outside the public root while preserving authentication. The CI receiver verifies this configuration and never changes Nginx, services or credentials. Further routing or access changes are separate operator work. See [deployment and rollback](docs/deployment.md).
 
-The existing ICP footer applies to `clwai.cn`, not `zipzi2d.com`. A future domain switch requires the new domain's filing, DNS, and valid HTTPS to be ready. Search Console access and search-engine indexing are separate from this website build.
+The approved production domain is `zipzi2d.com`, with ICP filing 浙ICP备2026015551号-2. The `www` host and legacy website URLs redirect to the apex while legacy jobs/API services remain on `clwai.cn`. Search Console access and search-engine indexing are separate from this website build.
 
 Generic deployment source and offline tests are reviewed in Git. Credentials, environment-specific configuration, operator scripts, logs, backups, screenshots, browser profiles and generated archives stay outside Git and the public build. The repository uses an allowlist `.gitignore`; publish source archives from an audited Git revision rather than zipping the working directory.
