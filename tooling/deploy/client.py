@@ -41,7 +41,7 @@ def validate_hosts(contents):
 
 def exchange(args, request):
     try:
-        result = subprocess.run(args, input=request, capture_output=True, timeout=360, check=False)
+        result = subprocess.run(args, input=request, capture_output=True, timeout=600, check=False)
     except (OSError, subprocess.TimeoutExpired) as error:
         raise Rejected('ssh-result-uncertain') from error
     try:

@@ -363,7 +363,8 @@ def main():
         raise Rejected('api-baseline-required')
     installer = Installer(policy, Health(policy['api_health_sha256']))
     # Receive the full bounded request before any transaction is opened.
-    signal.alarm(120)
+    # Multilingual archives are larger; retain a bounded receive window on slow routes.
+    signal.alarm(300)
     request, blob = read_request(sys.stdin.buffer)
     signal.alarm(0)
     if request['action'] == 'deploy':
