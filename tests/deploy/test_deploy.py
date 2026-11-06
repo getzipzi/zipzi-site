@@ -49,6 +49,21 @@ def tar_blob(files, extra=None):
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_localized_pages_have_an_exact_finite_allowlist(self):
+        for locale in ('en', 'ja', 'zh-tw', 'ko'):
+            for page in ('index.html', '404.html'):
+                self.assertTrue(p.allowed(f'{locale}/{page}'))
+            for path in ('api/index.html', 'jobs/index.html', '../index.html', 'extra.html'):
+                self.assertFalse(p.allowed(f'{locale}/{path}'))
+        self.assertFalse(p.allowed('other/index.html'))
+
+    def test_localized_archive_requires_all_languages_but_keeps_old_releases_valid(self):
+        site = {**site_fixture(), **{name: b'localized' for name in p.LOCALIZED}}
+        self.assertEqual(p.read_archive(tar_blob(artifact_files(site)), COMMIT), site)
+        del site['ko/404.html']
+        with self.assertRaises(p.Rejected): p.read_archive(tar_blob(artifact_files(site)), COMMIT)
+        self.assertEqual(p.read_archive(tar_blob(artifact_files()), COMMIT), site_fixture())
+
     def test_round_trip_and_wire_checksum(self):
         blob = tar_blob(artifact_files())
         request = {'protocol': 1, 'action': 'deploy', 'commit': COMMIT, 'bytes': len(blob), 'archive_sha256': p.digest(blob)}
@@ -240,6 +255,19 @@ class FilesystemTests(unittest.TestCase):
 
 
 class TransportTests(unittest.TestCase):
+    def test_localized_home_and_404_health_check_real_routes_and_mime(self):
+        health = r.Health('a' * 64)
+        expected = {'/en/': (200, {'Content-Type': 'text/html'}, 'b' * 64),
+                    '/en/__zipzi_ci_missing_probe': (404, {'Content-Type': 'text/html'}, 'c' * 64)}
+        with patch.object(health, 'protected'):
+            health.get = lambda host, route: expected[route]
+            health.check({'en/index.html': 'b' * 64, 'en/404.html': 'c' * 64})
+            for reply in ((200, {'Content-Type': 'text/html'}, 'c' * 64),
+                          (404, {'Content-Type': 'text/plain'}, 'c' * 64)):
+                health.get = lambda host, route: reply if 'missing_probe' in route else expected[route]
+                with self.assertRaises(p.Rejected):
+                    health.check({'en/index.html': 'b' * 64, 'en/404.html': 'c' * 64})
+
     def test_custom_404_requires_error_status_and_exact_generated_content(self):
         health = r.Health('a' * 64)
         with patch.object(health, 'protected'):

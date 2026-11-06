@@ -114,17 +114,19 @@ class Health:
     def check(self, hashes):
         self.protected()
         for path, expected in hashes.items():
-            route = '/' if path == 'index.html' else '/' + path
+            route = '/' + path.removesuffix('index.html') if path.endswith('index.html') else '/' + path
             expected_status = 200
-            if path == '404.html':
-                route, expected_status = '/__zipzi_ci_missing_probe', 404
+            if path == '404.html' or path.endswith('/404.html'):
+                prefix = path.removesuffix('404.html')
+                route, expected_status = '/' + prefix + '__zipzi_ci_missing_probe', 404
             status, headers, sha = self.get('zipzi2d.com', route)
             if status != expected_status or sha != expected:
                 raise Rejected('public-file-health-mismatch')
             mime = {'index.html': 'text/html', '404.html': 'text/html',
                     'robots.txt': 'text/plain', 'sitemap.xml': 'application/xml',
                     'sitemap-index.xml': 'application/xml', 'sitemap-0.xml': 'application/xml'}
-            if path in mime and mime[path] not in headers.get('Content-Type', ''):
+            expected_mime = 'text/html' if path.endswith('.html') else mime.get(path)
+            if expected_mime and expected_mime not in headers.get('Content-Type', ''):
                 raise Rejected('public-file-content-type-mismatch')
 
 

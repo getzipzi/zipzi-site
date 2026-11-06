@@ -31,12 +31,13 @@ const server = http.createServer(async (request, response) => {
     }
     let target = path.resolve(root, '.' + pathname);
     if (target !== root && !target.startsWith(root + path.sep)) throw Error('Invalid path');
-    let status = pathname === '/404.html' ? 404 : 200;
+    const locale = pathname.match(/^\/(ja|zh-tw|en|ko)\//)?.[1];
+    let status = /(?:^|\/)404\.html$/.test(pathname) ? 404 : 200;
     try {
       if ((await stat(target)).isDirectory()) target = path.join(target, 'index.html');
       if (!(await stat(target)).isFile()) throw Error('Not a file');
     } catch {
-      target = path.join(root, '404.html');
+      target = path.join(root, locale ? `${locale}/404.html` : '404.html');
       status = 404;
     }
     const bytes = await readFile(target);

@@ -1,0 +1,48 @@
+---
+import { languages, language, type Locale } from '~/i18n';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const labels = { 'zh-cn': '选择语言', 'zh-tw': '選擇語言', ja: '言語を選択', en: 'Choose language', ko: '언어 선택' };
+---
+
+<details class="language-switch">
+  <summary aria-label={`${labels[locale]}: ${language(locale).name}`}
+    ><span aria-hidden="true">◎</span> {language(locale).name} <span aria-hidden="true">⌄</span></summary
+  >
+  <div class="language-links">
+    {
+      languages.map((entry) => (
+        <a
+          href={entry.path}
+          lang={entry.lang}
+          hreflang={entry.lang}
+          aria-current={entry.code === locale ? 'page' : undefined}
+          data-language-link
+        >
+          {entry.name}
+        </a>
+      ))
+    }
+  </div>
+</details>
+<script>
+  for (const details of document.querySelectorAll<HTMLDetailsElement>('.language-switch')) {
+    details.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && details.open) {
+        event.stopPropagation();
+        details.open = false;
+        details.querySelector('summary')?.focus();
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !details.contains(event.target)) details.open = false;
+    });
+    for (const link of details.querySelectorAll<HTMLAnchorElement>('[data-language-link]')) {
+      link.addEventListener('click', () => {
+        link.hash = window.location.hash;
+      });
+    }
+  }
+</script>

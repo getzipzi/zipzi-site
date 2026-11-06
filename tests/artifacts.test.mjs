@@ -79,7 +79,7 @@ test('Real robots and well-formed sitemap files contain only canonical public pa
   }
   const parsed = new XMLParser().parse(await readFile('dist/sitemap.xml', 'utf8'));
   const urls = [parsed.urlset.url].flat().map((item) => item.loc);
-  assert.deepEqual(urls, [origin + '/']);
+  assert.deepEqual(urls.sort(), ['/', '/en/', '/ja/', '/ko/', '/zh-tw/'].map((route) => origin + route).sort());
   const index = new XMLParser().parse(await readFile('dist/sitemap-index.xml', 'utf8'));
   assert.equal(index.sitemapindex.sitemap.loc, origin + '/sitemap-0.xml');
 });
@@ -163,7 +163,9 @@ test('All manifest bytes match, source files stay private, and output meets size
     assert.equal(data.length, file.bytes);
     assert.equal(createHash('sha256').update(data).digest('hex'), file.sha256);
   }
-  assert.ok(manifest.totalBytes < 1_500_000, 'Entire static build under 1.5 MB');
+  assert.ok(manifest.totalBytes < 2_700_000, 'Five-language static build under 2.7 MB');
+  for (const file of manifest.files.filter((entry) => entry.path.endsWith('.html')))
+    assert.ok(file.bytes < 180_000, `HTML page under 180 KB: ${file.path}`);
   assert.ok(
     manifest.files.filter((f) => f.path.endsWith('.js')).reduce((n, f) => n + f.bytes, 0) +
       nodes
@@ -275,4 +277,50 @@ test('Approved production domain and ICP filing are published together', () => {
   assert.equal(origin, 'https://zipzi2d.com');
   assert.ok(html.includes('浙ICP备2026015551号-2'));
   assert.ok(!html.includes('浙ICP备2026015551号-1'));
+});
+
+test('All languages have complete localized content, self canonicals, reciprocal hreflang and private 404s', async () => {
+  const routes = [
+    ['', 'zh-CN'],
+    ['ja/', 'ja'],
+    ['zh-tw/', 'zh-TW'],
+    ['en/', 'en'],
+    ['ko/', 'ko'],
+  ];
+  const messages = JSON.parse(await readFile('src/i18n/messages.json', 'utf8'));
+  for (const translations of Object.values(messages)) {
+    for (const locale of ['ja', 'zh-tw', 'en', 'ko']) assert.ok(translations[locale]?.trim(), `Missing ${locale}`);
+  }
+  for (const [prefix, lang] of routes) {
+    const page = await readFile(`dist/${prefix}index.html`, 'utf8');
+    const elements = [];
+    const collect = (n) => {
+      if (n.tagName) elements.push(n);
+      for (const c of n.childNodes ?? []) collect(c);
+    };
+    collect(parse(page));
+    assert.equal(attrs(elements.find((n) => n.tagName === 'html')).lang, lang);
+    assert.equal(
+      attrs(elements.find((n) => n.tagName === 'link' && attrs(n).rel === 'canonical')).href,
+      `${origin}/${prefix}`
+    );
+    const alternates = elements.filter((n) => n.tagName === 'link' && attrs(n).rel === 'alternate').map(attrs);
+    assert.equal(alternates.length, 6);
+    for (const [target, code] of routes)
+      assert.ok(alternates.some((a) => a.hreflang === code && a.href === `${origin}/${target}`));
+    assert.ok(alternates.some((a) => a.hreflang === 'x-default' && a.href === origin + '/'));
+    const description = attrs(elements.find((n) => n.tagName === 'meta' && attrs(n).name === 'description')).content;
+    if (prefix) assert.notEqual(description, config.metadata.description);
+    const schema = JSON.parse(
+      text(elements.find((n) => n.tagName === 'script' && attrs(n).type === 'application/ld+json'))
+    );
+    assert.equal(schema['@graph'][0].inLanguage, lang);
+    assert.equal(schema['@graph'][0].url, `${origin}/${prefix}`);
+    assert.equal(schema['@graph'][1].description, description);
+    assert.ok(page.includes('浙ICP备2026015551号-2'));
+    assert.ok(page.includes('CPython 3.14'));
+    const error = await readFile(`dist/${prefix}404.html`, 'utf8');
+    assert.match(error, /noindex/);
+    assert.ok(error.includes(`lang="${lang}"`));
+  }
 });

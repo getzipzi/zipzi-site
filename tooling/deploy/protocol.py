@@ -17,6 +17,8 @@ FIXED = frozenset({
     "index.html", "404.html", "robots.txt", "sitemap.xml", "sitemap-index.xml",
     "sitemap-0.xml", "favicon.png", "apple-touch-icon.png", "media/editor-screenshot.jpg",
 })
+LOCALES = ('ja', 'zh-tw', 'en', 'ko')
+LOCALIZED = frozenset(f'{locale}/{page}' for locale in LOCALES for page in ('index.html', '404.html'))
 ASSET = re.compile(r"_astro/[A-Za-z0-9_-]+\.[A-Za-z0-9_.-]+\.(?:css|js|webp|png|jpg)\Z")
 METADATA = frozenset({"manifest.json", "source.json", "SHA256SUMS", "DEPLOYMENT.txt"})
 
@@ -30,7 +32,7 @@ def digest(data: bytes) -> str:
 
 
 def allowed(path: str) -> bool:
-    return isinstance(path, str) and (path in FIXED or bool(ASSET.fullmatch(path))) and ".." not in path
+    return isinstance(path, str) and (path in FIXED or path in LOCALIZED or bool(ASSET.fullmatch(path))) and ".." not in path
 
 
 def immutable(path: str) -> bool:
@@ -81,6 +83,8 @@ def validate(files: dict[str, bytes], expected_commit: str) -> dict[str, bytes]:
         total += size
         site[path] = data
         sums.append(f"{sha}  site/{path}\n")
+    if site.keys() & LOCALIZED and not LOCALIZED.issubset(site):
+        raise Rejected('incomplete-localized-site')
     if not FIXED.issubset(site) or type(manifest["totalBytes"]) is not int or manifest["totalBytes"] != total:
         raise Rejected("incomplete-site-manifest")
     if total > MAX_ARCHIVE or set(files) != METADATA | {"site/" + p for p in site}:

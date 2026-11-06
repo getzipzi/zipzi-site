@@ -1,19 +1,24 @@
 ---
+import { translate, language, type Locale } from '~/i18n';
+const { locale = 'zh-cn' } = Astro.props as { locale?: Locale };
+const t = translate(locale);
+const home = language(locale).path;
+
 import { SITE } from 'astrowind:config';
 import BrandIcon from '~/components/common/BrandIcon.astro';
 ---
 
 <footer class="site-footer">
   <div class="container footer-main">
-    <a href="/" class="footer-brand" aria-label="Zipzi 2D 首页"
+    <a href={home} class="footer-brand" aria-label={t('Zipzi 2D 首页')}
       ><BrandIcon size={64} />Zipzi<span class="footer-suffix">2D</span><span class="footer-arrow" aria-hidden="true"
         >↗</span
       ></a
-    ><p>二维建模与动画。<br />为创作，也为创造工具的人。</p>
+    ><p>{t('二维建模与动画。')}<br />{t('为创作，也为创造工具的人。')}</p>
   </div>
   <div class="container footer-bottom">
     <span>© 2026 {SITE.name}</span><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
-      >浙ICP备2026015551号-2</a
-    ><a href="/#main">回到顶部 ↑</a>
+      >{t('浙ICP备2026015551号-2')}</a
+    ><a href={home + '#main'}>{t('回到顶部 ↑')}</a>
   </div>
 </footer>

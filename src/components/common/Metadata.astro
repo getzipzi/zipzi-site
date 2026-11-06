@@ -1,12 +1,15 @@
 ---
 // Adapted from AstroWind Metadata: explicit crawl settings and local images only.
 import { SEO } from 'astro-seo';
-import { SITE, METADATA, I18N } from 'astrowind:config';
+import { SITE, METADATA } from 'astrowind:config';
+import { translate, language, languages, type Locale } from '~/i18n';
 import type { MetaData } from '~/types';
-export type Props = MetaData;
+export type Props = MetaData & { locale?: Locale };
+const { locale = 'zh-cn' } = Astro.props;
+const t = translate(locale);
 const {
   title: pageTitle,
-  description = METADATA.description,
+  description = t(METADATA.description!),
   robots = {},
   canonical = new URL(Astro.url.pathname, SITE.site).href,
 } = Astro.props;
@@ -26,12 +29,12 @@ const image = new URL(ogImage.url, SITE.site).href;
   nofollow={robots.follow === undefined ? METADATA.robots?.follow !== true : !robots.follow}
   openGraph={{
     basic: { title: title ?? SITE.name, type: 'website', image, url: canonical },
-    optional: { description, locale: I18N.language.replace('-', '_'), siteName: SITE.name },
+    optional: { description, locale: language(locale).og, siteName: SITE.name },
     image: {
       url: image,
       width: ogImage.width,
       height: ogImage.height,
-      alt: 'Zipzi 2D README 中的猫模型与网格编辑界面',
+      alt: t('Zipzi 2D README 中的猫模型与网格编辑界面'),
     },
   }}
   twitter={{ card: 'summary_large_image' }}
@@ -39,4 +42,10 @@ const image = new URL(ogImage.url, SITE.site).href;
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={image} />
-<meta name="twitter:image:alt" content="Zipzi 2D README 中的猫模型与网格编辑界面" />
+<meta name="twitter:image:alt" content={t('Zipzi 2D README 中的猫模型与网格编辑界面')} />
+
+{
+  robots.index !== false &&
+    languages.map((entry) => <link rel="alternate" hreflang={entry.lang} href={new URL(entry.path, SITE.site).href} />)
+}
+{robots.index !== false && <link rel="alternate" hreflang="x-default" href={new URL('/', SITE.site).href} />}

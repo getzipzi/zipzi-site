@@ -90,12 +90,12 @@ test('FAQ is keyboard-operable and reduced motion disables smooth scrolling', as
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
-  const summary = page.locator('summary').first();
+  const summary = page.locator('.faq-list summary').first();
   await summary.focus();
   await page.keyboard.press('Enter');
-  await expect(page.locator('details').first()).toHaveAttribute('open', '');
+  await expect(page.locator('.faq-list details').first()).toHaveAttribute('open', '');
   await page.keyboard.press('Enter');
-  await expect(page.locator('details').first()).not.toHaveAttribute('open', '');
+  await expect(page.locator('.faq-list details').first()).not.toHaveAttribute('open', '');
 });
 
 test('home, expanded navigation, and 404 pass WCAG A/AA automated checks', async ({ page }) => {
@@ -195,3 +195,48 @@ test('navigation and footer render the same reviewed SVG logo without the old ra
   await page.locator('.brand .brand-icon').screenshot({ path: `qa/screenshots/${testInfo.project.name}-logo.png` });
   await page.locator('.site-footer').screenshot({ path: `qa/screenshots/${testInfo.project.name}-footer.png` });
 });
+
+for (const [prefix, lang, hero, errorTitle] of [
+  ['en', 'en', 'More possibilities', 'Page not found'],
+  ['ja', 'ja', '2Dの創作に、', 'ページが見つかりません'],
+  ['zh-tw', 'zh-TW', '讓二維創作，', '找不到頁面'],
+  ['ko', 'ko', '2D 창작에,', '페이지를 찾을 수 없습니다'],
+]) {
+  test(`${prefix}: translated content, language switching, error routing and accessibility`, async ({ page }) => {
+    const response = await page.goto(`/${prefix}/`);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('html')).toHaveAttribute('lang', lang);
+    await expect(page.locator('h1')).toContainText(hero);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://zipzi2d.com/${prefix}/`);
+    await expect(page.locator('link[rel="alternate"]')).toHaveCount(6);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([]);
+    const toggle = page.locator('.menu-toggle');
+    if ((page.viewportSize()?.width ?? 0) < 768) {
+      await toggle.click();
+      await expect(toggle).not.toHaveAttribute('aria-label', /[开关]导航/);
+    }
+    const picker = page.locator('.language-switch');
+    await picker.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(picker).toHaveAttribute('open', '');
+    await page.keyboard.press('Escape');
+    await expect(picker).not.toHaveAttribute('open');
+    await picker.locator('summary').click();
+    await page.evaluate(() => history.replaceState(null, '', '#workflow'));
+    await picker.locator('a[lang="zh-CN"]').click();
+    await expect(page).toHaveURL(/\/#workflow$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
+    const missing = await page.goto(`/${prefix}/missing-page`);
+    expect(missing?.status()).toBe(404);
+    await expect(page).toHaveTitle(`${errorTitle} | Zipzi 2D`);
+    await expect(page.locator('html')).toHaveAttribute('lang', lang);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([]);
+    if ((page.viewportSize()?.width ?? 0) >= 768) {
+      await page.screenshot({ path: `qa/screenshots/${prefix}-404.png`, fullPage: true });
+      await page.goto(`/${prefix}/`);
+      await page.screenshot({ path: `qa/screenshots/${prefix}-home.png`, fullPage: true });
+    }
+  });
+}

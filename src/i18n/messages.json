@@ -1,0 +1,518 @@
+{
+  "建立形态": {
+    "en": "Shape the model",
+    "ja": "形をつくる",
+    "zh-tw": "建立形態",
+    "ko": "형태 만들기"
+  },
+  "组织模型与图层，编辑网格和纹理，让二维素材成为可以继续塑造的结构。": {
+    "en": "Organize models and layers, edit meshes and textures, and turn 2D artwork into a structure you can keep shaping.",
+    "ja": "モデルとレイヤーを整理し、メッシュやテクスチャを編集。2D素材を、さらに形づくれる構造へ。",
+    "zh-tw": "組織模型與圖層，編輯網格和紋理，讓二維素材成為可以繼續塑造的結構。",
+    "ko": "모델과 레이어를 정리하고 메시와 텍스처를 편집해, 2D 소재를 계속 다듬을 수 있는 구조로 만드세요."
+  },
+  "模型文档 / 网格 / 纹理": {
+    "en": "Model documents / Meshes / Textures",
+    "ja": "モデル文書 / メッシュ / テクスチャ",
+    "zh-tw": "模型文件 / 網格 / 紋理",
+    "ko": "모델 문서 / 메시 / 텍스처"
+  },
+  "控制变化": {
+    "en": "Control the change",
+    "ja": "変化をコントロール",
+    "zh-tw": "控制變化",
+    "ko": "변화 제어하기"
+  },
+  "通过参数与变形组织模型的变化，在基础形态之上，细化每一次调整。": {
+    "en": "Use parameters and deformation to organize changes and refine every adjustment on top of the base form.",
+    "ja": "パラメータと変形でモデルの変化を組み立て、基本の形から一つひとつの調整を磨き上げます。",
+    "zh-tw": "透過參數與變形組織模型的變化，在基礎形態之上，細化每一次調整。",
+    "ko": "파라미터와 변형으로 모델의 변화를 구성하고, 기본 형태 위에서 각 조정을 세밀하게 다듬으세요."
+  },
+  "参数 / 变形 / 形态调整": {
+    "en": "Parameters / Deformation / Shape adjustments",
+    "ja": "パラメータ / 変形 / 形状調整",
+    "zh-tw": "參數 / 變形 / 形態調整",
+    "ko": "파라미터 / 변형 / 형태 조정"
+  },
+  "赋予动态": {
+    "en": "Bring it to life",
+    "ja": "動きを与える",
+    "zh-tw": "賦予動態",
+    "ko": "움직임 더하기"
+  },
+  "在动画工作空间中安排时间与关键帧，让静态模型拥有节奏、运动与表现力。": {
+    "en": "Arrange time and keyframes in the animation workspace to give static models rhythm, motion, and expression.",
+    "ja": "アニメーションワークスペースで時間とキーフレームを配置し、静的なモデルにリズムと動き、表現を与えます。",
+    "zh-tw": "在動畫工作空間中安排時間與關鍵影格，讓靜態模型擁有節奏、運動與表現力。",
+    "ko": "애니메이션 작업 공간에서 시간과 키프레임을 배치해 정적인 모델에 리듬과 움직임, 표현력을 더하세요."
+  },
+  "时间轴 / 关键帧 / 动画": {
+    "en": "Timeline / Keyframes / Animation",
+    "ja": "タイムライン / キーフレーム / アニメーション",
+    "zh-tw": "時間軸 / 關鍵影格 / 動畫",
+    "ko": "타임라인 / 키프레임 / 애니메이션"
+  },
+  "查看完整的 Zipzi 编辑器截图（新标签页）": {
+    "en": "View the full Zipzi editor screenshot (opens in a new tab)",
+    "ja": "Zipziエディタのスクリーンショット全体を見る（新しいタブ）",
+    "zh-tw": "檢視完整的 Zipzi 編輯器截圖（新分頁）",
+    "ko": "Zipzi 편집기 전체 스크린샷 보기(새 탭)"
+  },
+  "Zipzi 2D README 中的真实编辑器界面：左侧为猫模型图层，中央显示耳部网格，右侧为属性与参数面板。": {
+    "en": "The actual editor from the Zipzi 2D README: cat model layers on the left, an ear mesh in the center, and properties and parameters on the right.",
+    "ja": "Zipzi 2D README掲載の実際のエディタ。左に猫モデルのレイヤー、中央に耳のメッシュ、右にプロパティとパラメータ。",
+    "zh-tw": "Zipzi 2D README 中的真實編輯器介面：左側為貓模型圖層，中央顯示耳部網格，右側為屬性與參數面板。",
+    "ko": "Zipzi 2D README의 실제 편집기 화면: 왼쪽은 고양이 모델 레이어, 가운데는 귀 메시, 오른쪽은 속성과 파라미터 패널입니다."
+  },
+  "从一个形状，<br />到一段表达。": {
+    "en": "From a shape,<br />to an expression.",
+    "ja": "ひとつの形から、<br />ひとつの表現へ。",
+    "zh-tw": "從一個形狀，<br />到一段表達。",
+    "ko": "하나의 형태에서,<br />하나의 표현으로."
+  },
+  "建模、变形与动画，是同一创作过程的不同视角。<br />为角色、图形与更广泛的二维内容而构建。": {
+    "en": "Modeling, deformation, and animation are different views of one creative process.<br />Built for characters, graphics, and a wider world of 2D content.",
+    "ja": "モデリング、変形、アニメーションは、ひとつの創作を異なる視点から捉えたもの。<br />キャラクターやグラフィック、幅広い2Dコンテンツのために。",
+    "zh-tw": "建模、變形與動畫，是同一創作過程的不同視角。<br />為角色、圖形與更廣泛的二維內容而構建。",
+    "ko": "모델링, 변형, 애니메이션은 하나의 창작 과정을 바라보는 서로 다른 관점입니다.<br />캐릭터와 그래픽을 넘어 더 넓은 2D 콘텐츠를 위해 만듭니다."
+  },
+  "Python 网格创建示例": {
+    "en": "Python mesh creation example",
+    "ja": "Pythonによるメッシュ作成例",
+    "zh-tw": "Python 網格建立範例",
+    "ko": "Python 메시 생성 예제"
+  },
+  "查看大图 ↗": {
+    "en": "View full image ↗",
+    "ja": "画像を拡大 ↗",
+    "zh-tw": "檢視大圖 ↗",
+    "ko": "전체 이미지 보기 ↗"
+  },
+  "真实编辑器 · 网格编辑视图": {
+    "en": "Actual editor · Mesh editing view",
+    "ja": "実際のエディタ · メッシュ編集画面",
+    "zh-tw": "真實編輯器 · 網格編輯檢視",
+    "ko": "실제 편집기 · 메시 편집 화면"
+  },
+  "项目 README / Cat 模型": {
+    "en": "Project README / Cat model",
+    "ja": "プロジェクトREADME / Catモデル",
+    "zh-tw": "專案 README / Cat 模型",
+    "ko": "프로젝트 README / Cat 모델"
+  },
+  "用界面雕琢。": {
+    "en": "Refine with the interface.",
+    "ja": "画面で磨く。",
+    "zh-tw": "用介面雕琢。",
+    "ko": "화면으로 다듬고."
+  },
+  "用代码延展。": {
+    "en": "Extend with code.",
+    "ja": "コードで広げる。",
+    "zh-tw": "用程式碼延展。",
+    "ko": "코드로 확장하세요."
+  },
+  "Rust SDK 提供模型编辑能力，Python SDK 支持建模、动画、项目读写与检查。把重复操作写成代码，让创作者与 AI Agent 在同一工作流中协作。": {
+    "en": "The Rust SDK provides model editing. The Python SDK supports modeling, animation, project I/O, and inspection. Turn repetitive work into code so creators and AI Agents can collaborate in one workflow.",
+    "ja": "Rust SDKはモデル編集に対応。Python SDKはモデリング、アニメーション、プロジェクトの読み書きや検査をサポートします。繰り返し作業をコードにし、クリエイターとAI Agentが同じワークフローで協働できます。",
+    "zh-tw": "Rust SDK 提供模型編輯能力，Python SDK 支援建模、動畫、專案讀寫與檢查。把重複操作寫成程式碼，讓創作者與 AI Agent 在同一工作流程中協作。",
+    "ko": "Rust SDK는 모델 편집 기능을, Python SDK는 모델링, 애니메이션, 프로젝트 입출력과 검사 기능을 제공합니다. 반복 작업을 코드로 만들어 창작자와 AI Agent가 같은 작업 흐름에서 협업할 수 있습니다."
+  },
+  "Python SDK 需要 CPython 3.14，可使用本地 Runtime，或连接正在运行的编辑器，共享文档与撤销历史。安装与可用能力请以项目文档为准。": {
+    "en": "The Python SDK requires CPython 3.14. Use a local Runtime or connect to a running editor to share documents and undo history. See the project documentation for installation and available capabilities.",
+    "ja": "Python SDKにはCPython 3.14が必要です。ローカルRuntimeの利用、または起動中のエディタへの接続で、文書や取り消し履歴を共有できます。導入手順と利用可能な機能はプロジェクト文書をご確認ください。",
+    "zh-tw": "Python SDK 需要 CPython 3.14，可使用本機 Runtime，或連接正在執行的編輯器，共用文件與復原歷史。安裝與可用功能請以專案文件為準。",
+    "ko": "Python SDK에는 CPython 3.14가 필요합니다. 로컬 Runtime을 사용하거나 실행 중인 편집기에 연결해 문서와 실행 취소 기록을 공유할 수 있습니다. 설치 방법과 사용 가능한 기능은 프로젝트 문서를 확인하세요."
+  },
+  "查看当前发布状态 ↗": {
+    "en": "View release status ↗",
+    "ja": "リリース状況を見る ↗",
+    "zh-tw": "檢視目前發布狀態 ↗",
+    "ko": "릴리스 상태 보기 ↗"
+  },
+  "网格创建 · 示例节选": {
+    "en": "Mesh creation · Excerpt",
+    "ja": "メッシュ作成 · 抜粋",
+    "zh-tw": "網格建立 · 範例節錄",
+    "ko": "메시 생성 · 예제 발췌"
+  },
+  "基于项目 SDK 文档，省略 Runtime 与 Session 初始化。": {
+    "en": "Based on the SDK documentation; Runtime and Session initialization omitted.",
+    "ja": "SDK文書の例をもとに、RuntimeとSessionの初期化を省略しています。",
+    "zh-tw": "根據專案 SDK 文件，省略 Runtime 與 Session 初始化。",
+    "ko": "SDK 문서를 바탕으로 작성했으며 Runtime과 Session 초기화는 생략했습니다."
+  },
+  "开放探索。": {
+    "en": "Open to exploration.",
+    "ja": "探索を、ひらく。",
+    "zh-tw": "開放探索。",
+    "ko": "자유롭게 탐색하고."
+  },
+  "持续构建。": {
+    "en": "Always taking shape.",
+    "ja": "つくり続ける。",
+    "zh-tw": "持續構建。",
+    "ko": "계속 만들어 갑니다."
+  },
+  "Alpha 构建现已公开。": {
+    "en": "Alpha builds are now public.",
+    "ja": "Alphaビルドを公開中。",
+    "zh-tw": "Alpha 組建現已公開。",
+    "ko": "Alpha 빌드가 공개되었습니다."
+  },
+  "项目仍在开发，尚无稳定版。": {
+    "en": "Still in development. No stable release yet.",
+    "ja": "現在も開発中で、安定版はまだありません。",
+    "zh-tw": "專案仍在開發，尚無穩定版。",
+    "ko": "아직 개발 중이며 안정 버전은 없습니다."
+  },
+  "当前平台": {
+    "en": "Platforms",
+    "ja": "対応プラットフォーム",
+    "zh-tw": "目前平台",
+    "ko": "지원 플랫폼"
+  },
+  "支持 macOS 与 Windows。Windows 为开发原型，桌面验证仍在进行。": {
+    "en": "Supports macOS and Windows. Windows is a development prototype; desktop validation is ongoing.",
+    "ja": "macOSとWindowsに対応。Windows版は開発用プロトタイプで、デスクトップでの検証を進めています。",
+    "zh-tw": "支援 macOS 與 Windows。Windows 為開發原型，桌面驗證仍在進行。",
+    "ko": "macOS와 Windows를 지원합니다. Windows는 개발 프로토타입이며 데스크톱 검증이 진행 중입니다."
+  },
+  "开发阶段": {
+    "en": "Development stage",
+    "ja": "開発段階",
+    "zh-tw": "開發階段",
+    "ko": "개발 단계"
+  },
+  "尚无稳定版，API 与文件格式可能变化。请按平台选择 Alpha 包，并阅读版本说明与运行要求。": {
+    "en": "There is no stable release, and APIs and file formats may change. Choose an Alpha package for your platform and read its release notes and requirements.",
+    "ja": "安定版はなく、APIやファイル形式は変更される可能性があります。お使いの環境に合うAlphaパッケージを選び、リリースノートと動作要件をご確認ください。",
+    "zh-tw": "尚無穩定版，API 與檔案格式可能變更。請依平台選擇 Alpha 套件，並閱讀版本說明與執行需求。",
+    "ko": "안정 버전은 없으며 API와 파일 형식이 변경될 수 있습니다. 플랫폼에 맞는 Alpha 패키지를 선택하고 릴리스 노트와 실행 요구 사항을 확인하세요."
+  },
+  "从 GitHub 获取 Alpha": {
+    "en": "Get the Alpha on GitHub",
+    "ja": "GitHubでAlphaを入手",
+    "zh-tw": "從 GitHub 取得 Alpha",
+    "ko": "GitHub에서 Alpha 받기"
+  },
+  "下载、版本说明与平台要求统一在 GitHub Releases 查看。请选择适合自己的版本，并阅读对应说明。": {
+    "en": "Find downloads, release notes, and platform requirements together on GitHub Releases. Choose the right build for you and read its notes.",
+    "ja": "ダウンロード、リリースノート、環境ごとの要件はGitHub Releasesにまとめています。適切なビルドを選び、対応する説明をお読みください。",
+    "zh-tw": "下載、版本說明與平台需求統一於 GitHub Releases 查看。請選擇適合自己的版本，並閱讀對應說明。",
+    "ko": "다운로드, 릴리스 노트, 플랫폼 요구 사항은 GitHub Releases에서 확인할 수 있습니다. 적합한 빌드를 선택하고 해당 안내를 읽어 주세요."
+  },
+  "前往 Releases 下载": {
+    "en": "Download on Releases",
+    "ja": "Releasesでダウンロード",
+    "zh-tw": "前往 Releases 下載",
+    "ko": "Releases에서 다운로드"
+  },
+  "关于 Zipzi 2D": {
+    "en": "About Zipzi 2D",
+    "ja": "Zipzi 2Dについて",
+    "zh-tw": "關於 Zipzi 2D",
+    "ko": "Zipzi 2D 소개"
+  },
+  "Zipzi 2D 是什么？": {
+    "en": "What is Zipzi 2D?",
+    "ja": "Zipzi 2Dとは？",
+    "zh-tw": "Zipzi 2D 是什麼？",
+    "ko": "Zipzi 2D는 무엇인가요?"
+  },
+  "名字来自粤语「摺紙」（zip3 zi2）。项目面向二维建模与动画，探索 Live2D Cubism Editor 的替代工作流。Zipzi 是独立项目，与 Live2D Inc. 没有关联或授权、背书关系。": {
+    "en": "The name comes from the Cantonese word for folding paper, 摺紙 (zip3 zi2). The project explores an alternative workflow to Live2D Cubism Editor for 2D modeling and animation. Zipzi is independent and is not affiliated with, authorized by, or endorsed by Live2D Inc.",
+    "ja": "名前は広東語の「摺紙」（zip3 zi2）に由来します。2Dモデリングとアニメーション向けに、Live2D Cubism Editorに代わるワークフローを探求するプロジェクトです。Zipziは独立したプロジェクトであり、Live2D Inc.との提携、許諾、推奨関係はありません。",
+    "zh-tw": "名字來自粵語「摺紙」（zip3 zi2）。專案面向二維建模與動畫，探索 Live2D Cubism Editor 的替代工作流程。Zipzi 是獨立專案，與 Live2D Inc. 沒有關聯或授權、背書關係。",
+    "ko": "이름은 광둥어로 종이접기를 뜻하는 「摺紙」(zip3 zi2)에서 왔습니다. 2D 모델링과 애니메이션을 위한 Live2D Cubism Editor의 대안 작업 흐름을 탐구합니다. Zipzi는 독립 프로젝트이며 Live2D Inc.와 제휴, 승인 또는 보증 관계가 없습니다."
+  },
+  "它只用于角色动画吗？": {
+    "en": "Is it only for character animation?",
+    "ja": "キャラクターアニメーション専用ですか？",
+    "zh-tw": "它只用於角色動畫嗎？",
+    "ko": "캐릭터 애니메이션 전용인가요?"
+  },
+  "不局限于角色或特定画风。项目面向更广泛的二维建模与动画工作流，既关注创作者的编辑体验，也为开发者提供 SDK。": {
+    "en": "It is not limited to characters or a particular art style. The project targets broader 2D modeling and animation workflows, with an editor for creators and SDKs for developers.",
+    "ja": "キャラクターや特定の作風に限定されません。幅広い2Dモデリングとアニメーションのワークフローを目指し、クリエイターの編集体験と開発者向けSDKの両方に取り組んでいます。",
+    "zh-tw": "不侷限於角色或特定畫風。專案面向更廣泛的二維建模與動畫工作流程，既關注創作者的編輯體驗，也為開發者提供 SDK。",
+    "ko": "캐릭터나 특정 화풍에 한정되지 않습니다. 더 넓은 2D 모델링 및 애니메이션 작업 흐름을 지향하며, 창작자를 위한 편집 경험과 개발자를 위한 SDK를 함께 제공합니다."
+  },
+  "Zipzi 2D 与 Kasane 2D 是什么关系？": {
+    "en": "How is Zipzi 2D related to Kasane 2D?",
+    "ja": "Kasane 2Dとはどのような関係ですか？",
+    "zh-tw": "Zipzi 2D 與 Kasane 2D 是什麼關係？",
+    "ko": "Zipzi 2D와 Kasane 2D는 어떤 관계인가요?"
+  },
+  "Zipzi 2D 是原 Kasane 2D 项目的新名称，延续二维建模、动画与可编程工具的开发方向。": {
+    "en": "Zipzi 2D is the new name of the former Kasane 2D project, continuing its work on 2D modeling, animation, and programmable tools.",
+    "ja": "Zipzi 2Dは旧Kasane 2Dプロジェクトの新しい名称で、2Dモデリング、アニメーション、プログラムで操作できるツールの開発を引き継いでいます。",
+    "zh-tw": "Zipzi 2D 是原 Kasane 2D 專案的新名稱，延續二維建模、動畫與可程式化工具的開發方向。",
+    "ko": "Zipzi 2D는 기존 Kasane 2D 프로젝트의 새로운 이름으로, 2D 모델링, 애니메이션, 프로그래밍 가능한 도구의 개발 방향을 이어 갑니다."
+  },
+  "现在适合用于正式项目吗？": {
+    "en": "Is it ready for production projects?",
+    "ja": "実制作に使えますか？",
+    "zh-tw": "現在適合用於正式專案嗎？",
+    "ko": "실제 제작 프로젝트에 사용해도 되나요?"
+  },
+  "当前版本面向早期测试，工作流与文件格式仍可能调整。请保留原始素材与项目备份，并根据自己的需求评估 Alpha 版本。": {
+    "en": "The current version is for early testing. Workflows and file formats may still change. Keep your original assets and project backups, and evaluate the Alpha against your own needs.",
+    "ja": "現在のバージョンは初期テスト向けです。ワークフローやファイル形式は今後も変更される可能性があります。元の素材とプロジェクトのバックアップを保管し、ご自身の用途に合わせてAlpha版を評価してください。",
+    "zh-tw": "目前版本面向早期測試，工作流程與檔案格式仍可能調整。請保留原始素材與專案備份，並根據自己的需求評估 Alpha 版本。",
+    "ko": "현재 버전은 초기 테스트용이며 작업 흐름과 파일 형식이 바뀔 수 있습니다. 원본 소재와 프로젝트 백업을 보관하고, 자신의 요구에 맞춰 Alpha 버전을 평가해 주세요."
+  },
+  "编辑器": {
+    "en": "Editor",
+    "ja": "エディタ",
+    "zh-tw": "編輯器",
+    "ko": "편집기"
+  },
+  "工作流": {
+    "en": "Workflow",
+    "ja": "ワークフロー",
+    "zh-tw": "工作流程",
+    "ko": "작업 흐름"
+  },
+  "开发者": {
+    "en": "Developers",
+    "ja": "開発者",
+    "zh-tw": "開發者",
+    "ko": "개발자"
+  },
+  "Zipzi 2D 首页": {
+    "en": "Zipzi 2D home",
+    "ja": "Zipzi 2D ホーム",
+    "zh-tw": "Zipzi 2D 首頁",
+    "ko": "Zipzi 2D 홈"
+  },
+  "Zipzi 2D GitHub 项目": {
+    "en": "Zipzi 2D GitHub project",
+    "ja": "Zipzi 2D GitHubプロジェクト",
+    "zh-tw": "Zipzi 2D GitHub 專案",
+    "ko": "Zipzi 2D GitHub 프로젝트"
+  },
+  "主导航": {
+    "en": "Main navigation",
+    "ja": "メインナビゲーション",
+    "zh-tw": "主導覽",
+    "ko": "주 탐색"
+  },
+  "打开导航": {
+    "en": "Open navigation",
+    "ja": "メニューを開く",
+    "zh-tw": "開啟導覽",
+    "ko": "탐색 열기"
+  },
+  "下载 Alpha": {
+    "en": "Download Alpha",
+    "ja": "Alphaをダウンロード",
+    "zh-tw": "下載 Alpha",
+    "ko": "Alpha 다운로드"
+  },
+  "二维建模与动画。": {
+    "en": "2D modeling and animation.",
+    "ja": "2Dモデリングとアニメーション。",
+    "zh-tw": "二維建模與動畫。",
+    "ko": "2D 모델링과 애니메이션."
+  },
+  "为创作，也为创造工具的人。": {
+    "en": "For creators, and those who build their tools.",
+    "ja": "つくる人へ。そして、道具をつくる人へ。",
+    "zh-tw": "為創作，也為創造工具的人。",
+    "ko": "창작자와 창작 도구를 만드는 사람들을 위해."
+  },
+  "浙ICP备2026015551号-2": {
+    "en": "浙ICP备2026015551号-2",
+    "ja": "浙ICP备2026015551号-2",
+    "zh-tw": "浙ICP备2026015551号-2",
+    "ko": "浙ICP备2026015551号-2"
+  },
+  "回到顶部 ↑": {
+    "en": "Back to top ↑",
+    "ja": "ページ上部へ ↑",
+    "zh-tw": "回到頂部 ↑",
+    "ko": "맨 위로 ↑"
+  },
+  "让二维创作，": {
+    "en": "More possibilities",
+    "ja": "2Dの創作に、",
+    "zh-tw": "讓二維創作，",
+    "ko": "2D 창작에,"
+  },
+  "拥有更多可能。": {
+    "en": "for 2D creation.",
+    "ja": "もっと可能性を。",
+    "zh-tw": "擁有更多可能。",
+    "ko": "더 많은 가능성을."
+  },
+  "从形态到动态，": {
+    "en": "From shape to motion,",
+    "ja": "形から動きへ。",
+    "zh-tw": "從形態到動態，",
+    "ko": "형태에서 움직임까지,"
+  },
+  "把想法变成可控的表达。": {
+    "en": "turn ideas into expression you control.",
+    "ja": "アイデアを、思い通りの表現へ。",
+    "zh-tw": "把想法變成可控的表達。",
+    "ko": "아이디어를 제어 가능한 표현으로."
+  },
+  "Zipzi 2D 是二维建模与动画工具，探索 Live2D Cubism Editor 的替代工作流。用桌面编辑器创作，通过 Python 编程，与 AI Agent 协作。": {
+    "en": "Zipzi 2D is a 2D modeling and animation tool exploring an alternative workflow to Live2D Cubism Editor. Create in the desktop editor, program with Python, and collaborate with AI Agents.",
+    "ja": "Zipzi 2Dは、Live2D Cubism Editorに代わるワークフローを探求する2Dモデリング・アニメーションツールです。デスクトップエディタで創作し、Pythonでプログラミングし、AI Agentと協働できます。",
+    "zh-tw": "Zipzi 2D 是二維建模與動畫工具，探索 Live2D Cubism Editor 的替代工作流程。用桌面編輯器創作，透過 Python 程式設計，與 AI Agent 協作。",
+    "ko": "Zipzi 2D는 Live2D Cubism Editor의 대안 작업 흐름을 탐구하는 2D 모델링 및 애니메이션 도구입니다. 데스크톱 편집기에서 창작하고, Python으로 프로그래밍하며, AI Agent와 협업하세요."
+  },
+  "探索编辑器": {
+    "en": "Explore the editor",
+    "ja": "エディタを見る",
+    "zh-tw": "探索編輯器",
+    "ko": "편집기 살펴보기"
+  },
+  "为创作者提供直接的控制。": {
+    "en": "Direct control for creators.",
+    "ja": "クリエイターには、直接操作できる力を。",
+    "zh-tw": "為創作者提供直接的控制。",
+    "ko": "창작자에게는 직접 제어할 수 있는 힘을."
+  },
+  "为开发者留下编程的空间。": {
+    "en": "Room to program for developers.",
+    "ja": "開発者には、プログラミングの余地を。",
+    "zh-tw": "為開發者留下程式設計的空間。",
+    "ko": "개발자에게는 프로그래밍의 여지를."
+  },
+  "跳转到主要内容": {
+    "en": "Skip to main content",
+    "ja": "本文へスキップ",
+    "zh-tw": "跳至主要內容",
+    "ko": "본문으로 건너뛰기"
+  },
+  "这个页面": {
+    "en": "This page",
+    "ja": "このページは、",
+    "zh-tw": "這個頁面",
+    "ko": "이 페이지는"
+  },
+  "暂时没有形状。": {
+    "en": "has no shape yet.",
+    "ja": "まだ形がありません。",
+    "zh-tw": "暫時沒有形狀。",
+    "ko": "아직 형태가 없습니다."
+  },
+  "链接可能有误，或页面已被移动。": {
+    "en": "The link may be incorrect, or the page may have moved.",
+    "ja": "リンクが間違っているか、ページが移動した可能性があります。",
+    "zh-tw": "連結可能有誤，或頁面已被移動。",
+    "ko": "링크가 잘못되었거나 페이지가 이동되었을 수 있습니다."
+  },
+  "回到首页，继续了解 Zipzi 2D。": {
+    "en": "Head home to keep exploring Zipzi 2D.",
+    "ja": "ホームに戻って、Zipzi 2Dをご覧ください。",
+    "zh-tw": "回到首頁，繼續了解 Zipzi 2D。",
+    "ko": "홈으로 돌아가 Zipzi 2D를 계속 살펴보세요."
+  },
+  "返回首页": {
+    "en": "Back home",
+    "ja": "ホームに戻る",
+    "zh-tw": "返回首頁",
+    "ko": "홈으로 돌아가기"
+  },
+  "页面未找到": {
+    "en": "Page not found",
+    "ja": "ページが見つかりません",
+    "zh-tw": "找不到頁面",
+    "ko": "페이지를 찾을 수 없습니다"
+  },
+  "此页面不存在。返回 Zipzi 2D 官网了解二维建模与动画工具。": {
+    "en": "This page does not exist. Return to the Zipzi 2D website to explore 2D modeling and animation tools.",
+    "ja": "このページは存在しません。Zipzi 2Dのホームに戻り、2Dモデリングとアニメーションのツールをご覧ください。",
+    "zh-tw": "此頁面不存在。返回 Zipzi 2D 官網了解二維建模與動畫工具。",
+    "ko": "이 페이지는 존재하지 않습니다. Zipzi 2D 웹사이트로 돌아가 2D 모델링과 애니메이션 도구를 살펴보세요."
+  },
+  "Zipzi 2D README 中的猫模型与网格编辑界面": {
+    "en": "Cat model and mesh editing interface from the Zipzi 2D README",
+    "ja": "Zipzi 2D READMEの猫モデルとメッシュ編集画面",
+    "zh-tw": "Zipzi 2D README 中的貓模型與網格編輯介面",
+    "ko": "Zipzi 2D README의 고양이 모델과 메시 편집 화면"
+  },
+  "关闭导航": {
+    "en": "Close navigation",
+    "ja": "メニューを閉じる",
+    "zh-tw": "關閉導覽",
+    "ko": "탐색 닫기"
+  },
+  "Zipzi 2D 是面向创作者与开发者的二维建模与动画工具。通过桌面编辑器、Rust 与 Python SDK 创作，并与 AI Agent 协作。支持 macOS 与 Windows 开发原型，当前为 Alpha。": {
+    "en": "Zipzi 2D is a 2D modeling and animation tool for creators and developers. Create with the desktop editor, Rust and Python SDKs, and AI Agents. Supports macOS and a Windows development prototype. Currently in Alpha.",
+    "ja": "Zipzi 2Dはクリエイターと開発者向けの2Dモデリング・アニメーションツール。デスクトップエディタ、Rust・Python SDK、AI Agentで創作できます。macOSとWindows開発用プロトタイプに対応。現在Alpha版です。",
+    "zh-tw": "Zipzi 2D 是面向創作者與開發者的二維建模與動畫工具。透過桌面編輯器、Rust 與 Python SDK 創作，並與 AI Agent 協作。支援 macOS 與 Windows 開發原型，目前為 Alpha。",
+    "ko": "Zipzi 2D는 창작자와 개발자를 위한 2D 모델링 및 애니메이션 도구입니다. 데스크톱 편집기, Rust 및 Python SDK, AI Agent로 창작하세요. macOS와 Windows 개발 프로토타입을 지원하며 현재 Alpha 단계입니다."
+  },
+  "2D MODELING & ANIMATION": {
+    "en": "2D MODELING & ANIMATION",
+    "ja": "2Dモデリング＆アニメーション",
+    "zh-tw": "二維建模與動畫",
+    "ko": "2D 모델링 & 애니메이션"
+  },
+  "ZIPZI EDITOR": {
+    "en": "ZIPZI EDITOR",
+    "ja": "ZIPZI エディタ",
+    "zh-tw": "ZIPZI 編輯器",
+    "ko": "ZIPZI 편집기"
+  },
+  "SHAPE. DEFORM. ANIMATE.": {
+    "en": "SHAPE. DEFORM. ANIMATE.",
+    "ja": "形をつくる。変形させる。動かす。",
+    "zh-tw": "塑形。變形。動畫。",
+    "ko": "형태를 만들고, 변형하고, 움직이세요."
+  },
+  "BUILT TO BE PROGRAMMABLE": {
+    "en": "BUILT TO BE PROGRAMMABLE",
+    "ja": "プログラムで操作するために",
+    "zh-tw": "為可程式化而構建",
+    "ko": "프로그래밍할 수 있도록"
+  },
+  "EARLY ACCESS · ALPHA": {
+    "en": "EARLY ACCESS · ALPHA",
+    "ja": "早期アクセス · ALPHA",
+    "zh-tw": "搶先體驗 · ALPHA",
+    "ko": "앞서 해보기 · ALPHA"
+  },
+  "A FEW MORE THINGS": {
+    "en": "A FEW MORE THINGS",
+    "ja": "もう少し詳しく",
+    "zh-tw": "更多資訊",
+    "ko": "조금 더 알아보기"
+  },
+  "Native editor": {
+    "en": "Native editor",
+    "ja": "ネイティブエディタ",
+    "zh-tw": "原生編輯器",
+    "ko": "네이티브 편집기"
+  },
+  "Rust core": {
+    "en": "Rust core",
+    "ja": "Rustコア",
+    "zh-tw": "Rust 核心",
+    "ko": "Rust 코어"
+  },
+  "MODEL": {
+    "en": "MODEL",
+    "ja": "モデリング",
+    "zh-tw": "建模",
+    "ko": "모델링"
+  },
+  "DEFORM": {
+    "en": "DEFORM",
+    "ja": "変形",
+    "zh-tw": "變形",
+    "ko": "변형"
+  },
+  "ANIMATE": {
+    "en": "ANIMATE",
+    "ja": "アニメーション",
+    "zh-tw": "動畫",
+    "ko": "애니메이션"
+  }
+}
