@@ -35,9 +35,9 @@ On a Linux CI runner, `npx playwright install --with-deps chromium` installs the
 
 `src/config.yaml` owns the production origin, site metadata, language, and crawl policy. The current canonical origin is **https://zipzi2d.com**. The metadata component derives canonical, Open Graph, and Twitter URLs from that configuration. The sitemap integration writes canonical public URLs; the adapted build hook requires a valid sitemap and emits `sitemap.xml` and `robots.txt`. A missing sitemap fails the build. The 404 page has explicit `noindex`.
 
-The homepage browser title is exactly **Zipzi 2D**. Custom public page titles include Zipzi 2D through the shared title template, and Open Graph/Twitter titles match the browser title. The product brand and `site.name` remain Zipzi 2D.
+Homepage browser titles explain the product: **Zipzi 2D — 开源二维建模与动画 | Live2D Cubism Editor 替代品** in Simplified Chinese and **Zipzi 2D — Open Source Live2D Cubism Editor Alternative** in English, with Japanese, Traditional Chinese and Korean equivalents. Custom public page titles include Zipzi 2D through the shared title template, and Open Graph/Twitter titles match the browser title. The product brand and `site.name` remain Zipzi 2D.
 
-The site contains only a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
+Each language has a homepage and an error page. There are no example blog, legal, pricing, customer, or CMS pages. Structured data describes the verified software, source repository, component licensing and website without ratings, offers, or fabricated metrics. The platform description explicitly identifies Windows as a development prototype.
 
 The homepage uses the real Cat-model editor screenshot linked by the product README. Its full 2204 × 1486 frame is preserved, with responsive WebP images and a high-quality JPEG for the full-size link and social previews. Navigation and footer use the reviewed `zipzi-editor-icon.svg` artwork from the editor assets as a shared inline SVG; favicon and Apple touch icon are rendered from that same source. See [asset provenance](docs/assets.md) for exact source paths, hashes, selection notes and optimization details. No stock photography, remote fonts, analytics, external scripts or runtime API calls are shipped. System fonts are used.
 
@@ -45,7 +45,7 @@ The homepage uses the real Cat-model editor screenshot linked by the product REA
 
 Product copy and assets were reviewed at default-branch [commit `1b4e9f66903c9d83b82f51838408146fad06c643`](https://github.com/getzipzi/zipzi-2d/tree/1b4e9f66903c9d83b82f51838408146fad06c643), including the root README and editor/Python SDK guides. Both the product and website repositories are public by the owner's choice.
 
-Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. The accessible GitHub icon next to the upper-left brand links to the product repository. Product binaries are neither copied nor rehosted.
+Every download call to action goes directly to **https://github.com/getzipzi/zipzi-2d/releases**. The GitHub text link sits with the navigation on the right and links to the product repository; mobile users find it in the navigation menu. Product binaries are neither copied nor rehosted.
 
 The website intentionally contains no release snapshot, fixed release version, publication date, package inventory or `softwareVersion` structured-data field. Alpha maturity and the Windows development-prototype caveat remain useful product context. Release selection, downloads, exact platform requirements and release notes belong on GitHub, so publishing a new build does not require a website edit.
 
@@ -72,3 +72,15 @@ Production shares a server with an authenticated jobs application and an API. Th
 The approved production domain is `zipzi2d.com`, with ICP filing 浙ICP备2026015551号-2. The `www` host and legacy website URLs redirect to the apex while legacy jobs/API services remain on `clwai.cn`. Search Console access and search-engine indexing are separate from this website build.
 
 Generic deployment source and offline tests are reviewed in Git. Credentials, environment-specific configuration, operator scripts, logs, backups, screenshots, browser profiles and generated archives stay outside Git and the public build. The repository uses an allowlist `.gitignore`; publish source archives from an audited Git revision rather than zipping the working directory.
+
+## Promotion and SEO
+
+All five languages share the open-source Live2D Cubism Editor alternative positioning, with localized titles, descriptions, H1s and social metadata. Homepage canonical URLs, reciprocal hreflang, sitemap and noindex error pages remain generated from the production origin. Each sitemap entry also declares all five language alternatives, using the same language registry as the page metadata. Open Graph declares the four other supported locales. Software/source-code structured data links to the actual repository and component licensing rather than assigning one license to the whole project; each localized WebPage links to its website and software entities.
+
+The hero explains 2D modeling, deformation and keyframe animation and displays the editor/SDK licenses next to the download action. The open-source section explains how the GPL-3.0-only editor and MIT SDK let creators inspect, modify and integrate their tools. The FAQ clarifies that using Zipzi itself does not require purchasing Cubism Editor, while preserving Alpha maturity, component license obligations and the limits of Cubism migration claims. It does not promise feature parity, file/runtime compatibility, or unrestricted third-party assets. Navigation and footer pair the existing app icon with the official product SVG wordmark; see the asset provenance record.
+
+## Visual design
+
+The site uses a white and soft gray palette with violet accents, a centered functional headline and a full-frame editor showcase. The editor showcase leads into open-source licensing, AI collaboration, Alpha downloads and an accessible FAQ. The five locales share the same responsive layout and light theme, including navigation, collaboration examples and error pages.
+
+The AI collaboration section explains a creator-led workflow (describe, review, keep or undo) with a mesh-naming example. Setup requirements are summarized in plain language; detailed SDK and runtime instructions belong in the product documentation. Downloads and FAQs focus on independent open-source creation, applicable licensing and Alpha readiness. The hero and browser title lead with Zipzi 2D.

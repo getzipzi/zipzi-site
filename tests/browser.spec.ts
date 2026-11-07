@@ -4,7 +4,7 @@ import { mkdir } from 'node:fs/promises';
 
 test('browser tab and social titles preserve the filed website name without duplicate suffixes', async ({ page }) => {
   for (const [route, title] of [
-    ['/', 'Zipzi 2D'],
+    ['/', 'Zipzi 2D — 开源二维建模与动画 | Live2D Cubism Editor 替代品'],
     ['/missing-title-check', '页面未找到 | Zipzi 2D'],
   ]) {
     await page.goto(route);
@@ -39,6 +39,7 @@ test('page has no runtime errors, missing images, overflow, or third-party reque
   await page.goto('/');
   await page.waitForLoadState('networkidle');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Zipzi 2D');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(
     await page
@@ -73,15 +74,15 @@ test('navigation works with keyboard, Escape, anchors and viewport changes', asy
     await expect(button).toBeFocused();
     await expect(button).toHaveAttribute('aria-expanded', 'false');
     await button.click();
-    await page.getByRole('navigation').getByRole('link', { name: '工作流' }).click();
-    await expect(page).toHaveURL(/#workflow$/);
-    await expect(page.locator('#workflow')).toBeFocused();
+    await page.getByRole('navigation').getByRole('link', { name: 'AI 协作' }).click();
+    await expect(page).toHaveURL(/#developers$/);
+    await expect(page.locator('#developers')).toBeFocused();
     await expect(button).toHaveAttribute('aria-expanded', 'false');
     await page.setViewportSize({ width: 1200, height: 900 });
     await expect(page.getByRole('navigation')).toBeVisible();
     await expect(button).toBeHidden();
   } else {
-    await page.getByRole('navigation').getByRole('link', { name: '开发者' }).click();
+    await page.getByRole('navigation').getByRole('link', { name: 'AI 协作' }).click();
     await expect(page).toHaveURL(/#developers$/);
   }
 });
@@ -123,7 +124,9 @@ test('primary content and navigation remain usable without JavaScript', async ({
   await context.close();
 });
 
-test('upper-left GitHub icon and all download actions navigate to the requested public pages', async ({ page }) => {
+test('right-side GitHub text link and all download actions navigate to the requested public pages', async ({
+  page,
+}) => {
   const repository = 'https://github.com/getzipzi/zipzi-2d';
   const releases = `${repository}/releases`;
   await page.route(`${repository}**`, (route) =>
@@ -131,12 +134,16 @@ test('upper-left GitHub icon and all download actions navigate to the requested 
   );
   await page.goto('/');
   const github = page.getByRole('link', { name: 'Zipzi 2D GitHub 项目', exact: true });
-  await expect(github).toBeVisible();
-  const box = await github.boundingBox();
-  expect(box).not.toBeNull();
-  expect(box!.x).toBeLessThan((page.viewportSize()?.width ?? 0) / 2);
-  expect(box!.y).toBeLessThan(80);
   expect((await page.locator('.site-header').boundingBox())!.height).toBeLessThanOrEqual(81);
+  if ((page.viewportSize()?.width ?? 0) < 768) await page.locator('.menu-toggle').click();
+  await expect(github).toBeVisible();
+  await expect(github).toHaveText('GitHub');
+  await expect(github.locator('svg')).toHaveCount(0);
+  if ((page.viewportSize()?.width ?? 0) >= 768) {
+    const box = await github.boundingBox();
+    expect(box!.x).toBeGreaterThan((page.viewportSize()?.width ?? 0) / 2);
+    expect(box!.y).toBeLessThan(80);
+  }
   await github.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(repository);
@@ -192,15 +199,22 @@ test('navigation and footer render the same reviewed SVG logo without the old ra
     ).toBe(true);
   }
   await expect(page.locator('.brand img, .footer-brand img')).toHaveCount(0);
+  const wordmarks = page.locator('.brand-wordmark');
+  await expect(wordmarks).toHaveCount(2);
+  for (const wordmark of await wordmarks.all()) {
+    await expect(wordmark).toBeVisible();
+    await expect(wordmark).toHaveAttribute('viewBox', '0 0 720 310');
+    expect(await wordmark.locator('path').count()).toBe(5);
+  }
   await page.locator('.brand .brand-icon').screenshot({ path: `qa/screenshots/${testInfo.project.name}-logo.png` });
   await page.locator('.site-footer').screenshot({ path: `qa/screenshots/${testInfo.project.name}-footer.png` });
 });
 
 for (const [prefix, lang, hero, errorTitle] of [
-  ['en', 'en', 'More possibilities', 'Page not found'],
-  ['ja', 'ja', '2Dの創作に、', 'ページが見つかりません'],
-  ['zh-tw', 'zh-TW', '讓二維創作，', '找不到頁面'],
-  ['ko', 'ko', '2D 창작에,', '페이지를 찾을 수 없습니다'],
+  ['en', 'en', 'Open-source 2D modeling & animation.', 'Page not found'],
+  ['ja', 'ja', 'オープンソースの2Dモデリングとアニメーション。', 'ページが見つかりません'],
+  ['zh-tw', 'zh-TW', '開源二維建模與動畫。', '找不到頁面'],
+  ['ko', 'ko', '오픈 소스 2D 모델링과 애니메이션.', '페이지를 찾을 수 없습니다'],
 ]) {
   test(`${prefix}: translated content, language switching, error routing and accessibility`, async ({ page }) => {
     const response = await page.goto(`/${prefix}/`);
@@ -223,9 +237,9 @@ for (const [prefix, lang, hero, errorTitle] of [
     await page.keyboard.press('Escape');
     await expect(picker).not.toHaveAttribute('open');
     await picker.locator('summary').click();
-    await page.evaluate(() => history.replaceState(null, '', '#workflow'));
+    await page.evaluate(() => history.replaceState(null, '', '#developers'));
     await picker.locator('a[lang="zh-CN"]').click();
-    await expect(page).toHaveURL(/\/#workflow$/);
+    await expect(page).toHaveURL(/\/#developers$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
     const missing = await page.goto(`/${prefix}/missing-page`);
     expect(missing?.status()).toBe(404);

@@ -41,7 +41,7 @@ test('Generated homepage has complete, consistent, indexable metadata', () => {
 
 test('Public page titles retain Zipzi 2D exactly once and social titles match the browser title', async () => {
   for (const [path, expected] of [
-    ['dist/index.html', 'Zipzi 2D'],
+    ['dist/index.html', config.metadata.title.default],
     ['dist/404.html', '页面未找到 | Zipzi 2D'],
   ]) {
     const elements = [];
@@ -50,7 +50,9 @@ test('Public page titles retain Zipzi 2D exactly once and social titles match th
       for (const child of node.childNodes ?? []) collect(child);
     };
     collect(parse(await readFile(path, 'utf8')));
-    const titles = elements.filter((node) => node.tagName === 'title');
+    const titles = elements.filter(
+      (node) => node.tagName === 'title' && node.namespaceURI === 'http://www.w3.org/1999/xhtml'
+    );
     assert.equal(titles.length, 1);
     assert.equal(text(titles[0]), expected);
     assert.equal(text(titles[0]).match(/Zipzi 2D/g)?.length, 1);
@@ -80,6 +82,23 @@ test('Real robots and well-formed sitemap files contain only canonical public pa
   const parsed = new XMLParser().parse(await readFile('dist/sitemap.xml', 'utf8'));
   const urls = [parsed.urlset.url].flat().map((item) => item.loc);
   assert.deepEqual(urls.sort(), ['/', '/en/', '/ja/', '/ko/', '/zh-tw/'].map((route) => origin + route).sort());
+  const localized = new XMLParser({ ignoreAttributes: false }).parse(await readFile('dist/sitemap.xml', 'utf8'));
+  const expectedAlternates = [
+    ['zh-CN', '/'],
+    ['en', '/en/'],
+    ['ja', '/ja/'],
+    ['ko', '/ko/'],
+    ['zh-TW', '/zh-tw/'],
+  ]
+    .map(([lang, path]) => `${lang}:${origin}${path}`)
+    .sort();
+  for (const entry of localized.urlset.url) {
+    assert.deepEqual(
+      entry['xhtml:link'].map((link) => `${link['@_hreflang']}:${link['@_href']}`).sort(),
+      expectedAlternates,
+      `Every sitemap entry links to all five language versions: ${entry.loc}`
+    );
+  }
   const index = new XMLParser().parse(await readFile('dist/sitemap-index.xml', 'utf8'));
   assert.equal(index.sitemapindex.sitemap.loc, origin + '/sitemap-0.xml');
 });
@@ -120,10 +139,14 @@ test('Every generated local link, fragment, script, stylesheet, and responsive i
 test('Only verified software facts are in structured data; no inherited template marketing', () => {
   const schema = JSON.parse(text(find('script', 'type', 'application/ld+json')));
   assert.equal(schema['@context'], 'https://schema.org');
-  const app = schema['@graph'].find((item) => item['@type'] === 'SoftwareApplication');
+  const app = schema['@graph'].find((item) => [item['@type']].flat().includes('SoftwareApplication'));
   assert.equal(app.name, 'Zipzi 2D');
   assert.deepEqual(app.operatingSystem, ['macOS', 'Windows (development prototype)']);
   assert.equal(app.url, origin + '/');
+  assert.ok(app['@type'].includes('SoftwareSourceCode'));
+  assert.equal(app.codeRepository, 'https://github.com/getzipzi/zipzi-2d');
+  assert.equal(app.license, app.codeRepository + '/blob/main/LICENSING.md');
+  assert.equal(app.isAccessibleForFree, true);
   for (const key of [
     'offers',
     'aggregateRating',
@@ -195,6 +218,14 @@ test('Current product artwork is traceable and all browser/share images use the 
     assert.equal(image.width, width);
     assert.equal(image.height, height);
   }
+  const wordmark = await readFile('src/assets/images/wordmark.svg', 'utf8');
+  assert.equal(
+    createHash('sha256').update(wordmark).digest('hex'),
+    '0e15e34777200c395fcb08bf0f1a63f3b3484863e69e84514b903a0fb73dd446'
+  );
+  const marks = nodes.filter((n) => n.tagName === 'svg' && attrs(n).class === 'brand-wordmark');
+  assert.equal(marks.length, 2);
+  assert.ok(marks.every((n) => attrs(n).viewBox === '0 0 720 310'));
   const svg = await readFile('src/assets/images/app-icon.svg', 'utf8');
   assert.equal(
     createHash('sha256').update(svg).digest('hex'),
@@ -310,6 +341,23 @@ test('All languages have complete localized content, self canonicals, reciprocal
       assert.ok(alternates.some((a) => a.hreflang === code && a.href === `${origin}/${target}`));
     assert.ok(alternates.some((a) => a.hreflang === 'x-default' && a.href === origin + '/'));
     const description = attrs(elements.find((n) => n.tagName === 'meta' && attrs(n).name === 'description')).content;
+    const expectedTitle = prefix
+      ? messages[config.metadata.title.default][prefix.slice(0, -1)]
+      : config.metadata.title.default;
+    const pageTitle = text(elements.find((n) => n.tagName === 'title'));
+    assert.equal(pageTitle, expectedTitle);
+    assert.equal(pageTitle.match(/Zipzi 2D/g)?.length, 1);
+    assert.match(pageTitle, /Live2D Cubism Editor/);
+    for (const [attribute, value] of [
+      ['property', 'og:title'],
+      ['name', 'twitter:title'],
+    ]) {
+      assert.equal(
+        attrs(elements.find((n) => n.tagName === 'meta' && attrs(n)[attribute] === value)).content,
+        expectedTitle
+      );
+    }
+    assert.equal(elements.filter((n) => n.tagName === 'meta' && attrs(n).property === 'og:locale:alternate').length, 4);
     if (prefix) assert.notEqual(description, config.metadata.description);
     const schema = JSON.parse(
       text(elements.find((n) => n.tagName === 'script' && attrs(n).type === 'application/ld+json'))
@@ -317,8 +365,14 @@ test('All languages have complete localized content, self canonicals, reciprocal
     assert.equal(schema['@graph'][0].inLanguage, lang);
     assert.equal(schema['@graph'][0].url, `${origin}/${prefix}`);
     assert.equal(schema['@graph'][1].description, description);
+    const webpage = schema['@graph'].find((item) => item['@type'] === 'WebPage');
+    assert.equal(webpage.url, `${origin}/${prefix}`);
+    assert.equal(webpage.name, pageTitle);
+    assert.equal(webpage.description, description);
+    assert.equal(webpage.inLanguage, lang);
+    assert.equal(webpage.isPartOf['@id'], schema['@graph'][0]['@id']);
+    assert.equal(webpage.mainEntity['@id'], schema['@graph'][1]['@id']);
     assert.ok(page.includes('浙ICP备2026015551号-2'));
-    assert.ok(page.includes('CPython 3.14'));
     const error = await readFile(`dist/${prefix}404.html`, 'utf8');
     assert.match(error, /noindex/);
     assert.ok(error.includes(`lang="${lang}"`));

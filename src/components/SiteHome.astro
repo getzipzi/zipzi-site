@@ -9,33 +9,9 @@ import { SITE, METADATA } from 'astrowind:config';
 import PageLayout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Headline from '~/components/ui/Headline.astro';
 import editor from '~/assets/images/editor-screenshot.png';
-import { releasesUrl } from '~/utils/product';
+import { releasesUrl, repositoryUrl, aiSetupUrl } from '~/utils/product';
 import Button from '~/components/ui/Button.astro';
-const workflow = [
-  {
-    number: '01',
-    name: t('MODEL'),
-    title: t('建立形态'),
-    description: t('组织模型与图层，编辑网格和纹理，让二维素材成为可以继续塑造的结构。'),
-    detail: t('模型文档 / 网格 / 纹理'),
-  },
-  {
-    number: '02',
-    name: t('DEFORM'),
-    title: t('控制变化'),
-    description: t('通过参数与变形组织模型的变化，在基础形态之上，细化每一次调整。'),
-    detail: t('参数 / 变形 / 形态调整'),
-  },
-  {
-    number: '03',
-    name: t('ANIMATE'),
-    title: t('赋予动态'),
-    description: t('在动画工作空间中安排时间与关键帧，让静态模型拥有节奏、运动与表现力。'),
-    detail: t('时间轴 / 关键帧 / 动画'),
-  },
-];
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -47,14 +23,28 @@ const schema = {
       inLanguage: language(locale).lang,
     },
     {
-      '@type': 'SoftwareApplication',
+      '@type': ['SoftwareApplication', 'SoftwareSourceCode'],
       '@id': `${SITE.site}${home}#software`,
       name: SITE.name,
       url: `${SITE.site}${home}`,
       description: t(METADATA.description!),
       applicationCategory: 'MultimediaApplication',
       operatingSystem: ['macOS', 'Windows (development prototype)'],
+      applicationSubCategory: '2D modeling and animation editor',
+      codeRepository: repositoryUrl,
+      license: `${repositoryUrl}/blob/main/LICENSING.md`,
+      isAccessibleForFree: true,
       screenshot: `${SITE.site}/media/editor-screenshot.jpg`,
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${SITE.site}${home}#webpage`,
+      url: `${SITE.site}${home}`,
+      name: t(METADATA.title!.default!),
+      description: t(METADATA.description!),
+      inLanguage: language(locale).lang,
+      isPartOf: { '@id': `${SITE.site}${home}#website` },
+      mainEntity: { '@id': `${SITE.site}${home}#software` },
     },
   ],
 };
@@ -64,7 +54,6 @@ const schema = {
   <script slot="head" type="application/ld+json" is:inline set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
   <Hero locale={locale}>
     <figure slot="image" class="product-showcase" id="editor" tabindex="-1">
-      <div class="showcase-topline"><span>{t('ZIPZI EDITOR')}</span><span>macOS · Metal</span></div>
       <a
         class="screenshot-link"
         href="/media/editor-screenshot.jpg"
@@ -76,7 +65,7 @@ const schema = {
           src={editor}
           alt={t('Zipzi 2D README 中的真实编辑器界面：左侧为猫模型图层，中央显示耳部网格，右侧为属性与参数面板。')}
           widths={[640, 960, 1440, 2204]}
-          sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 64px), 1216px"
+          sizes="(max-width: 359px) calc(100vw - 52px), (max-width: 767px) calc(100vw - 60px), (max-width: 1224px) calc(100vw - 112px), 1112px"
           format="webp"
           quality={90}
           loading="eager"
@@ -84,138 +73,120 @@ const schema = {
         />
         <span class="image-open" aria-hidden="true">{t('查看大图 ↗')}</span>
       </a>
-      <figcaption><span>{t('真实编辑器 · 网格编辑视图')}</span><span>{t('项目 README / Cat 模型')}</span></figcaption>
+      <figcaption>Zipzi 2D · {t('编辑器')}</figcaption>
     </figure>
   </Hero>
-  <WidgetWrapper id="workflow" containerClass="workflow-section">
-    <Headline
-      tagline="SHAPE. DEFORM. ANIMATE."
-      title={t('从一个形状，<br />到一段表达。')}
-      subtitle={t('建模、变形与动画，是同一创作过程的不同视角。<br />为角色、图形与更广泛的二维内容而构建。')}
-      classes={{ container: 'section-heading', title: 'section-title', subtitle: 'section-description' }}
-    />
-    <div class="workflow-grid">
-      {
-        workflow.map((item) => (
-          <article>
-            <>
-              <div class="chapter">
-                <>
-                  <span>
-                    {item.number} / {item.name}
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <span class="detail-line">{item.detail}</span>
-            </>
-          </article>
-        ))
-      }
+  <section class="open-source-section container" aria-labelledby="open-source-title">
+    <div>
+      <p class="eyebrow">OPEN SOURCE · GPL EDITOR / MIT SDK</p>
+      <h2 id="open-source-title">{t('创作不该被工具束缚。')}</h2>
     </div>
-  </WidgetWrapper>
+    <div>
+      <p class="section-description">
+        {
+          t(
+            '用开源工作流摆脱对 Cubism 专有授权的依赖。Zipzi 编辑器采用 GPL-3.0-only，SDK 采用 MIT：查看源码、按需修改、集成自己的工具，让二维创作掌握在自己手中。'
+          )
+        }
+      </p>
+      <a class="text-link" href={`${repositoryUrl}/blob/main/LICENSING.md`}>{t('查看源码与许可 ↗')}</a>
+    </div>
+  </section>
   <section class="developer-band" id="developers" aria-labelledby="developer-title">
     <div class="container developer-grid">
       <div>
-        <p class="eyebrow">{t('BUILT TO BE PROGRAMMABLE')}</p><h2 id="developer-title">
-          {t('用界面雕琢。')}<br /><span>{t('用代码延展。')}</span>
-        </h2><p class="section-description">
+        <p class="eyebrow">{t('AI 协作')}</p>
+        <h2 id="developer-title">{t('你决定创意，')}<br /><span>{t('AI 帮你动手。')}</span></h2>
+        <p class="section-description">
           {
             t(
-              'Rust SDK 提供模型编辑能力，Python SDK 支持建模、动画、项目读写与检查。把重复操作写成代码，让创作者与 AI Agent 在同一工作流中协作。'
+              '把重复的整理和修改交给 AI，把时间留给角色的表情、动作和个性。你和 AI 在同一个模型上工作，修改看得见，也能撤销，创作方向始终由你决定。'
             )
           }
-        </p><p class="developer-note">
-          {
-            t(
-              'Python SDK 需要 CPython 3.14，可使用本地 Runtime，或连接正在运行的编辑器，共享文档与撤销历史。安装与可用能力请以项目文档为准。'
-            )
-          }
-        </p><a class="text-link" href="#release">{t('查看当前发布状态 ↗')}</a>
-      </div>
-      <div class="code-example">
-        <div class="code-heading"><span>Python SDK</span><span>{t('网格创建 · 示例节选')}</span></div><pre
-          tabindex="0"
-          aria-label={t(
-            'Python 网格创建示例'
-          )}><code><span class="code-keyword">from</span> zipzi <span class="code-keyword">import</span> meshes
-
-geometry = meshes.Geometry(
-    (42, 7, 99),
-    ((0., 0.), (1., 0.), (0., 1.)),
-    ((0., 0.), (1., 0.), (0., 1.)),
-    ((42, 7, 99),),
-)
-
-<span class="code-keyword">with</span> session.edit(<span class="code-string">"Shape"</span>) <span class="code-keyword">as</span> edit:
-    shape = edit.meshes.create(
-        meshes.MeshSpec(<span class="code-string">"Shape"</span>, geometry)
-    )</code></pre><p
-          class="code-caption"
-        >
-          {t('基于项目 SDK 文档，省略 Runtime 与 Session 初始化。')}
         </p>
+        <p class="developer-note">
+          {t('AI 协作需使用你自己的 AI 编程助手，并按项目指南完成配置。编辑器也可以独立使用。')}
+        </p>
+        <a class="text-link" href={aiSetupUrl}>{t('查看 AI 协作配置指南')}<span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="collaboration-example">
+        <p class="eyebrow">{t('从一句话开始')}</p>
+        <blockquote>{t('“帮我给每个网格起一个清楚的名字。”')}</blockquote>
+        <ol class="collaboration-steps">
+          <li><h3>{t('说出你的需求')}</h3><p>{t('用自己的话描述任务，让 AI 助手准备修改。')}</p></li>
+          <li><h3>{t('在画面中检查')}</h3><p>{t('查看模型的变化，继续调整，或撤销不满意的结果。')}</p></li>
+          <li><h3>{t('由你完成定稿')}</h3><p>{t('保留喜欢的修改，再保存作品。')}</p></li>
+        </ol>
       </div>
     </div>
   </section>
   <WidgetWrapper id="release" containerClass="release-section">
     <div class="release-heading">
-      <p class="eyebrow">{t('EARLY ACCESS · ALPHA')}</p><h2>{t('开放探索。')}<br /><span>{t('持续构建。')}</span></h2><p
-        class="section-description"
-      >
-        {t('Alpha 构建现已公开。')}<br />{t('项目仍在开发，尚无稳定版。')}
+      <p class="eyebrow">{t('EARLY ACCESS · ALPHA')}</p>
+      <h2>{t('开始自由创作。')}</h2>
+      <p class="section-description">
+        {t('试试 Cubism 之外的开源选择。下载 Zipzi，用自己的作品体验建模与动画，无需购买 Cubism Editor 授权。')}
       </p>
+      <div class="release-links"><Button href={releasesUrl}>{t('下载 Zipzi Alpha')}</Button></div>
     </div>
     <div class="release-details">
       <dl class="release-facts">
-        <div>
-          <dt>{t('当前平台')}</dt><dd>{t('支持 macOS 与 Windows。Windows 为开发原型，桌面验证仍在进行。')}</dd>
-        </div><div>
-          <dt>{t('开发阶段')}</dt><dd>
-            {t('尚无稳定版，API 与文件格式可能变化。请按平台选择 Alpha 包，并阅读版本说明与运行要求。')}
-          </dd>
-        </div>
+        <div><dt>{t('当前平台')}</dt><dd>{t('支持 macOS 与 Windows。Windows 为开发原型，桌面验证仍在进行。')}</dd></div>
       </dl>
-      <div class="release-access" role="note">
-        <h3>{t('从 GitHub 获取 Alpha')}</h3><p>
-          {t('下载、版本说明与平台要求统一在 GitHub Releases 查看。请选择适合自己的版本，并阅读对应说明。')}
-        </p>
+      <div class="release-access">
+        <h3>{t('选择适合电脑的版本')}</h3>
+        <p>{t('在 GitHub Releases 选择对应系统的安装包，安装说明和本次更新也在那里。')}</p>
       </div>
-      <div class="release-links">
-        <Button href={releasesUrl}>{t('前往 Releases 下载')}</Button>
+      <div class="release-access">
+        <h3>{t('先从一个小作品开始')}</h3>
+        <p>{t('当前是 Alpha，尚无稳定版。建议先用作品副本试用，保留原始素材和项目备份。')}</p>
       </div>
     </div>
   </WidgetWrapper>
   <WidgetWrapper id="questions" containerClass="faq-section">
-    <div><p class="eyebrow">{t('A FEW MORE THINGS')}</p><h2>{t('关于 Zipzi 2D')}</h2></div>
+    <div><p class="eyebrow">FAQ</p><h2>{t('创作前的几个问题。')}</h2></div>
     <div class="faq-list">
       <details>
-        <summary>{t('Zipzi 2D 是什么？')}<span aria-hidden="true">+</span></summary><p>
+        <summary>{t('用 Zipzi，还需要 Cubism 授权吗？')}<span aria-hidden="true">+</span></summary><p>
           {
             t(
-              '名字来自粤语「摺紙」（zip3 zi2）。项目面向二维建模与动画，探索 Live2D Cubism Editor 的替代工作流。Zipzi 是独立项目，与 Live2D Inc. 没有关联或授权、背书关系。'
+              '使用 Zipzi 本身不需要购买 Cubism Editor 授权。它是独立的开源编辑器，让你可以选择 Cubism 之外的创作流程。如果同时使用 Cubism 软件或第三方模型，它们原有的授权仍然适用。'
             )
           }
         </p>
-      </details><details>
-        <summary>{t('它只用于角色动画吗？')}<span aria-hidden="true">+</span></summary><p>
+      </details>
+      <details>
+        <summary>{t('开源对创作者意味着什么？')}<span aria-hidden="true">+</span></summary><p>
           {
             t(
-              '不局限于角色或特定画风。项目面向更广泛的二维建模与动画工作流，既关注创作者的编辑体验，也为开发者提供 SDK。'
+              '工具的源码公开，你可以了解它如何工作，也可以自己修改，或请开发者为你的创作方式添加功能。编辑器采用 GPL，SDK 采用 MIT；修改和分享软件时需遵守相应许可，素材与模型也保留各自的授权。'
             )
           }
         </p>
-      </details><details>
-        <summary>{t('Zipzi 2D 与 Kasane 2D 是什么关系？')}<span aria-hidden="true">+</span></summary><p>
-          {t('Zipzi 2D 是原 Kasane 2D 项目的新名称，延续二维建模、动画与可编程工具的开发方向。')}
-        </p>
-      </details><details>
-        <summary>{t('现在适合用于正式项目吗？')}<span aria-hidden="true">+</span></summary><p>
+      </details>
+      <details>
+        <summary>{t('不会编程，也能用吗？')}<span aria-hidden="true">+</span></summary><p>
           {
             t(
-              '当前版本面向早期测试，工作流与文件格式仍可能调整。请保留原始素材与项目备份，并根据自己的需求评估 Alpha 版本。'
+              '可以。你可以直接在编辑器里制作模型与动画。AI 协作是可选的：配置好自己的 AI 助手后，用语言描述任务，再在编辑器中检查结果，不必亲自编写每一步操作代码。'
+            )
+          }
+        </p>
+      </details>
+      <details>
+        <summary>{t('已有的 Cubism 作品能直接搬过来吗？')}<span aria-hidden="true">+</span></summary><p>
+          {
+            t(
+              '建议先用项目副本测试。Zipzi 仍在 Alpha 阶段，文件、效果和工作流程不保证与 Cubism 完全兼容。先确认你需要的功能，再决定是否迁移。'
+            )
+          }
+        </p>
+      </details>
+      <details>
+        <summary>{t('现在适合拿来做正式作品吗？')}<span aria-hidden="true">+</span></summary><p>
+          {
+            t(
+              '目前更适合尝试新流程和制作小作品。功能和项目格式还在变化；用于重要作品前，请先验证完整流程，并保留备份。'
             )
           }
         </p>

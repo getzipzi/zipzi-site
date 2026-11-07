@@ -65,18 +65,6 @@
     "zh-tw": "Zipzi 2D README 中的真實編輯器介面：左側為貓模型圖層，中央顯示耳部網格，右側為屬性與參數面板。",
     "ko": "Zipzi 2D README의 실제 편집기 화면: 왼쪽은 고양이 모델 레이어, 가운데는 귀 메시, 오른쪽은 속성과 파라미터 패널입니다."
   },
-  "从一个形状，<br />到一段表达。": {
-    "en": "From a shape,<br />to an expression.",
-    "ja": "ひとつの形から、<br />ひとつの表現へ。",
-    "zh-tw": "從一個形狀，<br />到一段表達。",
-    "ko": "하나의 형태에서,<br />하나의 표현으로."
-  },
-  "建模、变形与动画，是同一创作过程的不同视角。<br />为角色、图形与更广泛的二维内容而构建。": {
-    "en": "Modeling, deformation, and animation are different views of one creative process.<br />Built for characters, graphics, and a wider world of 2D content.",
-    "ja": "モデリング、変形、アニメーションは、ひとつの創作を異なる視点から捉えたもの。<br />キャラクターやグラフィック、幅広い2Dコンテンツのために。",
-    "zh-tw": "建模、變形與動畫，是同一創作過程的不同視角。<br />為角色、圖形與更廣泛的二維內容而構建。",
-    "ko": "모델링, 변형, 애니메이션은 하나의 창작 과정을 바라보는 서로 다른 관점입니다.<br />캐릭터와 그래픽을 넘어 더 넓은 2D 콘텐츠를 위해 만듭니다."
-  },
   "Python 网格创建示例": {
     "en": "Python mesh creation example",
     "ja": "Pythonによるメッシュ作成例",
@@ -221,12 +209,6 @@
     "zh-tw": "Zipzi 2D 是什麼？",
     "ko": "Zipzi 2D는 무엇인가요?"
   },
-  "名字来自粤语「摺紙」（zip3 zi2）。项目面向二维建模与动画，探索 Live2D Cubism Editor 的替代工作流。Zipzi 是独立项目，与 Live2D Inc. 没有关联或授权、背书关系。": {
-    "en": "The name comes from the Cantonese word for folding paper, 摺紙 (zip3 zi2). The project explores an alternative workflow to Live2D Cubism Editor for 2D modeling and animation. Zipzi is independent and is not affiliated with, authorized by, or endorsed by Live2D Inc.",
-    "ja": "名前は広東語の「摺紙」（zip3 zi2）に由来します。2Dモデリングとアニメーション向けに、Live2D Cubism Editorに代わるワークフローを探求するプロジェクトです。Zipziは独立したプロジェクトであり、Live2D Inc.との提携、許諾、推奨関係はありません。",
-    "zh-tw": "名字來自粵語「摺紙」（zip3 zi2）。專案面向二維建模與動畫，探索 Live2D Cubism Editor 的替代工作流程。Zipzi 是獨立專案，與 Live2D Inc. 沒有關聯或授權、背書關係。",
-    "ko": "이름은 광둥어로 종이접기를 뜻하는 「摺紙」(zip3 zi2)에서 왔습니다. 2D 모델링과 애니메이션을 위한 Live2D Cubism Editor의 대안 작업 흐름을 탐구합니다. Zipzi는 독립 프로젝트이며 Live2D Inc.와 제휴, 승인 또는 보증 관계가 없습니다."
-  },
   "它只用于角色动画吗？": {
     "en": "Is it only for character animation?",
     "ja": "キャラクターアニメーション専用ですか？",
@@ -311,18 +293,6 @@
     "zh-tw": "下載 Alpha",
     "ko": "Alpha 다운로드"
   },
-  "二维建模与动画。": {
-    "en": "2D modeling and animation.",
-    "ja": "2Dモデリングとアニメーション。",
-    "zh-tw": "二維建模與動畫。",
-    "ko": "2D 모델링과 애니메이션."
-  },
-  "为创作，也为创造工具的人。": {
-    "en": "For creators, and those who build their tools.",
-    "ja": "つくる人へ。そして、道具をつくる人へ。",
-    "zh-tw": "為創作，也為創造工具的人。",
-    "ko": "창작자와 창작 도구를 만드는 사람들을 위해."
-  },
   "浙ICP备2026015551号-2": {
     "en": "浙ICP备2026015551号-2",
     "ja": "浙ICP备2026015551号-2",
@@ -334,36 +304,6 @@
     "ja": "ページ上部へ ↑",
     "zh-tw": "回到頂部 ↑",
     "ko": "맨 위로 ↑"
-  },
-  "让二维创作，": {
-    "en": "More possibilities",
-    "ja": "2Dの創作に、",
-    "zh-tw": "讓二維創作，",
-    "ko": "2D 창작에,"
-  },
-  "拥有更多可能。": {
-    "en": "for 2D creation.",
-    "ja": "もっと可能性を。",
-    "zh-tw": "擁有更多可能。",
-    "ko": "더 많은 가능성을."
-  },
-  "从形态到动态，": {
-    "en": "From shape to motion,",
-    "ja": "形から動きへ。",
-    "zh-tw": "從形態到動態，",
-    "ko": "형태에서 움직임까지,"
-  },
-  "把想法变成可控的表达。": {
-    "en": "turn ideas into expression you control.",
-    "ja": "アイデアを、思い通りの表現へ。",
-    "zh-tw": "把想法變成可控的表達。",
-    "ko": "아이디어를 제어 가능한 표현으로."
-  },
-  "Zipzi 2D 是二维建模与动画工具，探索 Live2D Cubism Editor 的替代工作流。用桌面编辑器创作，通过 Python 编程，与 AI Agent 协作。": {
-    "en": "Zipzi 2D is a 2D modeling and animation tool exploring an alternative workflow to Live2D Cubism Editor. Create in the desktop editor, program with Python, and collaborate with AI Agents.",
-    "ja": "Zipzi 2Dは、Live2D Cubism Editorに代わるワークフローを探求する2Dモデリング・アニメーションツールです。デスクトップエディタで創作し、Pythonでプログラミングし、AI Agentと協働できます。",
-    "zh-tw": "Zipzi 2D 是二維建模與動畫工具，探索 Live2D Cubism Editor 的替代工作流程。用桌面編輯器創作，透過 Python 程式設計，與 AI Agent 協作。",
-    "ko": "Zipzi 2D는 Live2D Cubism Editor의 대안 작업 흐름을 탐구하는 2D 모델링 및 애니메이션 도구입니다. 데스크톱 편집기에서 창작하고, Python으로 프로그래밍하며, AI Agent와 협업하세요."
   },
   "探索编辑器": {
     "en": "Explore the editor",
@@ -443,18 +383,6 @@
     "zh-tw": "關閉導覽",
     "ko": "탐색 닫기"
   },
-  "Zipzi 2D 是面向创作者与开发者的二维建模与动画工具。通过桌面编辑器、Rust 与 Python SDK 创作，并与 AI Agent 协作。支持 macOS 与 Windows 开发原型，当前为 Alpha。": {
-    "en": "Zipzi 2D is a 2D modeling and animation tool for creators and developers. Create with the desktop editor, Rust and Python SDKs, and AI Agents. Supports macOS and a Windows development prototype. Currently in Alpha.",
-    "ja": "Zipzi 2Dはクリエイターと開発者向けの2Dモデリング・アニメーションツール。デスクトップエディタ、Rust・Python SDK、AI Agentで創作できます。macOSとWindows開発用プロトタイプに対応。現在Alpha版です。",
-    "zh-tw": "Zipzi 2D 是面向創作者與開發者的二維建模與動畫工具。透過桌面編輯器、Rust 與 Python SDK 創作，並與 AI Agent 協作。支援 macOS 與 Windows 開發原型，目前為 Alpha。",
-    "ko": "Zipzi 2D는 창작자와 개발자를 위한 2D 모델링 및 애니메이션 도구입니다. 데스크톱 편집기, Rust 및 Python SDK, AI Agent로 창작하세요. macOS와 Windows 개발 프로토타입을 지원하며 현재 Alpha 단계입니다."
-  },
-  "2D MODELING & ANIMATION": {
-    "en": "2D MODELING & ANIMATION",
-    "ja": "2Dモデリング＆アニメーション",
-    "zh-tw": "二維建模與動畫",
-    "ko": "2D 모델링 & 애니메이션"
-  },
   "ZIPZI EDITOR": {
     "en": "ZIPZI EDITOR",
     "ja": "ZIPZI エディタ",
@@ -514,5 +442,425 @@
     "ja": "アニメーション",
     "zh-tw": "動畫",
     "ko": "애니메이션"
+  },
+  "OPEN SOURCE · 2D MODELING & ANIMATION": {
+    "en": "OPEN SOURCE · 2D MODELING & ANIMATION",
+    "ja": "OPEN SOURCE · 2D MODELING & ANIMATION",
+    "zh-tw": "OPEN SOURCE · 2D MODELING & ANIMATION",
+    "ko": "OPEN SOURCE · 2D MODELING & ANIMATION"
+  },
+  "Live2D Cubism Editor": {
+    "en": "Live2D Cubism Editor",
+    "ja": "Live2D Cubism Editor",
+    "zh-tw": "Live2D Cubism Editor",
+    "ko": "Live2D Cubism Editor"
+  },
+  "开源替代品。": {
+    "en": "Open-source alternative.",
+    "ja": "オープンソースの代替。",
+    "zh-tw": "開源替代品。",
+    "ko": "오픈 소스 대안."
+  },
+  "Zipzi 2D 是开源的 Live2D Cubism Editor 替代品，提供二维建模、网格变形与关键帧动画。用桌面编辑器创作，通过 Python SDK 与 AI Agent 协作，让工作流掌握在自己手中。": {
+    "en": "Zipzi 2D is an open-source Live2D Cubism Editor alternative for 2D modeling, mesh deformation, and keyframe animation. Create in the desktop editor and collaborate with your AI agent through the Python SDK. Make the workflow your own.",
+    "ja": "Zipzi 2Dは、2Dモデリング、メッシュ変形、キーフレームアニメーションのための、Live2D Cubism Editorに代わるオープンソースツールです。デスクトップエディタで制作し、Python SDKを通じてAIエージェントと協働。自分のワークフローをつくれます。",
+    "zh-tw": "Zipzi 2D 是開源的 Live2D Cubism Editor 替代品，提供二維建模、網格變形與關鍵影格動畫。用桌面編輯器創作，透過 Python SDK 與 AI Agent 協作，讓工作流程掌握在自己手中。",
+    "ko": "Zipzi 2D는 2D 모델링, 메시 변형, 키프레임 애니메이션을 위한 오픈 소스 Live2D Cubism Editor 대안입니다. 데스크톱 편집기에서 작업하고 Python SDK로 AI 에이전트와 협업하며 나만의 작업 흐름을 만드세요."
+  },
+  "从二维建模，<br />到关键帧动画。": {
+    "en": "From 2D modeling,<br />to keyframe animation.",
+    "ja": "2Dモデリングから、<br />キーフレームアニメーションへ。",
+    "zh-tw": "從二維建模，<br />到關鍵影格動畫。",
+    "ko": "2D 모델링부터,<br />키프레임 애니메이션까지."
+  },
+  "在同一个编辑器里组织图层、编辑网格、调整参数与制作动画。<br />为角色、插画与更多二维内容，建立可控制、可编程的创作流程。": {
+    "en": "Organize layers, edit meshes, adjust parameters, and animate in one editor.<br />Build a controllable, programmable workflow for characters, illustrations, and more.",
+    "ja": "ひとつのエディタでレイヤー整理、メッシュ編集、パラメータ調整、アニメーション制作まで。<br />キャラクターやイラストの制作を、操作もプログラムもできるワークフローに。",
+    "zh-tw": "在同一個編輯器裡組織圖層、編輯網格、調整參數與製作動畫。<br />為角色、插畫與更多二維內容，建立可控制、可程式化的創作流程。",
+    "ko": "하나의 편집기에서 레이어 정리, 메시 편집, 파라미터 조정, 애니메이션 제작까지.<br />캐릭터와 일러스트를 위한 제어 가능하고 프로그래밍 가능한 작업 흐름을 만드세요."
+  },
+  "Zipzi 2D 是开源的二维建模与动画编辑器，也是 Live2D Cubism Editor 的替代品。名字来自粤语「摺紙」（zip3 zi2）。Zipzi 是独立项目，与 Live2D Inc. 没有关联或授权、背书关系。": {
+    "en": "Zipzi 2D is an open-source 2D modeling and animation editor and an alternative to Live2D Cubism Editor. Its name comes from Cantonese 摺紙 (zip3 zi2), meaning origami. Zipzi is independent and is not affiliated with, authorized by, or endorsed by Live2D Inc.",
+    "ja": "Zipzi 2Dは、Live2D Cubism Editorに代わるオープンソースの2Dモデリング・アニメーションエディタです。名前は広東語の「摺紙」（zip3 zi2）に由来します。独立したプロジェクトであり、Live2D Inc.との提携、許諾、推奨関係はありません。",
+    "zh-tw": "Zipzi 2D 是開源的二維建模與動畫編輯器，也是 Live2D Cubism Editor 的替代品。名字來自粵語「摺紙」（zip3 zi2）。Zipzi 是獨立專案，與 Live2D Inc. 沒有關聯或授權、背書關係。",
+    "ko": "Zipzi 2D는 오픈 소스 2D 모델링 및 애니메이션 편집기이자 Live2D Cubism Editor의 대안입니다. 이름은 광둥어로 종이접기를 뜻하는 「摺紙」(zip3 zi2)에서 왔습니다. Zipzi는 독립 프로젝트이며 Live2D Inc.와 제휴, 승인 또는 보증 관계가 없습니다."
+  },
+  "开源二维建模与动画。": {
+    "en": "Open-source 2D modeling & animation.",
+    "ja": "オープンソースの2Dモデリングとアニメーション。",
+    "zh-tw": "開源二維建模與動畫。",
+    "ko": "오픈 소스 2D 모델링과 애니메이션."
+  },
+  "Live2D Cubism Editor 的开放替代。": {
+    "en": "An open alternative to Live2D Cubism Editor.",
+    "ja": "Live2D Cubism Editorに代わる、開かれた選択肢。",
+    "zh-tw": "Live2D Cubism Editor 的開放替代。",
+    "ko": "Live2D Cubism Editor를 대신하는 열린 선택."
+  },
+  "开源二维建模与动画 · Live2D Cubism Editor 替代品 | Zipzi 2D": {
+    "en": "Zipzi 2D — Open Source Live2D Cubism Editor Alternative",
+    "ja": "Zipzi 2D — Live2D Cubism Editorに代わるオープンソース2D制作ツール",
+    "zh-tw": "開源二維建模與動畫 · Live2D Cubism Editor 替代品 | Zipzi 2D",
+    "ko": "Zipzi 2D — 오픈 소스 Live2D Cubism Editor 대안"
+  },
+  "Zipzi 2D 是开源的 Live2D Cubism Editor 替代品，支持二维建模、网格变形、关键帧动画与 Python AI 协作。编辑器 GPL、SDK MIT，用开放源码构建自己的创作工作流。下载 macOS 与 Windows Alpha。": {
+    "en": "An open source Live2D Cubism Editor alternative for 2D modeling and animation. GPL editor, MIT SDK, and Python AI workflows. Download the macOS and Windows Alpha.",
+    "ja": "Live2D Cubism Editorに代わるオープンソースの2Dモデリング・アニメーションツール。メッシュ変形、キーフレーム、PythonでのAI協働に対応。GPLエディタとMIT SDKで、自分の制作環境を。macOS・Windows Alpha公開中。",
+    "zh-tw": "Zipzi 2D 是開源的 Live2D Cubism Editor 替代品，支援二維建模、網格變形、關鍵影格動畫與 Python AI 協作。編輯器 GPL、SDK MIT，用開放原始碼打造自己的創作流程。下載 macOS 與 Windows Alpha。",
+    "ko": "2D 모델링과 애니메이션을 위한 오픈 소스 Live2D Cubism Editor 대안. 메시 변형, 키프레임, Python AI 협업을 지원합니다. GPL 편집기와 MIT SDK로 나만의 작업 흐름을 만드세요. macOS·Windows Alpha 다운로드."
+  },
+  "查看源码与许可 ↗": {
+    "en": "Explore source and licensing ↗",
+    "ja": "ソースとライセンスを見る ↗",
+    "zh-tw": "檢視原始碼與授權 ↗",
+    "ko": "소스와 라이선스 보기 ↗"
+  },
+  "开源是否意味着没有任何使用限制？": {
+    "en": "Does open source mean there are no license obligations?",
+    "ja": "オープンソースなら利用条件はありませんか？",
+    "zh-tw": "開源是否代表沒有任何使用限制？",
+    "ko": "오픈 소스라면 라이선스 의무가 없나요?"
+  },
+  "开放源码不等于无条件授权。编辑器采用 GPL-3.0-only，SDK 采用 MIT；修改、再分发与集成时请遵守各组件许可。第三方素材、模型与依赖保留各自条款。": {
+    "en": "Open source comes with license terms. The editor is GPL-3.0-only and the SDK is MIT; follow the applicable component licenses when modifying, redistributing, or integrating. Third-party artwork, models, and dependencies retain their own terms.",
+    "ja": "オープンソースにも利用条件があります。エディタはGPL-3.0-only、SDKはMITです。改変・再配布・組み込みでは各コンポーネントのライセンスに従ってください。第三者の素材、モデル、依存関係にはそれぞれの条件が適用されます。",
+    "zh-tw": "開放原始碼不代表無條件授權。編輯器採用 GPL-3.0-only，SDK 採用 MIT；修改、再散布與整合時請遵守各元件授權。第三方素材、模型與相依套件保留各自條款。",
+    "ko": "오픈 소스에도 라이선스 조건이 있습니다. 편집기는 GPL-3.0-only, SDK는 MIT이며 수정, 재배포, 통합 시 각 구성 요소의 라이선스를 따라야 합니다. 타사 소재, 모델, 의존성에는 각각의 조건이 적용됩니다."
+  },
+  "可以直接替换现有 Cubism 项目吗？": {
+    "en": "Can it directly replace my existing Cubism setup?",
+    "ja": "既存のCubism環境をそのまま置き換えられますか？",
+    "zh-tw": "可以直接替換現有 Cubism 專案嗎？",
+    "ko": "기존 Cubism 환경을 바로 대체할 수 있나요?"
+  },
+  "Zipzi 提供独立的开源建模与动画工作流，目前仍处于 Alpha。替代品定位不代表与 Cubism 功能完全对等，也不承诺 Cubism 文件、插件或运行时兼容。迁移前请按实际需求测试。": {
+    "en": "Zipzi offers an independent open-source modeling and animation workflow and is still in Alpha. Being an alternative does not imply feature parity or promise compatibility with Cubism files, plugins, or runtimes. Test your requirements before migrating.",
+    "ja": "Zipziは独立したオープンソースのモデリング・アニメーション環境で、現在はAlpha段階です。代替ツールという位置づけは、機能の完全な同等性やCubismファイル・プラグイン・ランタイムとの互換性を保証するものではありません。移行前に必要な機能をお試しください。",
+    "zh-tw": "Zipzi 提供獨立的開源建模與動畫工作流程，目前仍處於 Alpha。替代品定位不代表與 Cubism 功能完全對等，也不承諾 Cubism 檔案、外掛或執行環境相容。移轉前請依實際需求測試。",
+    "ko": "Zipzi는 독립적인 오픈 소스 모델링·애니메이션 작업 흐름을 제공하며 아직 Alpha 단계입니다. 대안이라는 표현이 기능 동등성이나 Cubism 파일, 플러그인, 런타임 호환성을 보장하지는 않습니다. 이전하기 전에 필요한 기능을 테스트하세요."
+  },
+  "二维建模、变形与关键帧动画。": {
+    "en": "2D modeling, deformation & animation.",
+    "ja": "2Dモデリング、変形、キーフレームアニメーション。",
+    "zh-tw": "二維建模、變形與關鍵影格動畫。",
+    "ko": "2D 모델링, 변형, 키프레임 애니메이션."
+  },
+  "用开源工具掌握创作流程。": {
+    "en": "Open tools. Your creative workflow.",
+    "ja": "オープンなツールで、自分らしい制作を。",
+    "zh-tw": "用開源工具掌握創作流程。",
+    "ko": "오픈 소스 도구로 만드는 나만의 작업 흐름."
+  },
+  "开放源码，掌握创作自由。": {
+    "en": "Open source. Own your workflow.",
+    "ja": "オープンソースで、制作を自分の手に。",
+    "zh-tw": "開放原始碼，掌握創作自由。",
+    "ko": "오픈 소스로 자유롭게 창작하세요."
+  },
+  "用开源工作流摆脱对 Cubism 专有授权的依赖。Zipzi 编辑器采用 GPL-3.0-only，SDK 采用 MIT：查看源码、按需修改、集成自己的工具，让二维创作掌握在自己手中。": {
+    "en": "Build an open-source workflow beyond proprietary Cubism licensing. The Zipzi editor is GPL-3.0-only and the SDK is MIT: inspect the source, adapt it to your needs, and integrate your own tools. Take control of your 2D creation workflow.",
+    "ja": "Cubismの独自ライセンスに依存しない、オープンソースの制作フローへ。ZipziエディタはGPL-3.0-only、SDKはMIT。ソースを読み、必要に応じて改良し、自分のツールに組み込めます。2D制作を自分の手に。",
+    "zh-tw": "用開源工作流程擺脫對 Cubism 專有授權的依賴。Zipzi 編輯器採用 GPL-3.0-only，SDK 採用 MIT：檢視原始碼、按需修改、整合自己的工具，讓二維創作掌握在自己手中。",
+    "ko": "Cubism 독점 라이선스에 의존하지 않는 오픈 소스 작업 흐름을 만드세요. Zipzi 편집기는 GPL-3.0-only, SDK는 MIT입니다. 소스를 살펴보고 필요에 맞게 수정하며 나만의 도구를 통합해 2D 창작 흐름을 직접 관리하세요."
+  },
+  "使用 Zipzi 需要购买 Cubism Editor 授权吗？": {
+    "en": "Do I need a Cubism Editor license to use Zipzi?",
+    "ja": "Zipziを使うにはCubism Editorのライセンスが必要ですか？",
+    "zh-tw": "使用 Zipzi 需要購買 Cubism Editor 授權嗎？",
+    "ko": "Zipzi를 사용하려면 Cubism Editor 라이선스를 구매해야 하나요?"
+  },
+  "Zipzi 是独立的开源编辑器，使用 Zipzi 本身无需购买 Cubism Editor 授权。如果你的工作流同时使用 Cubism 软件、SDK 或第三方模型，这些组件和素材仍需遵循各自的授权条款。": {
+    "en": "Zipzi is an independent open-source editor. Using Zipzi itself does not require purchasing a Cubism Editor license. If your workflow also uses Cubism software, SDKs, or third-party models, their respective license terms still apply.",
+    "ja": "Zipziは独立したオープンソースエディタです。Zipzi自体の利用にCubism Editorのライセンス購入は必要ありません。CubismのソフトウェアやSDK、第三者のモデルも併用する場合は、それぞれのライセンス条件に従ってください。",
+    "zh-tw": "Zipzi 是獨立的開源編輯器，使用 Zipzi 本身無需購買 Cubism Editor 授權。如果你的工作流程同時使用 Cubism 軟體、SDK 或第三方模型，這些元件與素材仍需遵循各自的授權條款。",
+    "ko": "Zipzi는 독립적인 오픈 소스 편집기입니다. Zipzi 자체를 사용하기 위해 Cubism Editor 라이선스를 구매할 필요는 없습니다. 작업 흐름에서 Cubism 소프트웨어, SDK 또는 타사 모델을 함께 사용한다면 해당 구성 요소와 소재의 라이선스 조건은 계속 적용됩니다."
+  },
+  "Live2D Cubism Editor 的开源替代品": {
+    "en": "An open-source alternative to Live2D Cubism Editor",
+    "ja": "Live2D Cubism Editorに代わるオープンソースツール",
+    "zh-tw": "Live2D Cubism Editor 的開源替代品",
+    "ko": "Live2D Cubism Editor의 오픈 소스 대안"
+  },
+  "二维建模与动画，": {
+    "en": "2D modeling & animation.",
+    "ja": "2Dモデリングとアニメーション。",
+    "zh-tw": "二維建模與動畫，",
+    "ko": "2D 모델링과 애니메이션."
+  },
+  "从此自由创作。": {
+    "en": "Made for creative freedom.",
+    "ja": "もっと自由な創作へ。",
+    "zh-tw": "從此自由創作。",
+    "ko": "더 자유로운 창작을 위해."
+  },
+  "从一张画，到一个生动的角色。用网格、变形和关键帧赋予作品生命，用开放源码与 Python SDK 拓展你的创作方式。": {
+    "en": "Turn your artwork into a living character. Shape meshes, build deformers, and animate with keyframes. Go further with open source and a Python SDK.",
+    "ja": "一枚の絵から、生き生きとしたキャラクターへ。メッシュ、デフォーマ、キーフレームで作品に命を吹き込み、オープンソースとPython SDKで制作の幅を広げましょう。",
+    "zh-tw": "從一張畫，到一個生動的角色。用網格、變形和關鍵影格賦予作品生命，用開放原始碼與 Python SDK 拓展你的創作方式。",
+    "ko": "한 장의 그림을 살아 움직이는 캐릭터로. 메시, 디포머, 키프레임으로 작품에 생명을 불어넣고 오픈 소스와 Python SDK로 작업 방식을 확장하세요."
+  },
+  "创作的每一步，都在你手中。": {
+    "en": "Every detail. In your hands.",
+    "ja": "細部まで、自分の手で。",
+    "zh-tw": "創作的每一步，都在你手中。",
+    "ko": "창작의 모든 단계를 내 손으로."
+  },
+  "建模、变形、动画。一个连贯的创作空间。": {
+    "en": "Model. Deform. Animate. One connected workspace.",
+    "ja": "モデリング、変形、アニメーション。ひとつにつながる制作空間。",
+    "zh-tw": "建模、變形、動畫。一個連貫的創作空間。",
+    "ko": "모델링, 변형, 애니메이션. 하나로 이어지는 작업 공간."
+  },
+  "把画面变成模型": {
+    "en": "Give your artwork structure",
+    "ja": "絵をモデルにする",
+    "zh-tw": "把畫面變成模型",
+    "ko": "그림에 구조를 더하세요"
+  },
+  "让每个动作可控": {
+    "en": "Shape every movement",
+    "ja": "動きを思いどおりに",
+    "zh-tw": "讓每個動作可控",
+    "ko": "움직임을 섬세하게 다듬으세요"
+  },
+  "让角色生动起来": {
+    "en": "Bring your character to life",
+    "ja": "キャラクターを動かす",
+    "zh-tw": "讓角色生動起來",
+    "ko": "캐릭터에 생명을 불어넣으세요"
+  },
+  "创作不该被工具束缚。": {
+    "en": "Your creativity deserves open tools.",
+    "ja": "創作に、開かれた道具を。",
+    "zh-tw": "創作不該被工具束縛。",
+    "ko": "창작에는 열린 도구가 필요합니다."
+  },
+  "你来创作。": {
+    "en": "You create.",
+    "ja": "あなたがつくる。",
+    "zh-tw": "你來創作。",
+    "ko": "직접 창작하고."
+  },
+  "让代码处理重复。": {
+    "en": "Let code handle the repetition.",
+    "ja": "繰り返しはコードに。",
+    "zh-tw": "讓程式碼處理重複。",
+    "ko": "반복 작업은 코드에 맡기세요."
+  },
+  "把想法带进编辑器。": {
+    "en": "Make your first move.",
+    "ja": "まずは、つくってみよう。",
+    "zh-tw": "把想法帶進編輯器。",
+    "ko": "아이디어를 편집기로 가져오세요."
+  },
+  "试用 Zipzi Alpha，探索你的下一种创作方式。": {
+    "en": "Try Zipzi Alpha. Find your next way to create.",
+    "ja": "Zipzi Alphaで、新しい制作のかたちを試そう。",
+    "zh-tw": "試用 Zipzi Alpha，探索你的下一種創作方式。",
+    "ko": "Zipzi Alpha로 새로운 창작 방식을 찾아보세요."
+  },
+  "开始之前，你可能想知道。": {
+    "en": "A few things before you begin.",
+    "ja": "始める前に、知っておきたいこと。",
+    "zh-tw": "開始之前，你可能想知道。",
+    "ko": "시작하기 전에 알아두세요."
+  },
+  "AI 协作": {
+    "en": "AI collaboration",
+    "ja": "AIと制作",
+    "zh-tw": "AI 協作",
+    "ko": "AI 협업"
+  },
+  "你决定创意，": {
+    "en": "Your vision leads.",
+    "ja": "アイデアは、あなたから。",
+    "zh-tw": "你決定創意，",
+    "ko": "아이디어는 내가,"
+  },
+  "AI 帮你动手。": {
+    "en": "AI lends a hand.",
+    "ja": "作業は、AIと一緒に。",
+    "zh-tw": "AI 幫你動手。",
+    "ko": "작업은 AI와 함께."
+  },
+  "把重复的整理和修改交给 AI，把时间留给角色的表情、动作和个性。你和 AI 在同一个模型上工作，修改看得见，也能撤销，创作方向始终由你决定。": {
+    "en": "Let AI help with repetitive organization and edits, so you can focus on expression, movement, and personality. Work on the same model, review the changes, and undo them when needed. You stay in creative control.",
+    "ja": "整理や修正の繰り返しはAIに任せて、表情、動き、個性に時間を。同じモデルを一緒に編集し、変更を確認して、必要なら元に戻せます。創作の方向を決めるのは、あなたです。",
+    "zh-tw": "把重複的整理和修改交給 AI，把時間留給角色的表情、動作和個性。你和 AI 在同一個模型上工作，修改看得見，也能復原，創作方向始終由你決定。",
+    "ko": "반복적인 정리와 수정은 AI와 나누고, 표정과 움직임, 개성에 집중하세요. 같은 모델에서 함께 작업하고 변경 내용을 확인하거나 되돌릴 수 있습니다. 창작의 방향은 언제나 직접 결정하세요."
+  },
+  "从一句话开始": {
+    "en": "Start with a request",
+    "ja": "ひと言から始める",
+    "zh-tw": "從一句話開始",
+    "ko": "한마디로 시작하세요"
+  },
+  "“帮我给每个网格起一个清楚的名字。”": {
+    "en": "“Give every mesh a clear, meaningful name.”",
+    "ja": "「すべてのメッシュに、わかりやすい名前を付けて。」",
+    "zh-tw": "「幫我給每個網格取一個清楚的名字。」",
+    "ko": "“모든 메시에 알아보기 쉬운 이름을 붙여 줘.”"
+  },
+  "说出你的需求": {
+    "en": "Describe what you need",
+    "ja": "やりたいことを伝える",
+    "zh-tw": "說出你的需求",
+    "ko": "원하는 작업을 설명하세요"
+  },
+  "用自己的话描述任务，让 AI 助手准备修改。": {
+    "en": "Explain the task in your own words and let your AI assistant prepare the edits.",
+    "ja": "自分の言葉で作業を伝えると、AIアシスタントが変更を準備します。",
+    "zh-tw": "用自己的話描述任務，讓 AI 助手準備修改。",
+    "ko": "자신의 말로 작업을 설명하면 AI 도우미가 변경을 준비합니다."
+  },
+  "在画面中检查": {
+    "en": "Review it in the editor",
+    "ja": "画面で確かめる",
+    "zh-tw": "在畫面中檢查",
+    "ko": "편집기에서 확인하세요"
+  },
+  "查看模型的变化，继续调整，或撤销不满意的结果。": {
+    "en": "See what changed, refine it, or undo anything that does not fit.",
+    "ja": "モデルの変化を見ながら調整し、気に入らない変更は元に戻せます。",
+    "zh-tw": "查看模型的變化，繼續調整，或復原不滿意的結果。",
+    "ko": "모델의 변화를 보고 다듬거나 마음에 들지 않는 결과를 되돌리세요."
+  },
+  "由你完成定稿": {
+    "en": "You make the final call",
+    "ja": "仕上げは、あなたの判断で",
+    "zh-tw": "由你完成定稿",
+    "ko": "최종 결정은 직접 하세요"
+  },
+  "保留喜欢的修改，再保存作品。": {
+    "en": "Keep the changes you like, then save your work.",
+    "ja": "気に入った変更を残して、作品を保存しましょう。",
+    "zh-tw": "保留喜歡的修改，再儲存作品。",
+    "ko": "마음에 드는 변경을 남기고 작품을 저장하세요."
+  },
+  "AI 协作需使用你自己的 AI 编程助手，并按项目指南完成配置。编辑器也可以独立使用。": {
+    "en": "AI collaboration uses your own AI coding assistant and requires setup using the project guide. You can also use the editor on its own.",
+    "ja": "AIとの協働には、ご自身のAIコーディングアシスタントと、プロジェクトガイドに沿った設定が必要です。エディタ単体でも使えます。",
+    "zh-tw": "AI 協作需使用你自己的 AI 程式設計助手，並依專案指南完成設定。編輯器也可以獨立使用。",
+    "ko": "AI 협업에는 별도의 AI 코딩 도우미와 프로젝트 가이드에 따른 설정이 필요합니다. 편집기는 단독으로도 사용할 수 있습니다."
+  },
+  "开始自由创作。": {
+    "en": "Start creating freely.",
+    "ja": "自由な創作を、ここから。",
+    "zh-tw": "開始自由創作。",
+    "ko": "자유로운 창작을 시작하세요."
+  },
+  "试试 Cubism 之外的开源选择。下载 Zipzi，用自己的作品体验建模与动画，无需购买 Cubism Editor 授权。": {
+    "en": "Explore an open-source alternative to Cubism. Download Zipzi and try modeling and animation with your own artwork, without purchasing a Cubism Editor license.",
+    "ja": "Cubism以外の、オープンソースという選択肢。Zipziをダウンロードして、自分の作品でモデリングとアニメーションを試しましょう。Cubism Editorのライセンス購入は不要です。",
+    "zh-tw": "試試 Cubism 之外的開源選擇。下載 Zipzi，用自己的作品體驗建模與動畫，無需購買 Cubism Editor 授權。",
+    "ko": "Cubism 밖의 오픈 소스 대안을 만나보세요. Zipzi를 다운로드하고 자신의 작품으로 모델링과 애니메이션을 경험하세요. Cubism Editor 라이선스를 구매할 필요가 없습니다."
+  },
+  "先从一个小作品开始": {
+    "en": "Start with a small project",
+    "ja": "小さな作品から試そう",
+    "zh-tw": "先從一個小作品開始",
+    "ko": "작은 작품부터 시작하세요"
+  },
+  "当前是 Alpha，尚无稳定版。建议先用作品副本试用，保留原始素材和项目备份。": {
+    "en": "Zipzi is in Alpha, with no stable release yet. Try a copy of your work first and keep your original artwork and project backups.",
+    "ja": "現在はAlpha段階で、安定版はまだありません。作品のコピーで試し、元の素材とプロジェクトのバックアップを残してください。",
+    "zh-tw": "目前是 Alpha，尚無穩定版。建議先用作品副本試用，保留原始素材與專案備份。",
+    "ko": "현재는 Alpha 단계이며 안정 버전은 아직 없습니다. 작품 사본으로 먼저 사용해 보고 원본 소재와 프로젝트 백업을 보관하세요."
+  },
+  "选择适合电脑的版本": {
+    "en": "Choose your version",
+    "ja": "お使いの環境に合うバージョンを",
+    "zh-tw": "選擇適合電腦的版本",
+    "ko": "컴퓨터에 맞는 버전을 선택하세요"
+  },
+  "在 GitHub Releases 选择对应系统的安装包，安装说明和本次更新也在那里。": {
+    "en": "Choose the installer for your system on GitHub Releases, where you will also find setup instructions and release notes.",
+    "ja": "GitHub Releasesで対応するインストーラを選んでください。インストール手順や更新内容も掲載しています。",
+    "zh-tw": "在 GitHub Releases 選擇對應系統的安裝包，安裝說明和本次更新也在那裡。",
+    "ko": "GitHub Releases에서 운영체제에 맞는 설치 파일을 선택하세요. 설치 안내와 업데이트 내용도 확인할 수 있습니다."
+  },
+  "下载 Zipzi Alpha": {
+    "en": "Download Zipzi Alpha",
+    "ja": "Zipzi Alphaをダウンロード",
+    "zh-tw": "下載 Zipzi Alpha",
+    "ko": "Zipzi Alpha 다운로드"
+  },
+  "创作前的几个问题。": {
+    "en": "Before you create.",
+    "ja": "つくり始める前に。",
+    "zh-tw": "創作前的幾個問題。",
+    "ko": "창작을 시작하기 전에."
+  },
+  "用 Zipzi，还需要 Cubism 授权吗？": {
+    "en": "Do I still need a Cubism license?",
+    "ja": "ZipziにもCubismのライセンスは必要？",
+    "zh-tw": "用 Zipzi，還需要 Cubism 授權嗎？",
+    "ko": "Zipzi에도 Cubism 라이선스가 필요한가요?"
+  },
+  "使用 Zipzi 本身不需要购买 Cubism Editor 授权。它是独立的开源编辑器，让你可以选择 Cubism 之外的创作流程。如果同时使用 Cubism 软件或第三方模型，它们原有的授权仍然适用。": {
+    "en": "Using Zipzi itself does not require purchasing a Cubism Editor license. It is an independent open-source editor that gives you a creative workflow beyond Cubism. If you also use Cubism software or third-party models, their existing licenses still apply.",
+    "ja": "Zipzi自体の利用にCubism Editorのライセンス購入は必要ありません。独立したオープンソースエディタとして、Cubism以外の制作環境を選べます。Cubismのソフトウェアや第三者のモデルを併用する場合、それぞれのライセンスは引き続き適用されます。",
+    "zh-tw": "使用 Zipzi 本身不需要購買 Cubism Editor 授權。它是獨立的開源編輯器，讓你可以選擇 Cubism 之外的創作流程。如果同時使用 Cubism 軟體或第三方模型，它們原有的授權仍然適用。",
+    "ko": "Zipzi 자체를 사용하기 위해 Cubism Editor 라이선스를 구매할 필요는 없습니다. 독립적인 오픈 소스 편집기로 Cubism 밖의 창작 흐름을 선택할 수 있습니다. Cubism 소프트웨어나 타사 모델을 함께 사용한다면 해당 라이선스는 계속 적용됩니다."
+  },
+  "开源对创作者意味着什么？": {
+    "en": "What does open source mean for creators?",
+    "ja": "クリエイターにとって、オープンソースとは？",
+    "zh-tw": "開源對創作者意味著什麼？",
+    "ko": "창작자에게 오픈 소스는 어떤 의미인가요?"
+  },
+  "工具的源码公开，你可以了解它如何工作，也可以自己修改，或请开发者为你的创作方式添加功能。编辑器采用 GPL，SDK 采用 MIT；修改和分享软件时需遵守相应许可，素材与模型也保留各自的授权。": {
+    "en": "The source is open to inspect and adapt. You can modify the tools yourself or ask a developer to add features for the way you create. The editor uses GPL and the SDK uses MIT; follow their licenses when modifying or sharing software. Artwork and models retain their own licenses.",
+    "ja": "ソースが公開されているので、仕組みを調べたり、自分で改良したり、開発者に制作に合った機能を依頼したりできます。エディタはGPL、SDKはMITです。ソフトウェアの改変・共有は各ライセンスに従い、素材やモデルにもそれぞれの利用条件が適用されます。",
+    "zh-tw": "工具的原始碼公開，你可以了解它如何運作，也可以自行修改，或請開發者為你的創作方式加入功能。編輯器採用 GPL，SDK 採用 MIT；修改和分享軟體時需遵守相應授權，素材與模型也保留各自的授權。",
+    "ko": "소스가 공개되어 작동 방식을 살펴보고 직접 수정하거나 개발자에게 자신의 작업 방식에 맞는 기능을 요청할 수 있습니다. 편집기는 GPL, SDK는 MIT를 사용합니다. 소프트웨어 수정과 공유 시 해당 라이선스를 따라야 하며 소재와 모델에는 각각의 라이선스가 적용됩니다."
+  },
+  "不会编程，也能用吗？": {
+    "en": "Can I use it without coding?",
+    "ja": "プログラミングができなくても使える？",
+    "zh-tw": "不會寫程式，也能用嗎？",
+    "ko": "코딩을 몰라도 사용할 수 있나요?"
+  },
+  "可以。你可以直接在编辑器里制作模型与动画。AI 协作是可选的：配置好自己的 AI 助手后，用语言描述任务，再在编辑器中检查结果，不必亲自编写每一步操作代码。": {
+    "en": "Yes. Create models and animations directly in the editor. AI collaboration is optional: once your own assistant is configured, describe tasks in words and review the results in the editor, without writing every operation yourself.",
+    "ja": "はい。エディタの画面からモデルやアニメーションを制作できます。AIとの協働は任意です。ご自身のアシスタントを設定した後は、言葉で作業を伝え、画面で結果を確認できます。操作ごとのコードを自分で書く必要はありません。",
+    "zh-tw": "可以。你可以直接在編輯器裡製作模型與動畫。AI 協作是可選的：設定好自己的 AI 助手後，用語言描述任務，再在編輯器中檢查結果，不必親自撰寫每一步操作程式碼。",
+    "ko": "네. 편집기에서 직접 모델과 애니메이션을 만들 수 있습니다. AI 협업은 선택 사항입니다. 자신의 도우미를 설정한 뒤 말로 작업을 설명하고 편집기에서 결과를 확인하면 됩니다. 모든 작업 코드를 직접 작성할 필요는 없습니다."
+  },
+  "已有的 Cubism 作品能直接搬过来吗？": {
+    "en": "Can I bring my existing Cubism work?",
+    "ja": "Cubismの作品をそのまま移せる？",
+    "zh-tw": "已有的 Cubism 作品能直接搬過來嗎？",
+    "ko": "기존 Cubism 작품을 바로 옮길 수 있나요?"
+  },
+  "建议先用项目副本测试。Zipzi 仍在 Alpha 阶段，文件、效果和工作流程不保证与 Cubism 完全兼容。先确认你需要的功能，再决定是否迁移。": {
+    "en": "Test a copy of your project first. Zipzi is still in Alpha, and files, effects, and workflows are not guaranteed to be fully compatible with Cubism. Check the features you need before deciding to migrate.",
+    "ja": "まずはプロジェクトのコピーで試してください。ZipziはまだAlpha段階で、ファイル、表現、制作手順のCubismとの完全な互換性は保証していません。必要な機能を確認してから、移行を検討しましょう。",
+    "zh-tw": "建議先用專案副本測試。Zipzi 仍在 Alpha 階段，檔案、效果和工作流程不保證與 Cubism 完全相容。先確認你需要的功能，再決定是否移轉。",
+    "ko": "먼저 프로젝트 사본으로 테스트하세요. Zipzi는 아직 Alpha 단계이며 파일, 효과, 작업 흐름이 Cubism과 완전히 호환된다고 보장하지 않습니다. 필요한 기능을 확인한 뒤 이전을 결정하세요."
+  },
+  "现在适合拿来做正式作品吗？": {
+    "en": "Is it ready for production work?",
+    "ja": "本番の制作にも使える？",
+    "zh-tw": "現在適合拿來做正式作品嗎？",
+    "ko": "지금 실제 제작에 사용해도 되나요?"
+  },
+  "目前更适合尝试新流程和制作小作品。功能和项目格式还在变化；用于重要作品前，请先验证完整流程，并保留备份。": {
+    "en": "For now, it is best for exploring new workflows and small projects. Features and project formats are still changing. Test your complete workflow and keep backups before using it for important work.",
+    "ja": "今は、新しい制作手順や小さな作品を試す用途に向いています。機能やプロジェクト形式はまだ変化しています。大切な作品に使う前に、一連の作業を検証し、バックアップを残してください。",
+    "zh-tw": "目前更適合嘗試新流程和製作小作品。功能與專案格式還在變化；用於重要作品前，請先驗證完整流程，並保留備份。",
+    "ko": "현재는 새로운 작업 흐름을 탐색하거나 작은 작품을 만드는 데 더 적합합니다. 기능과 프로젝트 형식이 계속 바뀌고 있으므로 중요한 작품에 사용하기 전에 전체 작업 흐름을 확인하고 백업을 보관하세요."
+  },
+  "Zipzi 2D — 开源二维建模与动画 | Live2D Cubism Editor 替代品": {
+    "en": "Zipzi 2D — Open Source Live2D Cubism Editor Alternative",
+    "ja": "Zipzi 2D — オープンソース2D制作 | Live2D Cubism Editorの代替",
+    "zh-tw": "Zipzi 2D — 開源二維建模與動畫 | Live2D Cubism Editor 替代品",
+    "ko": "Zipzi 2D — 오픈 소스 2D 제작 | Live2D Cubism Editor 대안"
+  },
+  "查看 AI 协作配置指南": {
+    "en": "AI collaboration setup guide",
+    "ja": "AI連携の設定ガイドを見る",
+    "zh-tw": "查看 AI 協作設定指南",
+    "ko": "AI 협업 설정 가이드 보기"
   }
 }

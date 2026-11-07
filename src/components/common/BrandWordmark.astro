@@ -1,0 +1,10 @@
+---
+// Official product wordmark; preserve its paths and adapt ink to the site theme.
+import artwork from '~/assets/images/wordmark.svg?raw';
+const drawing = artwork.match(/<svg\b[^>]*>([\s\S]*)<\/svg>\s*$/)?.[1];
+if (!drawing) throw new Error('Expected the official Zipzi wordmark');
+---
+
+<svg class="brand-wordmark" viewBox="0 0 720 310" width="105" height="45" aria-hidden="true" focusable="false">
+  <Fragment set:html={drawing.replace(/#000/g, 'currentColor')} />
+</svg>

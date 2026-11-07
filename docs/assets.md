@@ -16,7 +16,7 @@ Repository: `getzipzi/zipzi-2d` (public). Reviewed default-branch commit: **`1b4
 - Correct source: [`crates/zipzi-editor/assets/app-icons/zipzi-editor-icon.svg`](https://github.com/getzipzi/zipzi-2d/blob/1b4e9f66903c9d83b82f51838408146fad06c643/crates/zipzi-editor/assets/app-icons/zipzi-editor-icon.svg).
 - Git blob: `f163c6a3b6ee32497a524ddefa3a57e23c5625c8`.
 - Upstream SVG SHA256: `48d36d83367e706883d2bbd340542271e6edac8c60ebecff84bfbf009ebd3072`; viewBox `0 0 1024 1024`.
-- The product tree contains one app-brand SVG; the other SVGs are editor toolbar controls. The macOS packaging script uses `zipzi-editor-icon-vector.icns`, consistent with this artwork. The README describes the product and links the editor screenshot; it does not select the unrelated v3 PNG as the brand source.
+- The app-icon directory contains the app-brand SVG; the separate branding directory contains the official wordmark. The macOS packaging script uses `zipzi-editor-icon-vector.icns`, consistent with this artwork. The README describes the product and links the editor screenshot; it does not select the unrelated v3 PNG as the brand source.
 - The actual artwork was rendered and inspected: a teal-haired face under a pale pink form with visible mesh nodes, on a rounded blue tile. The source combines vector shapes with a self-contained embedded PNG; it is not represented as entirely vector paths.
 - Website source: `src/assets/images/app-icon.svg`, SHA256 `2079d9e1927ea63d6d5a026e6bb6a264b4252cd24b7ec4b09e78be0603fa02dd`. Only the XML prolog and external SVG DTD declaration are removed. Paths, gradient, clip, embedded image and styling are preserved without redrawing.
 - The SVG is included once per HTML document as `#zipzi-brand-artwork`. Navigation and footer render it using native SVG `use` references. This preserves one set of unique IDs and avoids duplicating its embedded image within a page. No external logo request or server routing change is required.
@@ -24,3 +24,10 @@ Repository: `getzipzi/zipzi-2d` (public). Reviewed default-branch commit: **`1b4
 - Regression checks verify the source hash, self-contained SVG references, absence of scripts/event handlers/external resources, exact symbol content, both brand instances and SVG-derived raster bytes. Older v3 artwork must not return as a logo source.
 
 The screenshot and app icon retain their source artwork and ownership. The website's MIT template license does not grant independent rights to model artwork or trademarks shown in product images. No upstream template stock images or third-party font files are included.
+
+## Official wordmark
+
+- Source: [`crates/zipzi-editor/assets/branding/zipzi-wordmark.svg`](https://github.com/getzipzi/zipzi-2d/blob/2595b0d1e0ff49873a5181dfbf3bb7475bd03d89/crates/zipzi-editor/assets/branding/zipzi-wordmark.svg).
+- Exact product source retained at `src/assets/images/wordmark.svg`, SHA256 `0e15e34777200c395fcb08bf0f1a63f3b3484863e69e84514b903a0fb73dd446`.
+- Navigation and footer use its original paths and `0 0 720 310` viewBox through `BrandWordmark.astro`. Only black ink becomes `currentColor` for the dark theme; letter shapes and spacing are preserved. The accessible link name remains Zipzi 2D.
+- This artwork belongs to the GPL-3.0-only editor assets; its inclusion is authorized by the product owner. The website template's MIT license does not relicense the wordmark.
