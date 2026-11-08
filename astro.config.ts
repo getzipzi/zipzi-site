@@ -9,9 +9,9 @@ export default defineConfig({
   build: { format: 'preserve', inlineStylesheets: 'never' },
   integrations: [
     sitemap({
-      filter: (page) => !/(?:^|\/)404(?:\.html|\/|$)/.test(new URL(page).pathname),
+      filter: (page) => !/(?:^|\/)404(?:\.html|\/|$)/.test(new URL(page).pathname) && new URL(page).pathname !== '/en/',
       i18n: {
-        defaultLocale: 'zh-cn',
+        defaultLocale: 'en',
         locales: Object.fromEntries(languages.map(({ code, lang }) => [code, lang])),
       },
     }),

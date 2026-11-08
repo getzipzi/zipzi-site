@@ -17,7 +17,7 @@ FIXED = frozenset({
     "index.html", "404.html", "robots.txt", "sitemap.xml", "sitemap-index.xml",
     "sitemap-0.xml", "favicon.png", "apple-touch-icon.png", "media/editor-screenshot.jpg",
 })
-LOCALES = ('ja', 'zh-tw', 'en', 'ko')
+LOCALES = ('ja', 'zh-tw', 'en', 'ko', 'zh-cn')
 LOCALIZED = frozenset(f'{locale}/{page}' for locale in LOCALES for page in ('index.html', '404.html'))
 ASSET = re.compile(r"_astro/[A-Za-z0-9_-]+\.[A-Za-z0-9_.-]+\.(?:css|js|webp|png|jpg)\Z")
 METADATA = frozenset({"manifest.json", "source.json", "SHA256SUMS", "DEPLOYMENT.txt"})
@@ -83,7 +83,8 @@ def validate(files: dict[str, bytes], expected_commit: str) -> dict[str, bytes]:
         total += size
         site[path] = data
         sums.append(f"{sha}  site/{path}\n")
-    if site.keys() & LOCALIZED and not LOCALIZED.issubset(site):
+    required_locales = LOCALIZED if any(name.startswith('zh-cn/') for name in site) else LOCALIZED - {'zh-cn/index.html', 'zh-cn/404.html'}
+    if site.keys() & LOCALIZED and not required_locales.issubset(site):
         raise Rejected('incomplete-localized-site')
     if not FIXED.issubset(site) or type(manifest["totalBytes"]) is not int or manifest["totalBytes"] != total:
         raise Rejected("incomplete-site-manifest")

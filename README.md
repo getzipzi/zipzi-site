@@ -1,6 +1,6 @@
 # Zipzi 2D website
 
-A Simplified Chinese product website for Zipzi 2D, a 2D modeling and animation tool with a desktop editor, a Rust SDK, and a Python SDK. macOS and a Windows development prototype are available; the Python client supports programmatic work and collaboration with AI agents. This is the website repository, separate from the product implementation.
+A multilingual product website with an English main homepage for Zipzi 2D, a 2D modeling and animation tool with a desktop editor, a Rust SDK, and a Python SDK. macOS and a Windows development prototype are available; the Python client supports programmatic work and collaboration with AI agents. This is the website repository, separate from the product implementation.
 
 The site is a static Astro project adapted from [AstroWind](https://github.com/arthelokyo/astrowind) **v1.0.0-beta.65**, pinned to `8d0090f933b71439c02956f7e8d30d41de804832`. See [NOTICE.md](NOTICE.md) for provenance and modifications, and [LICENSE.md](LICENSE.md) for the original MIT license.
 
@@ -84,3 +84,5 @@ The hero explains 2D modeling, deformation and keyframe animation and displays t
 The site uses a white and soft gray palette with violet accents, a centered functional headline and a full-frame editor showcase. The editor showcase leads into open-source licensing, AI collaboration, Alpha downloads and an accessible FAQ. The five locales share the same responsive layout and light theme, including navigation, collaboration examples and error pages.
 
 The AI collaboration section explains a creator-led workflow (describe, review, keep or undo) with a mesh-naming example. Setup requirements are summarized in plain language; detailed SDK and runtime instructions belong in the product documentation. Downloads and FAQs focus on independent open-source creation, applicable licensing and Alpha readiness. The hero and browser title lead with Zipzi 2D.
+
+English is the main site at `/`. Simplified Chinese uses `/zh-cn/`; Japanese, Traditional Chinese and Korean retain their existing paths. `/en/` redirects to `/`, preserving query and fragment when JavaScript is available. The sitemap excludes this legacy redirect; all five languages use English as the x-default. The deployment protocol accepts the new Chinese pages while keeping earlier localized releases valid for rollback.

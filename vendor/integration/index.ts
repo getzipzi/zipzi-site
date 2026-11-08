@@ -88,7 +88,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
             'Disallow: /jobs',
             'Disallow: /api/',
             'Disallow: /404.html',
-            ...['en', 'ja', 'zh-tw', 'ko'].map((locale) => `Disallow: /${locale}/404.html`),
+            ...['en', 'zh-cn', 'ja', 'zh-tw', 'ko'].map((locale) => `Disallow: /${locale}/404.html`),
             '',
             `Sitemap: ${new URL('sitemap.xml', cfg.site).href}`,
             '',

@@ -1,6 +1,6 @@
 ---
 import { translate, type Locale } from '~/i18n';
-const { locale = 'zh-cn' } = Astro.props as { locale?: Locale };
+const { locale = 'en' } = Astro.props as { locale?: Locale };
 const t = translate(locale);
 
 // Adapted from AstroWind Hero's content/action/image slots and static image loading.

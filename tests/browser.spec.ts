@@ -4,8 +4,8 @@ import { mkdir } from 'node:fs/promises';
 
 test('browser tab and social titles preserve the filed website name without duplicate suffixes', async ({ page }) => {
   for (const [route, title] of [
-    ['/', 'Zipzi 2D — 开源二维建模与动画 | Live2D Cubism Editor 替代品'],
-    ['/missing-title-check', '页面未找到 | Zipzi 2D'],
+    ['/', 'Zipzi 2D — Open Source Live2D Cubism Editor Alternative'],
+    ['/missing-title-check', 'Page not found | Zipzi 2D'],
   ]) {
     await page.goto(route);
     await expect(page).toHaveTitle(title);
@@ -56,7 +56,7 @@ test('page has no runtime errors, missing images, overflow, or third-party reque
 });
 
 test('navigation works with keyboard, Escape, anchors and viewport changes', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/zh-cn/');
   await page.keyboard.press('Tab');
   await expect(page.getByText('跳转到主要内容')).toBeFocused();
   await page.keyboard.press('Enter');
@@ -100,7 +100,7 @@ test('FAQ is keyboard-operable and reduced motion disables smooth scrolling', as
 });
 
 test('home, expanded navigation, and 404 pass WCAG A/AA automated checks', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/zh-cn/');
   const scan = async () => {
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
     expect(result.violations).toEqual([]);
@@ -132,7 +132,7 @@ test('right-side GitHub text link and all download actions navigate to the reque
   await page.route(`${repository}**`, (route) =>
     route.fulfill({ contentType: 'text/html', body: '<h1>Navigation target</h1>' })
   );
-  await page.goto('/');
+  await page.goto('/zh-cn/');
   const github = page.getByRole('link', { name: 'Zipzi 2D GitHub 项目', exact: true });
   expect((await page.locator('.site-header').boundingBox())!.height).toBeLessThanOrEqual(81);
   if ((page.viewportSize()?.width ?? 0) < 768) await page.locator('.menu-toggle').click();
@@ -147,7 +147,7 @@ test('right-side GitHub text link and all download actions navigate to the reque
   await github.focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(repository);
-  await page.goto('/');
+  await page.goto('/zh-cn/');
   const downloads = page.getByRole('link', { name: /下载/ });
   await expect(downloads).toHaveCount(3);
   for (const download of await downloads.all()) {
@@ -161,7 +161,7 @@ test('right-side GitHub text link and all download actions navigate to the reque
 });
 
 test('new editor screenshot keeps its full frame and a readable full-size destination', async ({ page, request }) => {
-  await page.goto('/');
+  await page.goto('/zh-cn/');
   const screenshot = page.getByRole('img', { name: /猫模型图层/ });
   await expect(screenshot).toBeVisible();
   expect(
@@ -211,7 +211,7 @@ test('navigation and footer render the same reviewed SVG logo without the old ra
 });
 
 for (const [prefix, lang, hero, errorTitle] of [
-  ['en', 'en', 'Open-source 2D modeling & animation.', 'Page not found'],
+  ['zh-cn', 'zh-CN', '开源二维建模与动画。', '页面未找到'],
   ['ja', 'ja', 'オープンソースの2Dモデリングとアニメーション。', 'ページが見つかりません'],
   ['zh-tw', 'zh-TW', '開源二維建模與動畫。', '找不到頁面'],
   ['ko', 'ko', '오픈 소스 2D 모델링과 애니메이션.', '페이지를 찾을 수 없습니다'],
@@ -239,7 +239,7 @@ for (const [prefix, lang, hero, errorTitle] of [
     await picker.locator('summary').click();
     await page.evaluate(() => history.replaceState(null, '', '#developers'));
     await picker.locator('a[lang="zh-CN"]').click();
-    await expect(page).toHaveURL(/\/#developers$/);
+    await expect(page).toHaveURL(/\/zh-cn\/#developers$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
     const missing = await page.goto(`/${prefix}/missing-page`);
     expect(missing?.status()).toBe(404);
@@ -254,3 +254,10 @@ for (const [prefix, lang, hero, errorTitle] of [
     }
   });
 }
+
+test('English is the main site and legacy English links preserve anchors', async ({ page }) => {
+  await page.goto('/en/#developers');
+  await expect(page).toHaveURL('http://127.0.0.1:4173/#developers');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://zipzi2d.com/');
+});

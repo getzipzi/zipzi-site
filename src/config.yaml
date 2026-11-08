@@ -6,9 +6,9 @@ site:
   trailingSlash: true
 metadata:
   title:
-    default: 'Zipzi 2D — 开源二维建模与动画 | Live2D Cubism Editor 替代品'
+    default: 'Zipzi 2D — Open Source Live2D Cubism Editor Alternative'
     template: '%s | Zipzi 2D'
-  description: 'Zipzi 2D 是开源的 Live2D Cubism Editor 替代品，支持二维建模、网格变形、关键帧动画与 Python AI 协作。编辑器 GPL、SDK MIT，用开放源码构建自己的创作工作流。下载 macOS 与 Windows Alpha。'
+  description: 'An open source Live2D Cubism Editor alternative for 2D modeling and animation. GPL editor, MIT SDK, and Python AI workflows. Download the macOS and Windows Alpha.'
   robots:
     index: true
     follow: true
@@ -21,7 +21,7 @@ metadata:
   twitter:
     cardType: summary_large_image
 i18n:
-  language: zh-CN
+  language: en
   textDirection: ltr
 apps:
   blog:

@@ -23,7 +23,7 @@ const text = (node) => (node?.childNodes ?? []).map((n) => n.value ?? text(n)).j
 const manifest = JSON.parse(await readFile('qa/build-manifest.json', 'utf8'));
 
 test('Generated homepage has complete, consistent, indexable metadata', () => {
-  assert.equal(attrs(nodes.find((n) => n.tagName === 'html')).lang, 'zh-CN');
+  assert.equal(attrs(nodes.find((n) => n.tagName === 'html')).lang, 'en');
   assert.ok(meta('viewport').includes('width=device-width'));
   assert.equal(text(nodes.find((n) => n.tagName === 'title')), config.metadata.title.default);
   assert.equal(meta('description'), config.metadata.description);
@@ -42,7 +42,7 @@ test('Generated homepage has complete, consistent, indexable metadata', () => {
 test('Public page titles retain Zipzi 2D exactly once and social titles match the browser title', async () => {
   for (const [path, expected] of [
     ['dist/index.html', config.metadata.title.default],
-    ['dist/404.html', '页面未找到 | Zipzi 2D'],
+    ['dist/404.html', 'Page not found | Zipzi 2D'],
   ]) {
     const elements = [];
     const collect = (node) => {
@@ -81,11 +81,11 @@ test('Real robots and well-formed sitemap files contain only canonical public pa
   }
   const parsed = new XMLParser().parse(await readFile('dist/sitemap.xml', 'utf8'));
   const urls = [parsed.urlset.url].flat().map((item) => item.loc);
-  assert.deepEqual(urls.sort(), ['/', '/en/', '/ja/', '/ko/', '/zh-tw/'].map((route) => origin + route).sort());
+  assert.deepEqual(urls.sort(), ['/', '/zh-cn/', '/ja/', '/ko/', '/zh-tw/'].map((route) => origin + route).sort());
   const localized = new XMLParser({ ignoreAttributes: false }).parse(await readFile('dist/sitemap.xml', 'utf8'));
   const expectedAlternates = [
-    ['zh-CN', '/'],
-    ['en', '/en/'],
+    ['zh-CN', '/zh-cn/'],
+    ['en', '/'],
     ['ja', '/ja/'],
     ['ko', '/ko/'],
     ['zh-TW', '/zh-tw/'],
@@ -295,7 +295,7 @@ test('Current product artwork is traceable and all browser/share images use the 
   }
   assert.equal(meta('og:image:width'), '2204');
   assert.equal(meta('og:image:height'), '1486');
-  const screenshot = nodes.find((node) => node.tagName === 'img' && attrs(node).alt?.includes('猫模型'));
+  const screenshot = nodes.find((node) => node.tagName === 'img');
   assert.ok(screenshot);
   assert.equal(attrs(screenshot).width, '2204');
   assert.equal(attrs(screenshot).height, '1486');
@@ -312,10 +312,10 @@ test('Approved production domain and ICP filing are published together', () => {
 
 test('All languages have complete localized content, self canonicals, reciprocal hreflang and private 404s', async () => {
   const routes = [
-    ['', 'zh-CN'],
+    ['', 'en'],
     ['ja/', 'ja'],
     ['zh-tw/', 'zh-TW'],
-    ['en/', 'en'],
+    ['zh-cn/', 'zh-CN'],
     ['ko/', 'ko'],
   ];
   const messages = JSON.parse(await readFile('src/i18n/messages.json', 'utf8'));

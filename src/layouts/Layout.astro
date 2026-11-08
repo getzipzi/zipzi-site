@@ -1,6 +1,6 @@
 ---
 import { translate, language, type Locale } from '~/i18n';
-const { locale = 'zh-cn' } = Astro.props as { locale?: Locale };
+const { locale = 'en' } = Astro.props as { locale?: Locale };
 const t = translate(locale);
 
 // Adapted from AstroWind Layout: no analytics, remote fonts, or client router.

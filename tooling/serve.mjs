@@ -31,7 +31,7 @@ const server = http.createServer(async (request, response) => {
     }
     let target = path.resolve(root, '.' + pathname);
     if (target !== root && !target.startsWith(root + path.sep)) throw Error('Invalid path');
-    const locale = pathname.match(/^\/(ja|zh-tw|en|ko)\//)?.[1];
+    const locale = pathname.match(/^\/(ja|zh-cn|zh-tw|en|ko)\//)?.[1];
     let status = /(?:^|\/)404\.html$/.test(pathname) ? 404 : 200;
     try {
       if ((await stat(target)).isDirectory()) target = path.join(target, 'index.html');

@@ -50,7 +50,7 @@ def tar_blob(files, extra=None):
 
 class ProtocolTests(unittest.TestCase):
     def test_localized_pages_have_an_exact_finite_allowlist(self):
-        for locale in ('en', 'ja', 'zh-tw', 'ko'):
+        for locale in ('en', 'ja', 'zh-tw', 'ko', 'zh-cn'):
             for page in ('index.html', '404.html'):
                 self.assertTrue(p.allowed(f'{locale}/{page}'))
             for path in ('api/index.html', 'jobs/index.html', '../index.html', 'extra.html'):
@@ -60,6 +60,8 @@ class ProtocolTests(unittest.TestCase):
     def test_localized_archive_requires_all_languages_but_keeps_old_releases_valid(self):
         site = {**site_fixture(), **{name: b'localized' for name in p.LOCALIZED}}
         self.assertEqual(p.read_archive(tar_blob(artifact_files(site)), COMMIT), site)
+        legacy = {name: data for name, data in site.items() if not name.startswith('zh-cn/')}
+        self.assertEqual(p.read_archive(tar_blob(artifact_files(legacy)), COMMIT), legacy)
         del site['ko/404.html']
         with self.assertRaises(p.Rejected): p.read_archive(tar_blob(artifact_files(site)), COMMIT)
         self.assertEqual(p.read_archive(tar_blob(artifact_files()), COMMIT), site_fixture())

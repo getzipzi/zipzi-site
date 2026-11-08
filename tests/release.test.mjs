@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 import { parse } from 'parse5';
-const html = await readFile('dist/index.html', 'utf8');
+const html = await readFile('dist/zh-cn/index.html', 'utf8');
 const links = [];
 const text = (node) => (node.childNodes ?? []).map((n) => n.value ?? text(n)).join('');
 function walk(n) {
