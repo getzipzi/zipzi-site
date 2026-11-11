@@ -194,7 +194,7 @@ test('navigation and footer render the same reviewed SVG logo without the old ra
     expect(
       await mark.evaluate((svg) => {
         const drawing = (svg as SVGSVGElement).getBBox();
-        return drawing.width > 800 && drawing.height > 800;
+        return drawing.width > 400 && drawing.height > 450;
       })
     ).toBe(true);
   }

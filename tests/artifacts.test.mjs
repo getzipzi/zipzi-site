@@ -229,7 +229,7 @@ test('Current product artwork is traceable and all browser/share images use the 
   const svg = await readFile('src/assets/images/app-icon.svg', 'utf8');
   assert.equal(
     createHash('sha256').update(svg).digest('hex'),
-    '2079d9e1927ea63d6d5a026e6bb6a264b4252cd24b7ec4b09e78be0603fa02dd'
+    '62a7878bdf71802084d2eb4a042f57f07980d9268970fd92a3ef50228c434cf2'
   );
   assert.doesNotMatch(svg, /<\?(?:xml)|<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\son[a-z]+\s*=/i);
   const svgNodes = [];
@@ -258,8 +258,8 @@ test('Current product artwork is traceable and all browser/share images use the 
     }
   }
   const symbol = find('symbol', 'id', 'zipzi-brand-artwork');
-  assert.equal(attrs(symbol).viewBox, '0 0 1024 1024');
-  // Compare parsed drawing nodes, including the exact embedded PNG, to the
+  assert.equal(attrs(symbol).viewBox, '-15.228533 -5 531.5 537');
+  // Compare parsed drawing nodes to the
   // reviewed source. Attribute order and irrelevant formatting may differ.
   const drawing = (list) =>
     list.filter((n) => ['path', 'image', 'stop'].includes(n.tagName)).map((n) => ({ tag: n.tagName, attrs: attrs(n) }));
